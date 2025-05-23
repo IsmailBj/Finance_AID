@@ -1,0 +1,39 @@
+@use '@/style/utils/_variables' as *;
+
+
+.header {
+    width: calc(100% - 40px);
+    display: flex;
+    height: 80px;
+    padding: 0 20px;
+    justify-content: space-between;
+    background-color: $bg-primary;
+    .calendar{
+        display: flex;
+        align-items: center;
+        gap: 20px;
+        justify-content: space-around;
+        .date{
+            font-size: $font-size-big;
+            font-weight: bold;
+        }
+    }
+    .balance-container {
+        min-width: 250px;
+        background-color: $color-secondary;
+        padding: 5px;
+        margin: 10px;
+        border-radius: 10px;
+        display: flex;
+        justify-content: flex-start;
+        .amount{
+
+        }
+        .status{
+
+        }
+        .assign-btn{
+
+        }
+    }
+}
