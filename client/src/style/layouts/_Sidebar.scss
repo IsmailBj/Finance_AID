@@ -1,26 +1,42 @@
-@use '@/style/utils/_variables' as *;
+@use "@/style/utils/_variables" as *;
 
-
-.side-bar{
-    width: 15%;
-    background-color: $color-primary;
-    .side-header {
-        color: white;
-        display: flex;
-        justify-content: space-evenly;
-        height: 80px;
-        align-items: center;
-        margin: 0 20px;
-        .info-wrapper {
-            display: flex;
-            flex-grow: 1;
-            margin: 10px;
-            flex-direction: column;
-            span.info-section {
-                font-size: 1.5rem;
-                font-weight: bold;
-            }
-        }
-        
+.side-bar {
+  width: 15%;
+  background-color: $color-primary;
+  .user-info-header {
+    color: white;
+    display: flex;
+    justify-content: space-evenly;
+    height: 80px;
+    align-items: center;
+    margin: 0 20px;
+    .info-wrapper {
+      display: flex;
+      flex-grow: 1;
+      margin: 10px;
+      flex-direction: column;
+      span.info-section {
+        font-size: 1.5rem;
+        font-weight: bold;
+      }
     }
+  }
+  .sidebar-list {
+    display: flex;
+    flex-direction: column;
+    margin: 0 20px;
+    padding: 10px 0;
+    .sidebar-item {
+      display: flex;
+      align-items: center;
+      padding: 10px 0;
+      color: white;
+      font-size: 1.5rem;
+      cursor: pointer;
+      &:hover {
+        background-color: $color-primary-selected;
+        border-radius: 5px;
+      }
+    }
+  }
 }

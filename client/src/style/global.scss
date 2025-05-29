@@ -1,16 +1,17 @@
-@use '../style/layouts/Sidebar' as *;
-@use '../style/components/Buttons' as *;
-@use '../style/components/_Header' as *;
+@use "../style/layouts/Sidebar" as *;
+@use "../style/components/Buttons" as *;
+@use "../style/components/_Header" as *;
+@use "../style/components/_FilterTransaction" as *;
 
-body{
-	margin: 0;
-	font-family: $font-base;
+body {
+  margin: 0;
+  font-family: $font-base;
 }
 
 .app {
-	display: flex;
-	margin: 5px;
-	border-radius: 5px;
-	height: calc(100vh - 20px);
-    box-shadow: $shadow-color 0px 0px 9px 4px;
+  display: flex;
+  margin: 5px;
+  border-radius: 5px;
+  height: calc(100vh - 20px);
+  box-shadow: $shadow-color 0px 0px 9px 4px;
 }
