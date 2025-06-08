@@ -16,7 +16,7 @@ app.use(express.static(path.join(__dirname, "../client/build")));
 
 app.get("/test-db", async (req, res) => {
   try {
-    const result = await db.query("SELECT NOW()"); // simple query to get current time
+    const result = await db.query("SELECT NOW()");
     res.json({ success: true, time: result.rows[0].now });
   } catch (err) {
     console.error("DB error:", err);

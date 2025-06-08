@@ -1,0 +1,48 @@
+.toolbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 16px;
+  border-bottom: 1px solid #ddd;
+  background-color: white;
+
+  .toolbar-left,
+  .toolbar-right {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .toolbar-btn,
+  .toolbar-icon-btn {
+    background: transparent;
+    border: none;
+    color: #3b6cc1;
+    font-weight: 500;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    cursor: pointer;
+    padding: 4px 6px;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+
+  .view-toggle {
+    background: transparent;
+    border: 1px solid #ccc;
+    padding: 6px;
+    border-radius: 4px;
+    cursor: pointer;
+    color: #666;
+
+    &.active {
+      background-color: #e6f0ff;
+      color: #3b6cc1;
+      border-color: #3b6cc1;
+    }
+  }
+}

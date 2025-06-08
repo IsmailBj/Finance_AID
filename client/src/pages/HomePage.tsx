@@ -1,8 +1,13 @@
-
+import Header from "../components/ui/Header";
+import ItemPanel from "../components/ui/budgetPanel/ItemPanel";
 
 const Home = () => {
-    return <h1 className="d">Home Pagee</h1>
-}
+  return (
+    <div className="Home">
+      <Header />
+      <ItemPanel />
+    </div>
+  );
+};
 
-
-export default Home
+export default Home;

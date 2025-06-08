@@ -2,6 +2,10 @@
 @use "../style/components/Buttons" as *;
 @use "../style/components/_Header" as *;
 @use "../style/components/_FilterTransaction" as *;
+@use "../style/utils/mixings" as *;
+@use "../style/components/ItemControls" as *;
+@use "../style/ui/AutoAssignPanel.scss" as *;
+@use "../style/ui/Buttons.scss" as *;
 
 body {
   margin: 0;
@@ -14,4 +18,20 @@ body {
   border-radius: 5px;
   height: calc(100vh - 20px);
   box-shadow: $shadow-color 0px 0px 9px 4px;
+}
+
+.app .main {
+  width: 100%;
+}
+
+.item-panel-section {
+  display: flex;
+  width: 100%;
+  .item-panel {
+    width: 100%;
+  }
+  .cards-holder {
+    width: 25%;
+    margin: 30px;
+  }
 }

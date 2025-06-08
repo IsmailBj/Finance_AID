@@ -9,7 +9,7 @@
   width: 100%;
   .filter-item {
     font-size: $font-size-medium;
-    color: $text-color;
+    color: $font-color;
     font-weight: bold;
     cursor: pointer;
     &:hover {
@@ -18,7 +18,7 @@
     }
     .filter-text {
       font-size: $font-size-medium;
-      color: $text-color;
+      color: $font-color;
     }
   }
 }

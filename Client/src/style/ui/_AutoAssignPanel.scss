@@ -1,0 +1,44 @@
+.auto-assign-panel {
+  background-color: #f7faff;
+  border-radius: 8px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  padding: 16px;
+  font-family: "Inter", sans-serif;
+  width: 280px;
+
+  .panel-header {
+    font-weight: 600;
+    color: #1a3d7c;
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+
+    .dropdown-icon {
+      font-size: 12px;
+      color: #6a88c2;
+    }
+  }
+
+  .panel-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+
+    .panel-row {
+      display: flex;
+      justify-content: space-between;
+      padding: 6px 0;
+      font-size: 14px;
+
+      .label {
+        color: #444;
+      }
+
+      .value {
+        color: #1a3d7c;
+        font-weight: 500;
+      }
+    }
+  }
+}
