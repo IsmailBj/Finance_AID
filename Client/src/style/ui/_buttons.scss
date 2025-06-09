@@ -1,9 +1,9 @@
 .check-button {
   display: inline-flex;
   align-items: center;
-  background: #eee;
-  border: 2px solid #ccc;
-  padding: 8px 12px;
+  background: unset;
+  border: unset;
+  margin: 8px 12px;
   border-radius: 4px;
   cursor: pointer;
   user-select: none;
@@ -21,15 +21,11 @@
   }
 
   .checkmark {
-    display: inline-block;
     width: 18px;
     height: 18px;
-    margin-right: 8px;
-    border: 2px solid #333;
-    border-radius: 3px;
-    text-align: center;
-    line-height: 18px;
-    font-weight: bold;
+    border: 1px solid #989898;
+    border-radius: 5px;
+    background-color: whitesmoke;
 
     .checked & {
       border-color: white;

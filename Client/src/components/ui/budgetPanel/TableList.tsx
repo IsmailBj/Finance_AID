@@ -1,5 +1,59 @@
 import React from "react";
 import { CheckButton } from "../../common/buttons/Buttons";
+import TabList from "./TabList";
+
+const groupList = [
+  {
+    id: 1,
+    name: "Group Name",
+    budgeted: 1000,
+    activity: 500,
+    available: 500,
+    subGroups: [
+      {
+        id: 1,
+        name: "Sub Group 1",
+        budgeted: 300,
+        activity: 200,
+        available: 100,
+        subGroups: [],
+      },
+      {
+        id: 2,
+        name: "Sub Group 2",
+        budgeted: 700,
+        activity: 300,
+        available: 400,
+        subGroups: [],
+      },
+    ],
+  },
+  {
+    id: 2,
+    name: "Another Group",
+    budgeted: 2000,
+    activity: 1500,
+    available: 500,
+    subGroups: [
+      {
+        id: 1,
+        name: "Sub Group A",
+        budgeted: 800,
+        activity: 600,
+        available: 200,
+        subGroups: [],
+      },
+      {
+        id: 2,
+        name: "Sub Group B",
+        budgeted: 1200,
+        activity: 900,
+        available: 300,
+        subGroups: [],
+      },
+    ],
+  },
+];
 
 const TableList: React.FC = () => {
   return (
@@ -9,11 +63,15 @@ const TableList: React.FC = () => {
           <CheckButton isChecked={false} />
           <div className="list-title">CATEGORY</div>
         </div>
-        <div className="budgeted-marker">BUDGETED</div>
-        <div className="activity-marker">ACTIVITY</div>
-        <div className="available-marker">AVAILABLE</div>
+        <div className="budgeted-marker tab">BUDGETED</div>
+        <div className="activity-marker tab">ACTIVITY</div>
+        <div className="available-marker tab selected">AVAILABLE</div>
       </span>
-      <span className="group-list"></span>
+      <div className="group-list">
+        {groupList.map((group) => (
+          <TabList key={group.id} {...group} />
+        ))}
+      </div>
     </div>
   );
 };
