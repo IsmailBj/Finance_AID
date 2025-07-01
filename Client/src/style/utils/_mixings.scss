@@ -10,3 +10,10 @@
   font-weight: bold;
   cursor: pointer;
 }
+
+@mixin line($color, $height: 5px) {
+  width: 100%;
+  height: $height;
+  background-color: $color;
+  border-radius: 20px;
+}
