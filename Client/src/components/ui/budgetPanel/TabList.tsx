@@ -1,6 +1,7 @@
-import React from "react";
+import React, { useState } from "react";
 import { CheckButton } from "../../common/buttons/Buttons";
 import SubBarLine from "../../common/bars/SubBarLine";
+import { FaArrowAltCircleDown } from "react-icons/fa";
 
 type Group = {
   id: number;
@@ -21,11 +22,18 @@ type SubGroup = {
 };
 
 const TabList: React.FC<Group> = (group) => {
+  const [collapsed, setCollapsed] = useState(false);
+
   return (
     <div className="list-table">
-      <div key={group.id} className="group-item">
+      <div
+        key={group.id}
+        className="group-item"
+        onClick={() => setCollapsed(!collapsed)}
+      >
         <div className="selector">
           <CheckButton isChecked={false} />
+          <FaArrowAltCircleDown />
           <div className="group-name">{group.name}</div>
         </div>
 
@@ -34,7 +42,7 @@ const TabList: React.FC<Group> = (group) => {
         <div className="available tab">$ {group.available}</div>
       </div>
       {group.subGroups.length > 0 && (
-        <div className="sub-groups">
+        <div className={`sub-groups ${collapsed ? "collapsed" : ""}`}>
           {group.subGroups.map((subGroup) => (
             <TabListSubGroup key={subGroup.id} {...subGroup} />
           ))}
