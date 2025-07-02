@@ -1,10 +1,11 @@
+import ApexChartPie from "../components/charts/PieChard";
 
+const Budgets = () => {
+  return (
+    <div className="chard1">
+      <ApexChartPie />
+    </div>
+  );
+};
 
-
-const Budgets = () =>{
-
-    return <h1>Budgets page</h1>
-}
-
-
-export default Budgets
+export default Budgets;
