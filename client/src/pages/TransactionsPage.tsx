@@ -2,7 +2,6 @@ import TransactionFilter from "../components/ui/TransactionFilter";
 import { useState } from "react";
 
 const Transactions = () => {
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [filterBy, setFilterBy] = useState("name");
 
   return (
@@ -12,7 +11,9 @@ const Transactions = () => {
         <TransactionFilter setFilterBy={setFilterBy} />
       </div>
       <div className="transactions-list">
-        {/* Transactions list will go here */}
+        {filterBy === "name" && (
+          <div className="transaction-item">{filterBy}</div>
+        )}
       </div>
     </div>
   );
