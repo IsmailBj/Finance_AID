@@ -17,7 +17,10 @@ const Sidebar = () => {
         <div className="expend-icon">⬆️</div>
       </div>
       <div className="sidebar-list">
-        <div className="sidebar-item" onClick={() => handleNavigation("/")}>
+        <div
+          className="sidebar-item"
+          onClick={() => handleNavigation("/Dashboard")}
+        >
           <span className="sidebar-icon">🏠</span>
           <span className="sidebar-text">Dashboard</span>
         </div>

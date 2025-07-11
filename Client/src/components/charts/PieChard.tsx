@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import ReactApexChart from "react-apexcharts";
 
 const ApexChartPie = () => {
@@ -9,34 +9,24 @@ const ApexChartPie = () => {
       chart: {
         type: "donut" as const,
       },
-      responsive: [
-        {
-          breakpoint: 480,
-          options: {
-            chart: {
-              width: 200,
-            },
-            legend: {
-              position: "bottom",
-            },
-          },
-        },
-      ],
+      labels: ["Apple", "Mango", "Orange", "Watermelon", "Banana"],
     },
   });
 
-  setState((prevState) => ({
-    ...prevState,
-    options: {
-      ...prevState.options,
-      labels: ["Apple", "Mango", "Orange", "Watermelon", "Banana"],
-      legend: {
-        position: "right",
-        offsetY: 80,
-        height: 230,
+  useEffect(() => {
+    setState((prevState) => ({
+      ...prevState,
+      options: {
+        ...prevState.options,
+        labels: ["Apple", "Mango", "Orange", "Watermelon", "Banana"],
+        legend: {
+          position: "right",
+          offsetY: 80,
+          height: 230,
+        },
       },
-    },
-  }));
+    }));
+  }, []);
 
   return (
     <div id="chart">

@@ -2,6 +2,7 @@ require("dotenv").config();
 const express = require("express");
 const path = require("path");
 const db = require("./db");
+const authRoutes = require("./routes/auth");
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -17,6 +18,11 @@ app.get("/test-db", async (req, res) => {
     res.status(500).json({ error: "Database connection failede" });
   }
 });
+
+// Import routes
+
+app.use("/api/auth", authRoutes);
+
 // Serve static files from Vite build
 app.use(express.static(path.join(__dirname, "../Client/dist")));
 
