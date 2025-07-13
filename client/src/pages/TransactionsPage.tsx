@@ -1,7 +1,7 @@
 import TransactionFilter from "../components/ui/TransactionFilter";
-import { useState } from "react";
+import { useState, FC } from "react";
 
-const Transactions = () => {
+const Transactions: FC = () => {
   const [filterBy, setFilterBy] = useState("name");
 
   return (

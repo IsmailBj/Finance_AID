@@ -1,13 +1,15 @@
 import { Route, Routes } from "react-router-dom";
+import { FC } from "react";
 import Layout from "../layouts/Layout";
 import HomePage from "../pages/HomePage";
-import LandingPage from "../pages/LandingPage";
+
 import DashboardPage from "../pages/DashboardPage";
 import Budgets from "../pages/BudgetPage";
 import Transactions from "../pages/TransactionsPage";
 import Settings from "../pages/SettingsPage";
+import LandingPage from "../pages/LandingPage";
 
-const AppRoutes = () => {
+const AppRoutes: FC = () => {
   return (
     <Routes>
       <Route path="/" element={<Layout />}>
@@ -17,7 +19,7 @@ const AppRoutes = () => {
         <Route path="/Transactions" element={<Transactions />} />
         <Route path="/Settings" element={<Settings />} />
       </Route>
-      <Route path="/land" element={<LandingPage />} />
+      <Route path="/Landing" element={<LandingPage />} />
     </Routes>
   );
 };

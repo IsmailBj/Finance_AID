@@ -1,27 +1,9 @@
 const express = require("express");
-const bcrypt = require("bcryptjs");
-const routes = express.Router();
-const userModel = require("../models/userModal");
+const userController = require("../controllers/userController");
 
-routes.post("/register", async (req, res) => {
-  const { username, email, password } = req.body;
+const router = express.Router();
 
-  try {
-    const existingUser = await userModel.findUserByEmail(email);
+router.post("/register", userController.register);
+router.post("/login", userController.login);
 
-    if (existingUser) {
-      return res.status(400).json({ error: "User already exists" });
-    }
-
-    const salt = await bcrypt.genSalt(10);
-    const hashedPassword = await bcrypt.hash(password, salt);
-
-    const user = await userModel.createUser(username, email, hashedPassword);
-    res.status(201).json(user);
-  } catch (error) {
-    console.error("Error during registration:", error);
-    return res.status(500).json({ error: "Internal server error" });
-  }
-});
-
-module.exports = routes;
+module.exports = router;

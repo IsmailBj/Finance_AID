@@ -1,0 +1,75 @@
+@use "@/style/utils/_variables" as *;
+
+.login-page {
+  background: linear-gradient(
+    135deg,
+    $color-primary 0%,
+    $color-primary-hover 50%,
+    $color-primary-selected 100%
+  );
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: $font-base;
+}
+
+.login-container {
+  background-color: $bg-secondary;
+  padding: 2rem 3rem;
+  border-radius: 8px;
+  box-shadow: 0 0 15px $shadow-color;
+  width: 100%;
+  max-width: 400px;
+}
+
+.login-title {
+  color: $color-primary;
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+
+.login-form {
+  display: flex;
+  flex-direction: column;
+
+  label {
+    margin: 0.5rem 0 0.25rem;
+    color: $font-color;
+    font-weight: 500;
+  }
+
+  input {
+    padding: 0.5rem 0.75rem;
+    border: 1px solid $shadow-color;
+    border-radius: 4px;
+    font-size: 1rem;
+    transition: border-color 0.2s;
+
+    &:focus {
+      outline: none;
+      border-color: $color-primary;
+      color: $font-color-focus;
+    }
+  }
+
+  .login-button {
+    margin-top: 1.5rem;
+    padding: 0.75rem;
+    border: none;
+    border-radius: 4px;
+    background-color: $color-primary;
+    color: $font-color-light;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s;
+
+    &:hover {
+      background-color: $color-primary-hover;
+    }
+
+    &:active {
+      background-color: $color-primary-selected;
+    }
+  }
+}

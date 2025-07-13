@@ -1,7 +1,8 @@
 import { Outlet } from "react-router-dom";
 import Sidebar from "../components/ui/Sidebar";
+import { FC } from "react";
 
-const Layout = () => {
+const Layout: FC = () => {
   return (
     <div className="app">
       <Sidebar />
