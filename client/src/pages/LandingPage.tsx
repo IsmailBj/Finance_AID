@@ -6,22 +6,37 @@ const LandingPage: FC = () => {
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
 
-  const handleLogin = (e: React.FormEvent) => {
+  const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
-    // Handle login logic here
-    console.log(
-      "Logging in with username:",
-      username,
-      "and password:",
-      password
-    );
+    setLoading(true);
+
+    try {
+      const res = await fetch("http://localhost:3000/api/auth/login", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ username, password }),
+      });
+
+      const data = await res.json();
+
+      if (res.ok) {
+        sessionStorage.setItem("token", data.token);
+        window.location.href = "/";
+      } else {
+        alert(data.error || "Login failed");
+      }
+    } catch (error) {
+      console.error("Login error:", error);
+      alert("Login failed");
+    } finally {
+      setLoading(false);
+    }
     handleClearInput();
   };
 
   const handleClearInput = () => {
     setUsername("");
     setPassword("");
-    setLoading(true);
   };
 
   return (
