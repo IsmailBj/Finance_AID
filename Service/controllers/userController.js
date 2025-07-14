@@ -1,5 +1,6 @@
 const bcrypt = require("bcryptjs");
 const userModel = require("../models/userModal");
+const jwt = require("jsonwebtoken");
 
 const register = async (req, res) => {
   const { username, email, password } = req.body;
@@ -36,10 +37,15 @@ const login = async (req, res) => {
       return res.status(401).json({ error: "Invalid username or password" });
     }
 
-    // You can add JWT or session creation here
+    const token = jwt.sign(
+      { id: user.id, username: user.username },
+      process.env.JWT_SECRET,
+      { expiresIn: "1h" }
+    );
 
     res.json({
       message: "Login successful",
+      token,
       user: { id: user.id, username: user.username, email: user.email },
     });
   } catch (error) {
