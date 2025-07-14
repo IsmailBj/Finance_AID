@@ -38,7 +38,6 @@ export const SettingsBtn = () => {
   );
 };
 
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
 export const CheckButton: React.FC<CheckButtonProps> = ({ isChecked }) => {
   return (
     <button

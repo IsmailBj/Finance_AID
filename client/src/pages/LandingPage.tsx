@@ -1,10 +1,13 @@
 import { FC, useState } from "react";
 import Loading from "../components/common/loader/Loading";
+import { useNavigate } from "react-router-dom";
 
 const LandingPage: FC = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
+
+  const navigate = useNavigate();
 
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -20,8 +23,9 @@ const LandingPage: FC = () => {
       const data = await res.json();
 
       if (res.ok) {
-        sessionStorage.setItem("token", data.token);
-        window.location.href = "/";
+        localStorage.setItem("token", data.token);
+        localStorage.setItem("user", JSON.stringify(data.user));
+        navigate("/");
       } else {
         alert(data.error || "Login failed");
       }

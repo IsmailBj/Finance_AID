@@ -1,6 +1,6 @@
 const express = require("express");
 const userController = require("../controllers/userController");
-import verifyToken from "../middleware/authMiddleware";
+// import verifyToken from "../middleware/authMiddleware";
 
 const router = express.Router();
 

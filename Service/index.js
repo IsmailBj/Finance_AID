@@ -3,11 +3,14 @@ const express = require("express");
 const path = require("path");
 const db = require("./db");
 const authRoutes = require("./routes/auth");
+const cors = require("cors");
 
 const app = express();
 const PORT = process.env.PORT || 3000;
 
 app.use(express.json());
+
+app.use(cors({ origin: "http://localhost:5173", credentials: true }));
 
 app.get("/test-db", async (req, res) => {
   try {
@@ -22,6 +25,8 @@ app.get("/test-db", async (req, res) => {
 // Import routes
 
 app.use("/api/auth", authRoutes);
+
+// app.use("/api", )
 
 // Serve static files from Vite build
 app.use(express.static(path.join(__dirname, "../Client/dist")));
