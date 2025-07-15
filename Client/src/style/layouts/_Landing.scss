@@ -1,6 +1,7 @@
 @use "@/style/utils/_variables" as *;
+@use "@/style/utils/_mixings" as *;
 
-.login-page {
+.landing-page {
   background: linear-gradient(
     135deg,
     $color-primary 0%,
@@ -12,17 +13,18 @@
   align-items: center;
   justify-content: center;
   font-family: $font-base;
-}
 
-.login-container {
-  background-color: $bg-secondary;
-  padding: 2rem 3rem;
-  border-radius: 8px;
-  box-shadow: 0 0 15px $shadow-color;
-  width: 100%;
-  max-width: 400px;
-  min-height: 350px;
+  .landing-container {
+    background-color: $bg-secondary;
+    padding: 2rem 3rem;
+    border-radius: 8px;
+    box-shadow: 0 0 15px $shadow-color;
+    width: 100%;
+    max-width: 400px;
+    min-height: 350px;
+  }
 }
+// login modal styles
 
 .login-title {
   color: $color-primary;
@@ -53,24 +55,71 @@
       color: $font-color-focus;
     }
   }
+}
+.login-button,
+.register-button {
+  @include longButton($color-primary, $font-color-light);
+  margin: 1.5rem;
+}
 
-  .login-button {
-    margin-top: 1.5rem;
-    padding: 0.75rem;
-    border: none;
-    border-radius: 4px;
-    background-color: $color-primary;
-    color: $font-color-light;
-    font-size: 1rem;
-    cursor: pointer;
-    transition: background-color 0.3s;
+// Register modal styles
 
-    &:hover {
-      background-color: $color-primary-hover;
+.register-page {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: $font-base;
+
+  .register-container {
+    width: 100%;
+    max-width: 450px;
+    .register-title {
+      color: $color-primary;
+      text-align: center;
+      margin-bottom: 1.5rem;
     }
 
-    &:active {
-      background-color: $color-primary-selected;
+    .register-form {
+      display: flex;
+      flex-direction: column;
+
+      label {
+        margin: 0.5rem 0 0.25rem;
+        color: $font-color;
+        font-weight: 500;
+      }
+
+      input {
+        padding: 0.5rem 0.75rem;
+        border: 1px solid $shadow-color;
+        border-radius: 4px;
+        font-size: 1rem;
+        transition: border-color 0.2s;
+
+        &:focus {
+          outline: none;
+          border-color: $color-primary;
+          color: $font-color-focus;
+        }
+      }
     }
+  }
+}
+
+span.or {
+  display: inline-flex;
+  align-items: center;
+  width: 100%;
+  gap: 10px;
+  color: $color-primary;
+  justify-content: center;
+
+  &::before,
+  &::after {
+    content: "";
+    height: 2px;
+    display: flex;
+    background: $color-primary;
+    width: 100%;
   }
 }
