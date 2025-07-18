@@ -3,6 +3,7 @@ const express = require("express");
 const path = require("path");
 const db = require("./db");
 const authRoutes = require("./routes/auth");
+const groupRoutes = require("./routes/group");
 const cors = require("cors");
 
 const app = express();
@@ -25,6 +26,7 @@ app.get("/test-db", async (req, res) => {
 // Import routes
 
 app.use("/api/auth", authRoutes);
+app.use("/api/group", groupRoutes);
 
 // app.use("/api", )
 
