@@ -1,10 +1,11 @@
 import React, { FC, useState, Dispatch, SetStateAction } from "react";
-
+import Loading from "../common/loader/Loading";
 interface RegisterModalProps {
   showRegister: Dispatch<SetStateAction<boolean>>;
 }
 
 const RegisterPage: FC<RegisterModalProps> = ({ showRegister }) => {
+  const [loading, setLoading] = useState(false);
   const [form, setForm] = useState({
     username: "",
     email: "",
@@ -12,27 +13,57 @@ const RegisterPage: FC<RegisterModalProps> = ({ showRegister }) => {
     repeatPassword: "",
   });
 
+  const handleClearInput = (): void => {
+    setForm({
+      username: "",
+      email: "",
+      password: "",
+      repeatPassword: "",
+    });
+  };
+
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-
+    setLoading(true);
     if (form.password !== form.repeatPassword) {
       alert("Passwords do not match.");
+      setLoading(false);
       return;
     }
 
-    // Send username, email, password only
-    console.log({
-      username: form.username,
-      email: form.email,
-      password: form.password,
-    });
+    try {
+      const res = await fetch("http://localhost:3000/api/auth/register", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          username: form.username,
+          email: form.email,
+          password: form.password,
+        }),
+      });
+
+      const data = await res.json();
+
+      if (res.ok) {
+        alert("Registration successful! You can now log in.");
+      } else {
+        alert(data.error || "Registration failed");
+      }
+    } catch (error) {
+      console.error("Registration error:", error);
+    } finally {
+      showRegister(false);
+    }
+    handleClearInput();
   };
 
-  return (
+  return loading ? (
+    <Loading />
+  ) : (
     <div className="register-page">
       <div className="register-container">
         <h1 className="register-title">Create Account</h1>
