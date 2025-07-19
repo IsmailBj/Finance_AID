@@ -3,7 +3,6 @@ import { Route, Routes } from "react-router-dom";
 import { FC } from "react";
 import Layout from "../layouts/Layout";
 import HomePage from "../pages/HomePage";
-import DashboardPage from "../pages/DashboardPage";
 import Budgets from "../pages/BudgetPage";
 import Transactions from "../pages/TransactionsPage";
 import Settings from "../pages/SettingsPage";
@@ -23,7 +22,6 @@ const AppRoutes: FC = () => {
         }
       >
         <Route index element={<HomePage />} />
-        <Route path="Dashboard" element={<DashboardPage />} />
         <Route path="Budgets" element={<Budgets />} />
         <Route path="Transactions" element={<Transactions />} />
         <Route path="Settings" element={<Settings />} />

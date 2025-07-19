@@ -6,6 +6,11 @@ const Sidebar = () => {
   const handleNavigation = (path: string) => {
     navigate(path);
   };
+  const handleLogout = () => {
+    localStorage.removeItem("token");
+    localStorage.removeItem("user");
+    handleNavigation("/Landing");
+  };
   return (
     <div className="side-bar">
       <div className="user-info-header">
@@ -17,12 +22,9 @@ const Sidebar = () => {
         <div className="expend-icon">⬆️</div>
       </div>
       <div className="sidebar-list">
-        <div
-          className="sidebar-item"
-          onClick={() => handleNavigation("/Dashboard")}
-        >
+        <div className="sidebar-item" onClick={() => handleNavigation("/")}>
           <span className="sidebar-icon">🏠</span>
-          <span className="sidebar-text">Dashboard</span>
+          <span className="sidebar-text">Home</span>
         </div>
         <div
           className="sidebar-item"
@@ -46,6 +48,12 @@ const Sidebar = () => {
           <span className="sidebar-text">Settings</span>
         </div>
       </div>
+      <span className="logout">
+        <span className="sidebar-icon">🚪</span>
+        <span className="sidebar-text" onClick={handleLogout}>
+          Logout
+        </span>
+      </span>
     </div>
   );
 };
