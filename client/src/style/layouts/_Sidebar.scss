@@ -1,5 +1,5 @@
 @use "@/style/utils/_variables" as *;
-
+@use "@/style/utils/mixings" as *;
 .side-bar {
   width: 15%;
   background-color: $color-primary;
@@ -39,4 +39,9 @@
       }
     }
   }
+}
+
+.logout {
+  @include longButton($color-primary-hover, $font-color-light);
+  width: 100%;
 }

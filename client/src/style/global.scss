@@ -1,5 +1,4 @@
 @use "../style/layouts/Sidebar" as *;
-@use "../style/components/Buttons" as *;
 @use "../style/components/_Header" as *;
 @use "../style/components/_FilterTransaction" as *;
 @use "../style/utils/mixings" as *;
@@ -9,6 +8,7 @@
 @use "../style/ui/ExpensesChard" as *;
 @use "../style/layouts/Landing.scss" as *;
 @use "../style/ui/Loader.scss" as *;
+@use "../style/layouts/Wallets.scss" as *;
 
 body {
   margin: 0;
@@ -25,9 +25,7 @@ body {
 
 .app .main {
   width: 100%;
+  height: 100%;
 }
 
-//  disabled for now
-.sub-groups {
-  // display: none;
-}
+// tmp

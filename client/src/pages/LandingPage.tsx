@@ -1,5 +1,5 @@
 import { FC, useState } from "react";
-import LoginModal from "../components/modals/loginModal";
+import LoginModal from "../components/modals/LoginModal";
 import RegisterModal from "../components/modals/RegisterModal";
 
 const LandingPage: FC = () => {

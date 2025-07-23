@@ -3,61 +3,11 @@
 
 .item-panel-section {
   display: flex;
-  width: 100%;
   position: relative;
-  left: 5px;
-  top: 10px;
+  margin: 20px 15px;
   .item-panel {
     width: 100%;
-    // ItemControls
-    .toolbar {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 8px 16px;
-      border: 1px solid $shadow-color;
-      background-color: $bg-primary;
 
-      .toolbar-left,
-      .toolbar-right {
-        display: flex;
-        align-items: center;
-        gap: 12px;
-      }
-
-      .toolbar-btn,
-      .toolbar-icon-btn {
-        background: transparent;
-        border: none;
-        color: #3b6cc1;
-        font-weight: 500;
-        font-size: 14px;
-        display: flex;
-        align-items: center;
-        gap: 6px;
-        cursor: pointer;
-        padding: 4px 6px;
-
-        &:hover {
-          text-decoration: underline;
-        }
-      }
-
-      .view-toggle {
-        background: transparent;
-        border: 1px solid #ccc;
-        padding: 6px;
-        border-radius: 4px;
-        cursor: pointer;
-        color: #666;
-
-        &.active {
-          background-color: #e6f0ff;
-          color: #3b6cc1;
-          border-color: #3b6cc1;
-        }
-      }
-    }
     // TableList
     .table-container {
       border: 1px solid $shadow-color;
@@ -153,4 +103,70 @@
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.toolbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 16px;
+  border: 1px solid $shadow-color;
+  background-color: $bg-primary;
+
+  .toolbar-left,
+  .toolbar-right {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .center_search_bar {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+
+    input {
+      padding: 6px 10px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+
+    button {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+  }
+
+  .toolbar-btn,
+  .toolbar-icon-btn {
+    background: transparent;
+    border: none;
+    color: #3b6cc1;
+    font-weight: 500;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    cursor: pointer;
+    padding: 4px 6px;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+
+  .view-toggle {
+    background: transparent;
+    border: 1px solid #ccc;
+    padding: 6px;
+    border-radius: 4px;
+    cursor: pointer;
+    color: #666;
+
+    &.active {
+      background-color: #e6f0ff;
+      color: #3b6cc1;
+      border-color: #3b6cc1;
+    }
+  }
 }
