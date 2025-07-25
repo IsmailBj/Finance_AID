@@ -17,9 +17,11 @@
       margin-bottom: 20px;
       flex-wrap: wrap;
       overflow: auto;
+      background-color: $bg-primary;
       .card {
         width: calc(33% - 80px);
-        background-color: #f2f2fa;
+        background-color: $color-primary;
+        color: $font-color-light;
         border-radius: 5px;
         box-shadow: #ddd 0px 0px 9px 4px;
         padding: 20px;

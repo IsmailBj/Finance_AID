@@ -1,13 +1,149 @@
-import { FC } from "react";
+import { FC, useEffect, useRef, useState } from "react";
+import ReactDOM from "react-dom";
 
-const CardModal: FC = () => {
-  return (
-    <div className="card-modal">
-      <h1 className="register-title">Create Account</h1>
-      <div className="card-details">{/* Card details content goes here */}</div>
-      <button className="close-btn">Close</button>
+interface CardModalProps {
+  setOpenModal: (open: boolean) => void;
+}
+
+const CardModal: FC<CardModalProps> = ({ setOpenModal }) => {
+  const modalRef = useRef<HTMLDivElement>(null);
+
+  const [cardName, setCardName] = useState("");
+  const [cardType, setCardType] = useState("");
+  const [balance, setBalance] = useState("");
+  const [currencyType, setCurrencyType] = useState("");
+  const [expiresDate, setExpiresDate] = useState("");
+
+  const handleClickOutside = (e: MouseEvent) => {
+    if (modalRef.current && !modalRef.current.contains(e.target as Node)) {
+      setOpenModal(false);
+    }
+  };
+
+  const submitCardDetails = async () => {
+    const cardData = {
+      card_name: cardName,
+      card_type: cardType,
+      balance,
+      currency_type: currencyType,
+      expire_date: expiresDate,
+    };
+    try {
+      const res = await fetch(
+        "http://localhost:3000/api/wallet/create-wallet",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
+          },
+          body: JSON.stringify(cardData),
+        }
+      );
+
+      const data = await res.json();
+
+      if (res.ok) {
+        console.log("Card details saved successfully:", data);
+        setOpenModal(false);
+        setCardName("");
+        setCardType("");
+        setBalance("");
+        setCurrencyType("");
+        setExpiresDate("");
+      } else {
+        console.error(
+          "Error saving card details:",
+          data.error || "Unknown error"
+        );
+        alert(data.error || "Failed to save card details");
+      }
+    } catch (error) {
+      console.error("Error submitting card details:", error);
+    }
+  };
+
+  useEffect(() => {
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
+
+  const modalContent = (
+    <div className="modal-overlay">
+      <div className="card-modal" ref={modalRef}>
+        <h1 className="register-title">Create Account</h1>
+        <div className="card-details">
+          <label htmlFor="card_name">Card Name</label>
+          <input
+            type="text"
+            id="card_name"
+            placeholder="Enter card name"
+            value={cardName}
+            onChange={(e) => setCardName(e.target.value)}
+          />
+
+          <label htmlFor="card_type">Card Type</label>
+          <select
+            id="card_type"
+            value={cardType}
+            onChange={(e) => setCardType(e.target.value)}
+          >
+            <option value="" disabled>
+              Select card type
+            </option>
+            <option value="cash">Cash</option>
+            <option value="bank">Bank</option>
+            <option value="crypto">Crypto</option>
+            <option value="credit">Credit</option>
+            <option value="barrow">Barrow</option>
+          </select>
+
+          <label htmlFor="balance">Balance</label>
+          <input
+            type="number"
+            id="balance"
+            placeholder="Enter balance amount"
+            value={balance}
+            onChange={(e) => setBalance(e.target.value)}
+          />
+
+          <label htmlFor="currency_type">Currency Type</label>
+          <select
+            id="currency_type"
+            value={currencyType}
+            onChange={(e) => setCurrencyType(e.target.value)}
+          >
+            <option value="" disabled>
+              Select currency
+            </option>
+            <option value="euro">Euro</option>
+            <option value="mkd">MKD</option>
+            <option value="dollar">Dollar</option>
+          </select>
+
+          <label htmlFor="expires_date">Expires Date</label>
+          <input
+            type="date"
+            id="expires_date"
+            value={expiresDate}
+            onChange={(e) => setExpiresDate(e.target.value)}
+          />
+        </div>
+
+        <button className="close-btn" onClick={() => setOpenModal(false)}>
+          Close
+        </button>
+        <button className="close-btn" onClick={submitCardDetails}>
+          Save
+        </button>
+      </div>
     </div>
   );
+
+  const modalRoot = document.getElementById("modal-root");
+  return modalRoot ? ReactDOM.createPortal(modalContent, modalRoot) : null;
 };
 
 export default CardModal;

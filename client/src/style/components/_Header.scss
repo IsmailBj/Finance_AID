@@ -8,14 +8,15 @@
   padding: 10px 20px;
   justify-content: space-between;
   background-color: $bg-primary;
-  .calendar {
+  .tittle-container {
     display: flex;
     align-items: center;
     gap: 20px;
     justify-content: space-around;
-    .date {
+    .tittle {
       font-size: $font-size-big;
       font-weight: bold;
+      text-transform: uppercase;
     }
   }
   .balance-container {

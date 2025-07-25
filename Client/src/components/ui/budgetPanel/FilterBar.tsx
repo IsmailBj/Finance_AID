@@ -9,7 +9,11 @@ import {
   FaSearch,
 } from "react-icons/fa";
 
-const FilterBar: React.FC = () => {
+interface FilterBarProps {
+  setOpenModal: (open: boolean) => void;
+}
+
+const FilterBar: React.FC<FilterBarProps> = ({ setOpenModal }) => {
   const [searchQuery, setSearchQuery] = useState("");
 
   const handleSearch = () => {
@@ -26,7 +30,7 @@ const FilterBar: React.FC = () => {
   return (
     <div className="toolbar">
       <div className="toolbar-left">
-        <button className="toolbar-btn">
+        <button className="toolbar-btn" onClick={() => setOpenModal(true)}>
           <FaPlus /> Category Group
         </button>
         <button className="toolbar-icon-btn">

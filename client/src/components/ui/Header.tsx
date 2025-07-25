@@ -1,18 +1,14 @@
-const Header = () => {
+import { FC } from "react";
+
+const Header: FC<{ tittle: string }> = ({ tittle }) => {
   const today = new Date();
   const formattedDate = today.toISOString().split("T")[0];
   const dayOfWeek = today.toLocaleDateString("en-US", { weekday: "long" });
 
   return (
     <div className="header">
-      <div className="calendar">
-        <span className="arrow arrow--left" aria-label="Previous day">
-          ←
-        </span>
-        <span className="date">20 May 2024</span>
-        <span className="arrow arrow--right" aria-label="Next day">
-          →
-        </span>
+      <div className="tittle-container">
+        <span className="tittle">{tittle}</span>
       </div>
       <div className="balance-container">
         <div className="amount-container">

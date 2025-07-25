@@ -4,7 +4,7 @@ import ItemPanel from "../components/ui/budgetPanel/ItemPanel";
 const Home = () => {
   return (
     <div className="Home">
-      <Header />
+      <Header tittle="Home" />
       <ItemPanel />
     </div>
   );

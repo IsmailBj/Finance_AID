@@ -7,8 +7,8 @@ router.get("/get-groups", authMiddleware, groupController.getGroups);
 
 router.post("/create-group", authMiddleware, groupController.createGroup);
 
-router.put("/:id", authMiddleware, groupController.updateGroup);
+router.put("/update/:id", authMiddleware, groupController.updateGroup);
 
-router.delete("/:id", authMiddleware, groupController.deleteGroup);
+router.delete("/delete/:id", authMiddleware, groupController.deleteGroup);
 
 module.exports = router;

@@ -9,6 +9,7 @@
 @use "../style/layouts/Landing.scss" as *;
 @use "../style/ui/Loader.scss" as *;
 @use "../style/layouts/Wallets.scss" as *;
+@use "../style/components/modals/CardModal.scss" as *;
 
 body {
   margin: 0;
