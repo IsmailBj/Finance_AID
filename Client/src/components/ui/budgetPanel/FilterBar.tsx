@@ -10,10 +10,10 @@ import {
 } from "react-icons/fa";
 
 interface FilterBarProps {
-  setOpenModal: (open: boolean) => void;
+  onOpenModal: () => void;
 }
 
-const FilterBar: React.FC<FilterBarProps> = ({ setOpenModal }) => {
+const FilterBar: React.FC<FilterBarProps> = ({ onOpenModal }) => {
   const [searchQuery, setSearchQuery] = useState("");
 
   const handleSearch = () => {
@@ -30,7 +30,7 @@ const FilterBar: React.FC<FilterBarProps> = ({ setOpenModal }) => {
   return (
     <div className="toolbar">
       <div className="toolbar-left">
-        <button className="toolbar-btn" onClick={() => setOpenModal(true)}>
+        <button className="toolbar-btn" onClick={() => onOpenModal()}>
           <FaPlus /> Category Group
         </button>
         <button className="toolbar-icon-btn">

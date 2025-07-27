@@ -10,13 +10,12 @@ interface Wallet {
 }
 
 interface CardProps {
-  key: number;
   wallet: Wallet;
 }
 
-const Card: FC<CardProps> = ({ key, wallet }) => {
+const Card: FC<CardProps> = ({ wallet }) => {
   return (
-    <div className="card" key={key}>
+    <div className="card">
       <img src={CardImg} alt="err" />
       <div className="card_info">
         <div className="name">{wallet.card_name}</div>

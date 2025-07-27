@@ -11,9 +11,12 @@ interface Group {
   plan_amount: number;
 }
 
-const TableList: FC = () => {
+interface TableListProps {
+  onOpenModal: () => void;
+}
+
+const TableList: FC<TableListProps> = ({ onOpenModal }) => {
   const [groups, setGroups] = useState<Group[]>([]);
-  const [error, setError] = useState<string | null>(null);
 
   const fetchGroups = async () => {
     try {
@@ -27,16 +30,14 @@ const TableList: FC = () => {
       console.log(data);
       setGroups(data);
     } catch (err) {
-      setError(err instanceof Error ? err.message : "An error occurred");
+      alert(err instanceof Error ? err.message : "An error occurred");
     }
   };
 
   useEffect(() => {
     fetchGroups();
   }, []);
-  return error ? (
-    <div className="error-message">{error}</div>
-  ) : (
+  return (
     <div className="table-container">
       <span className="list-header">
         <div className="selector">
@@ -47,6 +48,11 @@ const TableList: FC = () => {
         <div className="activity-marker tab">ACTIVITY</div>
         <div className="available-marker tab selected">AVAILABLE</div>
       </span>
+      {groups.length === 0 && (
+        <div className="no-groups" onClick={onOpenModal}>
+          Create a Group Here
+        </div>
+      )}
       <div className="group-list">
         {groups.map((group) => (
           <TabList key={group.id} {...group} />

@@ -3,6 +3,7 @@ import Header from "../components/ui/Header";
 import Card from "../components/common/cards/Cards";
 import FilterBar from "../components/ui/budgetPanel/FilterBar";
 import CardModal from "../components/modals/CardModal";
+import ModalPortal from "../components/modals/ModalPortal";
 
 const Wallets: FC = () => {
   const [openModal, setOpenModal] = useState(false);
@@ -32,7 +33,7 @@ const Wallets: FC = () => {
     <div className="wallets-page">
       <Header tittle="Wallet" />
       <div className="wallets-container">
-        <FilterBar setOpenModal={setOpenModal} />
+        <FilterBar onOpenModal={() => setOpenModal(true)} />
         <div className="cards-swapper">
           {wallets.length === 0 && (
             <div className="no-wallets" onClick={() => setOpenModal(true)}>
@@ -44,7 +45,11 @@ const Wallets: FC = () => {
           ))}
         </div>
       </div>
-      {openModal && <CardModal setOpenModal={setOpenModal} />}
+      {openModal && (
+        <ModalPortal onClose={() => setOpenModal(false)}>
+          <CardModal onClose={() => setOpenModal(false)} />
+        </ModalPortal>
+      )}
     </div>
   );
 };

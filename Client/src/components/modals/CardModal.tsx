@@ -1,24 +1,15 @@
-import { FC, useEffect, useRef, useState } from "react";
-import ReactDOM from "react-dom";
+import { FC, useState } from "react";
 
 interface CardModalProps {
-  setOpenModal: (open: boolean) => void;
+  onClose: () => void;
 }
 
-const CardModal: FC<CardModalProps> = ({ setOpenModal }) => {
-  const modalRef = useRef<HTMLDivElement>(null);
-
+const CardModal: FC<CardModalProps> = ({ onClose }) => {
   const [cardName, setCardName] = useState("");
   const [cardType, setCardType] = useState("");
   const [balance, setBalance] = useState("");
   const [currencyType, setCurrencyType] = useState("");
   const [expiresDate, setExpiresDate] = useState("");
-
-  const handleClickOutside = (e: MouseEvent) => {
-    if (modalRef.current && !modalRef.current.contains(e.target as Node)) {
-      setOpenModal(false);
-    }
-  };
 
   const submitCardDetails = async () => {
     const cardData = {
@@ -45,7 +36,7 @@ const CardModal: FC<CardModalProps> = ({ setOpenModal }) => {
 
       if (res.ok) {
         console.log("Card details saved successfully:", data);
-        setOpenModal(false);
+        onClose();
         setCardName("");
         setCardType("");
         setBalance("");
@@ -63,87 +54,75 @@ const CardModal: FC<CardModalProps> = ({ setOpenModal }) => {
     }
   };
 
-  useEffect(() => {
-    document.addEventListener("mousedown", handleClickOutside);
-    return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
-    };
-  }, []);
+  return (
+    <div className="card-modal">
+      <h1 className="title">Create Wallet</h1>
+      <div className="card-details">
+        <label htmlFor="card_name">Card Name</label>
+        <input
+          type="text"
+          id="card_name"
+          placeholder="Enter card name"
+          value={cardName}
+          onChange={(e) => setCardName(e.target.value)}
+        />
 
-  const modalContent = (
-    <div className="modal-overlay">
-      <div className="card-modal" ref={modalRef}>
-        <h1 className="register-title">Create Account</h1>
-        <div className="card-details">
-          <label htmlFor="card_name">Card Name</label>
-          <input
-            type="text"
-            id="card_name"
-            placeholder="Enter card name"
-            value={cardName}
-            onChange={(e) => setCardName(e.target.value)}
-          />
+        <label htmlFor="card_type">Card Type</label>
+        <select
+          id="card_type"
+          value={cardType}
+          onChange={(e) => setCardType(e.target.value)}
+        >
+          <option value="" disabled>
+            Select card type
+          </option>
+          <option value="cash">Cash</option>
+          <option value="bank">Bank</option>
+          <option value="crypto">Crypto</option>
+          <option value="credit">Credit</option>
+          <option value="barrow">Barrow</option>
+        </select>
 
-          <label htmlFor="card_type">Card Type</label>
-          <select
-            id="card_type"
-            value={cardType}
-            onChange={(e) => setCardType(e.target.value)}
-          >
-            <option value="" disabled>
-              Select card type
-            </option>
-            <option value="cash">Cash</option>
-            <option value="bank">Bank</option>
-            <option value="crypto">Crypto</option>
-            <option value="credit">Credit</option>
-            <option value="barrow">Barrow</option>
-          </select>
+        <label htmlFor="balance">Balance</label>
+        <input
+          type="number"
+          id="balance"
+          placeholder="Enter balance amount"
+          value={balance}
+          onChange={(e) => setBalance(e.target.value)}
+        />
 
-          <label htmlFor="balance">Balance</label>
-          <input
-            type="number"
-            id="balance"
-            placeholder="Enter balance amount"
-            value={balance}
-            onChange={(e) => setBalance(e.target.value)}
-          />
+        <label htmlFor="currency_type">Currency Type</label>
+        <select
+          id="currency_type"
+          value={currencyType}
+          onChange={(e) => setCurrencyType(e.target.value)}
+        >
+          <option value="" disabled>
+            Select currency
+          </option>
+          <option value="euro">Euro</option>
+          <option value="mkd">MKD</option>
+          <option value="dollar">Dollar</option>
+        </select>
 
-          <label htmlFor="currency_type">Currency Type</label>
-          <select
-            id="currency_type"
-            value={currencyType}
-            onChange={(e) => setCurrencyType(e.target.value)}
-          >
-            <option value="" disabled>
-              Select currency
-            </option>
-            <option value="euro">Euro</option>
-            <option value="mkd">MKD</option>
-            <option value="dollar">Dollar</option>
-          </select>
-
-          <label htmlFor="expires_date">Expires Date</label>
-          <input
-            type="date"
-            id="expires_date"
-            value={expiresDate}
-            onChange={(e) => setExpiresDate(e.target.value)}
-          />
-        </div>
-
-        <button className="close-btn" onClick={() => setOpenModal(false)}>
-          Close
-        </button>
-        <button className="close-btn" onClick={submitCardDetails}>
-          Save
-        </button>
+        <label htmlFor="expires_date">Expires Date</label>
+        <input
+          type="date"
+          id="expires_date"
+          value={expiresDate}
+          onChange={(e) => setExpiresDate(e.target.value)}
+        />
       </div>
+
+      <button className="close-btn" onClick={() => onClose()}>
+        Close
+      </button>
+      <button className="close-btn" onClick={submitCardDetails}>
+        Save
+      </button>
     </div>
   );
-
-  const modalRoot = document.getElementById("modal-root");
-  return modalRoot ? ReactDOM.createPortal(modalContent, modalRoot) : null;
 };
 
 export default CardModal;
