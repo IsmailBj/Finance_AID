@@ -28,7 +28,7 @@ const Sidebar: FC = () => {
   return (
     <div className="side-bar">
       <div className="user-info-header">
-        <div className="logo">🐵</div>
+        <div className="logo">💰</div>
         <div className="info-wrapper">
           <span className="info-section">{username}</span>
           <span className="email">{email}</span>
@@ -44,14 +44,14 @@ const Sidebar: FC = () => {
           className="sidebar-item"
           onClick={() => handleNavigation("/wallets")}
         >
-          <span className="sidebar-icon">📁</span>
+          <span className="sidebar-icon">💳</span>
           <span className="sidebar-text">Wallets</span>
         </div>
         <div
           className="sidebar-item"
           onClick={() => handleNavigation("/Transactions")}
         >
-          <span className="sidebar-icon">⚙️</span>
+          <span className="sidebar-icon">🧾</span>
           <span className="sidebar-text">Transactions</span>
         </div>
         <div

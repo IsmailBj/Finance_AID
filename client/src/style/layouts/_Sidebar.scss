@@ -3,6 +3,8 @@
 .side-bar {
   width: 15%;
   background-color: $color-primary;
+  display: flex;
+  flex-direction: column;
   .user-info-header {
     color: white;
     display: flex;
@@ -43,5 +45,15 @@
 
 .logout {
   @include longButton($color-primary-hover, $font-color-light);
-  width: 100%;
+  border: none;
+  border-radius: 4px;
+  background-color: #3878b0;
+  color: #f2f2fa;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  width: 91%;
+  margin-top: auto;
+  text-align: center;
+  padding: 12px;
 }
