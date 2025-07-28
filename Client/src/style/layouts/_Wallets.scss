@@ -30,6 +30,13 @@
         justify-content: space-around;
         margin: 20px;
         align-items: center;
+        .card_info {
+          .line {
+            .card_label {
+              color: $font-color-disable;
+            }
+          }
+        }
         img {
           width: 120px;
         }

@@ -1,4 +1,4 @@
-import { FC, useState } from "react";
+import { FC, useState, useEffect } from "react";
 
 interface GroupModalProps {
   onClose: () => void;
@@ -12,6 +12,8 @@ const GroupModal: FC<GroupModalProps> = ({ onClose }) => {
   const [payAmount, setPayAmount] = useState("");
   const [planAmount, setPlanAmount] = useState("");
   const [paymentPlanType, setPaymentPlanType] = useState("");
+  const [currencyType, setCurrencyType] = useState("");
+  const [groupCategory, setGroupCategory] = useState("");
 
   const submitGroupDetails = async () => {
     const GroupData = {
@@ -22,6 +24,8 @@ const GroupModal: FC<GroupModalProps> = ({ onClose }) => {
       pay_amount: payAmount,
       plan_amount: planAmount,
       plan_type: paymentPlanType,
+      currency_type: currencyType,
+      group_category: groupCategory,
     };
 
     try {
@@ -44,6 +48,28 @@ const GroupModal: FC<GroupModalProps> = ({ onClose }) => {
       console.error("Error submitting Group details:", err);
     }
   };
+
+  const calculateInstallment = (amount: number, frequency: string): void => {
+    if (amount >= 0) {
+      switch (frequency) {
+        case "monthly":
+          setPayAmount(String(amount / 12));
+          break;
+        case "weekly":
+          setPayAmount(String(amount / 52));
+          break;
+        default:
+          setPayAmount(String(amount));
+          break;
+      }
+    } else {
+      setPayAmount("0");
+    }
+  };
+
+  useEffect(() => {
+    calculateInstallment(+planAmount, paymentPlanType);
+  }, [paymentPlanType, planAmount]);
 
   return (
     <div className="group-modal">
@@ -99,13 +125,9 @@ const GroupModal: FC<GroupModalProps> = ({ onClose }) => {
       <label htmlFor="group_budget" className="group_budget">
         Amount on Transaction
       </label>
-      <input
-        type="text"
-        id="group_budget"
-        placeholder="Enter you wish to pay"
-        value={payAmount}
-        onChange={(e) => setPayAmount(e.target.value)}
-      />
+      <span className="group_budget" id="group_budget">
+        {Number(payAmount).toFixed(2)}
+      </span>
 
       <label htmlFor="plan_amount" className="plan_amount">
         Amount on Payment
@@ -131,6 +153,35 @@ const GroupModal: FC<GroupModalProps> = ({ onClose }) => {
         <option value="weekly">Weekly</option>
         <option value="monthly">Monthly</option>
         <option value="yearly">Yearly</option>
+      </select>
+      <label htmlFor="group_type">Currency Type</label>
+      <select
+        id="group_type"
+        value={currencyType}
+        onChange={(e) => setCurrencyType(e.target.value)}
+      >
+        <option value="" disabled>
+          Select Currency
+        </option>
+        <option value="EURO">EURO</option>
+        <option value="USD">USD</option>
+        <option value="MKD">MKD</option>
+      </select>
+      <label htmlFor="group_type">ICON</label>
+      <select
+        id="group_type"
+        value={groupCategory}
+        onChange={(e) => setGroupCategory(e.target.value)}
+      >
+        <option value="" disabled>
+          Select ICON
+        </option>
+        <option value="EURO">Home</option>
+        <option value="USD">Bills</option>
+        <option value="MKD">Medical</option>
+        <option value="MKD">Medical</option>
+        <option value="MKD">Rent</option>
+        <option value="MKD">Other</option>
       </select>
       <button className="close-btn" onClick={() => onClose()}>
         Close

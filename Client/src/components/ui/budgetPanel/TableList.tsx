@@ -4,8 +4,8 @@ import TabList from "./TabList";
 
 interface Group {
   id: number;
-  name: string;
-  budget: number;
+  group_name: string;
+  pay_amount: number;
   status: string;
   plan_type: string;
   plan_amount: number;
@@ -17,6 +17,11 @@ interface TableListProps {
 
 const TableList: FC<TableListProps> = ({ onOpenModal }) => {
   const [groups, setGroups] = useState<Group[]>([]);
+  const [selectedTab, setSelectedTab] = useState("available");
+
+  const handleTabClick = (tab: string) => {
+    setSelectedTab(tab);
+  };
 
   const fetchGroups = async () => {
     try {
@@ -37,6 +42,7 @@ const TableList: FC<TableListProps> = ({ onOpenModal }) => {
   useEffect(() => {
     fetchGroups();
   }, []);
+
   return (
     <div className="table-container">
       <span className="list-header">
@@ -44,9 +50,30 @@ const TableList: FC<TableListProps> = ({ onOpenModal }) => {
           <CheckButton isChecked={false} />
           <div className="list-title">CATEGORY</div>
         </div>
-        <div className="budgeted-marker tab">BUDGETED</div>
-        <div className="activity-marker tab">ACTIVITY</div>
-        <div className="available-marker tab selected">AVAILABLE</div>
+        <div
+          className={`cost-marker tab ${
+            selectedTab === "cost" ? "selected" : ""
+          }`}
+          onClick={() => handleTabClick("cost")}
+        >
+          Cost Amount
+        </div>
+        <div
+          className={`available-marker tab ${
+            selectedTab === "available" ? "selected" : ""
+          }`}
+          onClick={() => handleTabClick("available")}
+        >
+          Allocate
+        </div>
+        <div
+          className={`activity-marker tab ${
+            selectedTab === "totalLTP" ? "selected" : ""
+          }`}
+          onClick={() => handleTabClick("totalLTP")}
+        >
+          Total LTP
+        </div>
       </span>
       {groups.length === 0 && (
         <div className="no-groups" onClick={onOpenModal}>

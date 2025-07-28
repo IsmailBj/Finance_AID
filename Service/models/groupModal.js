@@ -2,17 +2,19 @@ const db = require("../db");
 
 const createGroup = async (
   group_name,
-  pay_amount,
   status,
+  pay_amount,
+  start_date,
+  end_date,
   userId,
   plan_type,
   plan_amount,
-  start_date,
-  end_date
+  currency_type,
+  group_category
 ) => {
   const result = await db.query(
-    `INSERT INTO groups (group_name, pay_amount, status, user_id, plan_type, plan_amount, start_date, end_date)
-		 VALUES ($1, $2, $3, $4, $5, $6, $7, $8)
+    `INSERT INTO groups (group_name, pay_amount, status, user_id, plan_type, plan_amount, start_date, end_date, currency_type, group_category)
+		 VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10)
 		 RETURNING *`,
     [
       group_name,
@@ -23,6 +25,8 @@ const createGroup = async (
       plan_amount,
       start_date,
       end_date,
+      currency_type,
+      group_category,
     ]
   );
   return result.rows[0];

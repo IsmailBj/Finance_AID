@@ -5,8 +5,8 @@ import { FaArrowAltCircleDown } from "react-icons/fa";
 
 interface Group {
   id: number;
-  name: string;
-  budget: number;
+  group_name: string;
+  pay_amount: number;
   status: string;
   plan_type: string;
   plan_amount: number;
@@ -19,12 +19,14 @@ const TabList: React.FC<Group> = (group) => {
         <div className="selector">
           <CheckButton isChecked={false} />
           <FaArrowAltCircleDown />
-          <div className="group-name">{group.name}</div>
+          <div className="group-name">{group.group_name}</div>
         </div>
-
-        <div className="budgeted tab">$ {group.budget}</div>
-        <div className="activity tab">$ -{group.plan_type}</div>
+        <div className="paymentPlan tab">{group.plan_type}</div>
+        <div className="budgeted tab">$ {group.pay_amount}</div>
         <div className="available tab">$ {group.plan_amount}</div>
+        <div className="activity tab">
+          $ {Number(group.plan_amount - group.pay_amount).toFixed(2)}
+        </div>
       </div>
     </div>
   );

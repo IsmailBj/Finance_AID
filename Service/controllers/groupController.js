@@ -6,12 +6,13 @@ const createGroup = async (req, res) => {
     status,
     start_date,
     end_date,
+    plan_type,
     pay_amount,
     plan_amount,
-    plan_type,
+    currency_type,
+    group_category,
   } = req.body;
   const userId = req.user.id;
-
   try {
     const group = await groupModel.createGroup(
       group_name,
@@ -21,7 +22,9 @@ const createGroup = async (req, res) => {
       plan_type,
       plan_amount,
       start_date,
-      end_date
+      end_date,
+      group_category,
+      currency_type
     );
     res.status(201).json(group);
   } catch (err) {
@@ -42,7 +45,8 @@ const getGroups = async (req, res) => {
 
 const updateGroup = async (req, res) => {
   const { id } = req.params;
-  const { name, budget, status, plan_type, plan_amount } = req.body;
+  const { name, budget, status, plan_type, plan_amount, icon, currency_type } =
+    req.body;
   const userId = req.user.id;
 
   try {
@@ -53,7 +57,9 @@ const updateGroup = async (req, res) => {
       status,
       userId,
       plan_type,
-      plan_amount
+      plan_amount,
+      icon,
+      currency_type
     );
     res.json(group);
   } catch (err) {
