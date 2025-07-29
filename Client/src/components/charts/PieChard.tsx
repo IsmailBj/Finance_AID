@@ -1,32 +1,30 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
-import { useState, useEffect } from "react";
+import { useState, FC } from "react";
 import ReactApexChart from "react-apexcharts";
+import { ApexOptions } from "apexcharts";
 
-const ApexChartPie = () => {
-  const [state, setState] = useState({
+interface ApexChartPieProps {
+  labels: Array<string>;
+}
+
+const ApexChartPie: FC<ApexChartPieProps> = ({ labels }) => {
+  const [state] = useState<{
+    series: number[];
+    options: ApexOptions;
+  }>({
     series: [44, 55, 41, 17, 15],
     options: {
       chart: {
-        type: "donut" as const,
+        type: "donut",
       },
-      labels: ["Apple", "Mango", "Orange", "Watermelon", "Banana"],
+      labels: labels,
+      legend: {
+        position: "right",
+        offsetY: 0,
+        height: 230,
+        horizontalAlign: "center",
+      },
     },
   });
-
-  useEffect(() => {
-    setState((prevState) => ({
-      ...prevState,
-      options: {
-        ...prevState.options,
-        labels: ["Apple", "Mango", "Orange", "Watermelon", "Banana"],
-        legend: {
-          position: "right",
-          offsetY: 80,
-          height: 230,
-        },
-      },
-    }));
-  }, []);
 
   return (
     <div id="chart">

@@ -1,14 +1,14 @@
 import { FC } from "react";
 
-const Header: FC<{ tittle: string }> = ({ tittle }) => {
+const Header: FC<{ title: string }> = ({ title }) => {
   const today = new Date();
   const formattedDate = today.toISOString().split("T")[0];
   const dayOfWeek = today.toLocaleDateString("en-US", { weekday: "long" });
 
   return (
     <div className="header">
-      <div className="tittle-container">
-        <span className="tittle">{tittle}</span>
+      <div className="title-container">
+        <span className="title">{title}</span>
       </div>
       <div className="balance-container">
         <div className="amount-container">

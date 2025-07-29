@@ -5,10 +5,11 @@ import TableList from "./TableList";
 import ModalPortal from "../../modals/ModalPortal";
 import GroupModal from "../../modals/GroupModal";
 import { Group } from "../../../types/types";
-
+import ApexChartPie from "../../charts/PieChard";
 const ItemPanel: FC = () => {
   const [openModal, setOpenModal] = useState(false);
   const [groups, setGroups] = useState<Group[]>([]);
+  const [edit, onEdit] = useState(Boolean);
 
   const fetchGroups = async () => {
     try {
@@ -19,7 +20,6 @@ const ItemPanel: FC = () => {
       });
       if (!res.ok) throw new Error("Failed to fetch groups");
       const data = await res.json();
-
       setGroups(data);
     } catch (err) {
       alert(err instanceof Error ? err.message : "An error occurred");
@@ -33,10 +33,16 @@ const ItemPanel: FC = () => {
   return (
     <div className="item-panel-section">
       <div className="item-panel">
-        <FilterBar onOpenModal={() => setOpenModal(true)} />
+        <FilterBar
+          onOpenModal={() => setOpenModal(true)}
+          onEdit={() => onEdit(!edit)}
+        />
         <TableList onOpenModal={() => setOpenModal(true)} groups={groups} />
       </div>
       <div className="cards-holder">
+        <ApexChartPie
+          labels={["Apple", "Mango", "Orange", "Watermelon", "Banana"]}
+        />
         <AutoAssignPanel />
       </div>
       {openModal && (

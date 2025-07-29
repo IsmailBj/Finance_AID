@@ -2,7 +2,7 @@ import { FC } from "react";
 import CardImg from "../../../assets/images/credit-card.png";
 import { CardProps } from "../../../types/types";
 
-const Card: FC<CardProps> = ({ wallet }) => {
+const Card: FC<CardProps> = ({ wallet, ShowEditOptions }) => {
   return (
     <div className="card">
       <img src={CardImg} alt="err" />
@@ -27,13 +27,15 @@ const Card: FC<CardProps> = ({ wallet }) => {
           <span className="card_label">Expires In: </span>
           {wallet.expire_date}
         </div>
-        <div className="tools">
-          <div className="card_actions">
-            <button className="btn">View Details</button>
-            <button className="btn">Edit</button>
-            <button className="btn">Delete</button>
+        {ShowEditOptions && (
+          <div className="tools">
+            <div className="card_actions">
+              <button className="btn">View Details</button>
+              <button className="btn">Edit</button>
+              <button className="btn">Delete</button>
+            </div>
           </div>
-        </div>
+        )}
       </div>
     </div>
   );

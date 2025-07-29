@@ -8,6 +8,7 @@ import ModalPortal from "../components/modals/ModalPortal";
 const Wallets: FC = () => {
   const [openModal, setOpenModal] = useState(false);
   const [wallets, setWallets] = useState([]);
+  const [edit, onEdit] = useState(Boolean);
 
   const fetchWallets = async () => {
     try {
@@ -31,9 +32,12 @@ const Wallets: FC = () => {
 
   return (
     <div className="wallets-page">
-      <Header tittle="Wallet" />
+      <Header title="Wallet" />
       <div className="wallets-container">
-        <FilterBar onOpenModal={() => setOpenModal(true)} />
+        <FilterBar
+          onOpenModal={() => setOpenModal(true)}
+          onEdit={() => onEdit(!edit)}
+        />
         <div className="cards-swapper">
           {wallets.length === 0 && (
             <div className="no-wallets" onClick={() => setOpenModal(true)}>
@@ -41,7 +45,7 @@ const Wallets: FC = () => {
             </div>
           )}
           {wallets.map((wallet, key) => (
-            <Card key={key} wallet={wallet} />
+            <Card key={key} wallet={wallet} ShowEditOptions={edit} />
           ))}
         </div>
       </div>

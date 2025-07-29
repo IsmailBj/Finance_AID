@@ -34,10 +34,12 @@ export interface TableListProps {
 
 export interface CardProps {
   wallet: Wallet;
+  ShowEditOptions: boolean;
 }
 
 export interface FilterBarProps {
   onOpenModal: () => void;
+  onEdit: () => void;
 }
 
 export interface CheckButtonProps {
