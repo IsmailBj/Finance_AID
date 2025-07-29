@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { FilterBarProps } from "../../../types/types";
 import {
   FaPlus,
   FaUndo,
@@ -8,10 +9,6 @@ import {
   FaList,
   FaSearch,
 } from "react-icons/fa";
-
-interface FilterBarProps {
-  onOpenModal: () => void;
-}
 
 const FilterBar: React.FC<FilterBarProps> = ({ onOpenModal }) => {
   const [searchQuery, setSearchQuery] = useState("");

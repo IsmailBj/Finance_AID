@@ -1,17 +1,6 @@
 import { FC } from "react";
 import CardImg from "../../../assets/images/credit-card.png";
-
-interface Wallet {
-  card_name: string;
-  balance: number;
-  currency_type: string;
-  card_type: string;
-  expire_date: string;
-}
-
-interface CardProps {
-  wallet: Wallet;
-}
+import { CardProps } from "../../../types/types";
 
 const Card: FC<CardProps> = ({ wallet }) => {
   return (

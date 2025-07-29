@@ -1,10 +1,8 @@
 import { FC, useState, useEffect } from "react";
+import { OnCloseModalProps } from "../../types/types";
+import IconType from "../common/Icons/Icon";
 
-interface GroupModalProps {
-  onClose: () => void;
-}
-
-const GroupModal: FC<GroupModalProps> = ({ onClose }) => {
+const GroupModal: FC<OnCloseModalProps> = ({ onClose }) => {
   const [groupName, setGroupName] = useState("");
   const [status, setStatus] = useState("");
   const [startDate, setStartDate] = useState("");
@@ -27,7 +25,7 @@ const GroupModal: FC<GroupModalProps> = ({ onClose }) => {
       currency_type: currencyType,
       group_category: groupCategory,
     };
-
+    console.log("Client ", GroupData);
     try {
       const res = await fetch("http://localhost:3000/api/group/create-group", {
         method: "POST",
@@ -176,13 +174,13 @@ const GroupModal: FC<GroupModalProps> = ({ onClose }) => {
         <option value="" disabled>
           Select ICON
         </option>
-        <option value="EURO">Home</option>
-        <option value="USD">Bills</option>
-        <option value="MKD">Medical</option>
-        <option value="MKD">Medical</option>
-        <option value="MKD">Rent</option>
-        <option value="MKD">Other</option>
+        <option value="Home">Home </option>
+        <option value="Bills">Bills </option>
+        <option value="Medical">Medical</option>
+        <option value="Rent">Rent</option>
+        <option value="Other">Other</option>
       </select>
+      <IconType iconType={groupCategory} />
       <button className="close-btn" onClick={() => onClose()}>
         Close
       </button>

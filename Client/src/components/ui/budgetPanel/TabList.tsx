@@ -1,31 +1,39 @@
-import React from "react";
+import { FC, useState, useEffect } from "react";
 import { CheckButton } from "../../common/buttons/Buttons";
-// import SubBarLine from "../../common/bars/SubBarLine";
-import { FaArrowAltCircleDown } from "react-icons/fa";
+import { TabListProps } from "../../../types/types";
+import CurrencySymbol from "../../../helpers/CurrencySymbol";
+import IconType from "../../common/Icons/Icon";
+const TabList: FC<TabListProps> = ({ group }) => {
+  const [currencySymbol, setCurrencySymbol] = useState("A/N");
 
-interface Group {
-  id: number;
-  group_name: string;
-  pay_amount: number;
-  status: string;
-  plan_type: string;
-  plan_amount: number;
-}
+  useEffect(() => {
+    const currency: string = CurrencySymbol(group.currency_type);
+    setCurrencySymbol(currency);
+  }, [group.currency_type]);
 
-const TabList: React.FC<Group> = (group) => {
   return (
     <div className="list-table">
       <div key={group.id} className="group-item">
         <div className="selector">
           <CheckButton isChecked={false} />
-          <FaArrowAltCircleDown />
-          <div className="group-name">{group.group_name}</div>
+          <IconType iconType={group.group_category} />
         </div>
-        <div className="paymentPlan tab">{group.plan_type}</div>
-        <div className="budgeted tab">$ {group.pay_amount}</div>
-        <div className="available tab">$ {group.plan_amount}</div>
-        <div className="activity tab">
-          $ {Number(group.plan_amount - group.pay_amount).toFixed(2)}
+        <div className="right-section">
+          <div className="group-name">{group.group_name}</div>
+          <div className="group-name">{group.group_category}</div>
+        </div>
+        <div className="left-section">
+          <div className="paymentPlan tab">{group.plan_type}</div>
+          <div className="budgeted tab">
+            {currencySymbol} {group.pay_amount}
+          </div>
+          <div className="available tab">
+            {currencySymbol} {group.plan_amount}
+          </div>
+          <div className="activity tab">
+            {currencySymbol}{" "}
+            {Number(group.plan_amount - group.pay_amount).toFixed(2)}
+          </div>
         </div>
       </div>
     </div>

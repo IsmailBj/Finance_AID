@@ -1,10 +1,7 @@
 import { FC, useState } from "react";
+import { OnCloseModalProps } from "../../types/types";
 
-interface CardModalProps {
-  onClose: () => void;
-}
-
-const CardModal: FC<CardModalProps> = ({ onClose }) => {
+const CardModal: FC<OnCloseModalProps> = ({ onClose }) => {
   const [cardName, setCardName] = useState("");
   const [cardType, setCardType] = useState("");
   const [balance, setBalance] = useState("");

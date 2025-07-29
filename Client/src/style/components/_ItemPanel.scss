@@ -27,13 +27,20 @@
         .selected {
           color: #0f0f0f;
         }
+        .right-section {
+          width: 50%;
+        }
+        .left-section {
+          width: 50%;
+          display: flex;
+        }
       }
       .group-list {
         .list-table {
           .group-item {
             display: flex;
             align-items: center;
-            max-height: 40px;
+            height: 60px;
             gap: 10px;
             border: 1px solid $shadow-color;
             background-color: $bg-primary;
@@ -42,39 +49,19 @@
                 font-weight: bold;
               }
             }
+            .right-section {
+              width: 50%;
+            }
+            .left-section {
+              width: 50%;
+              display: flex;
+            }
           }
           .sub-groups {
             // transition: all 1s linear 0s;
             &.collapsed {
               height: 0px;
               overflow: hidden;
-            }
-            .sub-group-item {
-              display: flex;
-              gap: 10px;
-              .selector {
-                .group-status-info {
-                  width: 100%;
-                  .group-status {
-                    display: flex;
-                    gap: 5px;
-                    .line {
-                      &.positive {
-                        @include line($color: $color-secondary-selected);
-                      }
-                      &.negative {
-                        @include line($color: $negative-status);
-                      }
-                      &.pending {
-                        @include line($color: $pending-status);
-                      }
-                      &.neutral {
-                        @include line($color: $neutral-status);
-                      }
-                    }
-                  }
-                }
-              }
             }
           }
         }
@@ -90,7 +77,6 @@
 
 // ItemPanel global private
 .selector {
-  width: 100%;
   display: flex;
   align-items: center;
   font-weight: 500;

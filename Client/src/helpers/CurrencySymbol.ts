@@ -1,4 +1,4 @@
-const CurrencyAmount = (currency_type: string): string => {
+const CurrencySymbol = (currency_type: string): string => {
   switch (currency_type) {
     case "EURO":
       return "€";
@@ -13,4 +13,4 @@ const CurrencyAmount = (currency_type: string): string => {
   return "Nun";
 };
 
-export default CurrencyAmount;
+export default CurrencySymbol;

@@ -1,10 +1,7 @@
 import chardIcon from "../../../assets/icons/chardIcon.svg";
 import budgetIcon from "../../../assets/icons/moneyIcon.svg";
 import { CiSettings } from "react-icons/ci";
-
-interface CheckButtonProps {
-  isChecked: boolean;
-}
+import { CheckButtonProps } from "../../../types/types";
 
 export const BranchTreeBtn = () => {
   return (

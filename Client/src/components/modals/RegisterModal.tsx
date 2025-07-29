@@ -1,10 +1,8 @@
-import React, { FC, useState, Dispatch, SetStateAction } from "react";
+import React, { FC, useState } from "react";
 import Loading from "../common/loader/Loading";
-interface RegisterModalProps {
-  showRegister: Dispatch<SetStateAction<boolean>>;
-}
+import { RegLogProps } from "../../types/types";
 
-const RegisterPage: FC<RegisterModalProps> = ({ showRegister }) => {
+const RegisterPage: FC<RegLogProps> = ({ showRegister }) => {
   const [loading, setLoading] = useState(false);
   const [form, setForm] = useState({
     username: "",

@@ -1,12 +1,9 @@
-import { FC, useState, Dispatch, SetStateAction } from "react";
+import { FC, useState } from "react";
 import Loading from "../common/loader/Loading";
 import { useNavigate } from "react-router-dom";
+import { RegLogProps } from "../../types/types";
 
-interface RegisterModalProps {
-  showRegister: Dispatch<SetStateAction<boolean>>;
-}
-
-const LoginModal: FC<RegisterModalProps> = ({ showRegister }) => {
+const LoginModal: FC<RegLogProps> = ({ showRegister }) => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);

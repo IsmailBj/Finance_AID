@@ -12,20 +12,20 @@ const createGroup = async (req, res) => {
     currency_type,
     group_category,
   } = req.body;
-  const userId = req.user.id;
+  const user_id = req.user.id;
   try {
-    const group = await groupModel.createGroup(
+    const group = await groupModel.createGroup({
+      user_id,
       group_name,
-      pay_amount,
       status,
-      userId,
-      plan_type,
-      plan_amount,
       start_date,
       end_date,
+      plan_type,
+      pay_amount,
+      plan_amount,
+      currency_type,
       group_category,
-      currency_type
-    );
+    });
     res.status(201).json(group);
   } catch (err) {
     console.error("Group creation failed:", err);
