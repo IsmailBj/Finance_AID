@@ -36,3 +36,8 @@
     background-color: $color-primary-selected;
   }
 }
+
+@mixin ShadowBorder() {
+  box-shadow: -2px 2px 3px 1px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+}

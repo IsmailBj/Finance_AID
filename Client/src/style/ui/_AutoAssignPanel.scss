@@ -1,11 +1,12 @@
+@use "@/style/utils/_variables" as *;
+@use "@/style/utils/_mixings" as *;
+
 .auto-assign-panel {
-  background-color: #f7faff;
-  border-radius: 8px;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  background-color: $bg-primary;
   padding: 16px;
   font-family: "Inter", sans-serif;
   width: 280px;
-
+  @include ShadowBorder();
   .panel-header {
     font-weight: 600;
     color: #1a3d7c;

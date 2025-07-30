@@ -20,7 +20,7 @@ const TableList: FC<TableListProps> = ({ onOpenModal, groups }) => {
           <div className="list-title">Name</div>
           <div className="list-title">CATEGORY</div>
         </div>
-        <div className="left-section">
+        <div className="center-section">
           <div
             className={`cost-marker tab ${
               selectedTab === "plan" ? "selected" : ""
@@ -29,6 +29,24 @@ const TableList: FC<TableListProps> = ({ onOpenModal, groups }) => {
           >
             Plan
           </div>
+          <div
+            className={`cost-marker tab ${
+              selectedTab === "plan" ? "selected" : ""
+            }`}
+            onClick={() => handleTabClick("plan")}
+          >
+            Plan
+          </div>
+          <div
+            className={`cost-marker tab ${
+              selectedTab === "plan" ? "selected" : ""
+            }`}
+            onClick={() => handleTabClick("plan")}
+          >
+            Plan
+          </div>
+        </div>
+        <div className="left-section">
           <div
             className={`cost-marker tab ${
               selectedTab === "cost" ? "selected" : ""

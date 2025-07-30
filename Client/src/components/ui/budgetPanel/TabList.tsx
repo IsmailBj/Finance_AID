@@ -3,6 +3,7 @@ import { CheckButton } from "../../common/buttons/Buttons";
 import { TabListProps } from "../../../types/types";
 import CurrencySymbol from "../../../helpers/CurrencySymbol";
 import IconType from "../../common/Icons/Icon";
+
 const TabList: FC<TabListProps> = ({ group }) => {
   const [currencySymbol, setCurrencySymbol] = useState("A/N");
 
@@ -22,8 +23,14 @@ const TabList: FC<TabListProps> = ({ group }) => {
           <div className="group-name">{group.group_name}</div>
           <div className="group-name">{group.group_category}</div>
         </div>
+        <div className="center-section">
+          <div className="payment-date-info">
+            <div className="start-date">{group.start_date.split("T")[0]}</div>
+            <div className="paymentPlan">{group.plan_type}</div>
+            <div className="end-date">{group.end_date.split("T")[0]}</div>
+          </div>
+        </div>
         <div className="left-section">
-          <div className="paymentPlan tab">{group.plan_type}</div>
           <div className="budgeted tab">
             {currencySymbol} {group.pay_amount}
           </div>

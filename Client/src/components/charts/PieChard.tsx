@@ -27,7 +27,7 @@ const ApexChartPie: FC<ApexChartPieProps> = ({ labels }) => {
   });
 
   return (
-    <div id="chart">
+    <div id="chart" className="ChartContainer">
       <ReactApexChart
         options={state.options}
         series={state.series}

@@ -53,3 +53,5 @@ export interface RegLogProps {
 export interface OnCloseModalProps {
   onClose: () => void;
 }
+
+export type PlanType = "one_time" | "weekly" | "monthly" | "yearly";

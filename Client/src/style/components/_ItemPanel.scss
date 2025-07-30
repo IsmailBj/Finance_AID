@@ -27,11 +27,8 @@
         .selected {
           color: #0f0f0f;
         }
-        .right-section {
-          width: 50%;
-        }
-        .left-section {
-          width: 50%;
+        .left-section,
+        .center-section {
           display: flex;
         }
       }
@@ -51,6 +48,18 @@
             }
             .right-section {
               width: 50%;
+            }
+            .center-section {
+              width: 100%;
+              .payment-date-info {
+                display: flex;
+                justify-content: space-around;
+                align-items: center;
+                color: $font-color;
+                .paymentPlan {
+                  font-weight: 500;
+                }
+              }
             }
             .left-section {
               width: 50%;
@@ -85,7 +94,7 @@
 .tab {
   margin: 0 2rem;
   font-weight: 500;
-  width: 200px;
+  width: 115px;
   display: flex;
   justify-content: center;
   align-items: center;
