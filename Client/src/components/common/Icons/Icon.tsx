@@ -5,6 +5,9 @@ import {
   FaHospital,
   FaHouseUser,
   FaOtter,
+  FaTrash,
+  FaEdit,
+  FaEye,
 } from "react-icons/fa";
 interface IconTypeProps {
   iconType: string;
@@ -27,6 +30,15 @@ const IconType: FC<IconTypeProps> = ({ iconType }) => {
       break;
     case "Other":
       IconHolder = FaOtter;
+      break;
+    case "edit":
+      IconHolder = FaEdit;
+      break;
+    case "delete":
+      IconHolder = FaTrash;
+      break;
+    case "view":
+      IconHolder = FaEye;
       break;
     default:
       IconHolder = FaOtter;

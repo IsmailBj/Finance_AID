@@ -4,7 +4,7 @@ import { TabListProps } from "../../../types/types";
 import CurrencySymbol from "../../../helpers/CurrencySymbol";
 import IconType from "../../common/Icons/Icon";
 
-const TabList: FC<TabListProps> = ({ group }) => {
+const TabList: FC<TabListProps> = ({ group, onEdit }) => {
   const [currencySymbol, setCurrencySymbol] = useState("A/N");
 
   useEffect(() => {
@@ -25,9 +25,11 @@ const TabList: FC<TabListProps> = ({ group }) => {
         </div>
         <div className="center-section">
           <div className="payment-date-info">
-            <div className="start-date">{group.start_date.split("T")[0]}</div>
-            <div className="paymentPlan">{group.plan_type}</div>
-            <div className="end-date">{group.end_date.split("T")[0]}</div>
+            <div className="start-date tab">
+              {group.start_date.split("T")[0]}
+            </div>
+            <div className="paymentPlan tab">{group.plan_type}</div>
+            <div className="end-date tab">{group.end_date.split("T")[0]}</div>
           </div>
         </div>
         <div className="left-section">
@@ -43,6 +45,22 @@ const TabList: FC<TabListProps> = ({ group }) => {
           </div>
         </div>
       </div>
+      {onEdit && (
+        <div className="edit-table">
+          <div className="edit-table-item table-item">
+            <IconType iconType="edit" />
+            <span className="text">Edit</span>
+          </div>
+          <div className="edit-table-item table-item">
+            <IconType iconType="delete" />
+            <span className="text">Delete</span>
+          </div>
+          <div className="view-table-item table-item">
+            <IconType iconType="view" />
+            <span className="text">View Info</span>
+          </div>
+        </div>
+      )}
     </div>
   );
 };

@@ -4,7 +4,7 @@
 .item-panel-section {
   display: flex;
   position: relative;
-  margin: 20px 15px;
+  margin: 20px 10px;
   .item-panel {
     width: 100%;
 
@@ -16,7 +16,6 @@
         display: flex;
         gap: 10px;
         align-items: center;
-        max-height: 40px;
         border: 1px solid $shadow-color;
         .selector {
           color: $font-color-disable;
@@ -50,7 +49,6 @@
               width: 50%;
             }
             .center-section {
-              width: 100%;
               .payment-date-info {
                 display: flex;
                 justify-content: space-around;
@@ -73,7 +71,45 @@
               overflow: hidden;
             }
           }
+          .edit-table {
+            display: flex;
+            gap: 15rem;
+            margin-bottom: 5px;
+            background: $bg-primary;
+            padding: 8px;
+            border: 1px solid #ddd;
+            align-items: center;
+            justify-content: center;
+            .table-item {
+              background: $bg-secondary;
+              padding: 5px;
+              font-size: 11px;
+              cursor: pointer;
+              @include ShadowBorder(0px);
+              display: flex;
+              align-items: center;
+              gap: 5px;
+              .text {
+                color: $font-color;
+                font-weight: 500;
+              }
+              &:hover {
+                color: $color-primary-selected;
+              }
+            }
+          }
         }
+      }
+
+      .no-groups {
+        background: $font-color-light;
+        margin: 20px;
+        padding: 20px;
+        color: #3b6cc1;
+        text-decoration: underline;
+        cursor: pointer;
+        text-align: center;
+        @include ShadowBorder();
       }
     }
   }

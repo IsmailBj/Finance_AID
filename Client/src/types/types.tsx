@@ -25,11 +25,13 @@ interface Wallet {
 
 export interface TabListProps {
   group: Group;
+  onEdit?: boolean;
 }
 
 export interface TableListProps {
   onOpenModal: () => void;
   groups: Group[];
+  onEdit?: boolean;
 }
 
 export interface CardProps {

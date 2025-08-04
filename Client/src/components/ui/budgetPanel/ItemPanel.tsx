@@ -38,7 +38,11 @@ const ItemPanel: FC = () => {
           onOpenModal={() => setOpenModal(true)}
           onEdit={() => onEdit(!edit)}
         />
-        <TableList onOpenModal={() => setOpenModal(true)} groups={groups} />
+        <TableList
+          onOpenModal={() => setOpenModal(true)}
+          groups={groups}
+          onEdit={edit}
+        />
       </div>
       <div className="cards-holder">
         <ApexChartPie

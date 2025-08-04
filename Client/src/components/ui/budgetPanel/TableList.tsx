@@ -3,7 +3,7 @@ import { CheckButton } from "../../common/buttons/Buttons";
 import TabList from "./TabList";
 import { TableListProps } from "../../../types/types";
 
-const TableList: FC<TableListProps> = ({ onOpenModal, groups }) => {
+const TableList: FC<TableListProps> = ({ onOpenModal, groups, onEdit }) => {
   const [selectedTab, setSelectedTab] = useState("available");
 
   const handleTabClick = (tab: string) => {
@@ -23,11 +23,11 @@ const TableList: FC<TableListProps> = ({ onOpenModal, groups }) => {
         <div className="center-section">
           <div
             className={`cost-marker tab ${
-              selectedTab === "plan" ? "selected" : ""
+              selectedTab === "From" ? "selected" : ""
             }`}
-            onClick={() => handleTabClick("plan")}
+            onClick={() => handleTabClick("From")}
           >
-            Plan
+            From
           </div>
           <div
             className={`cost-marker tab ${
@@ -39,11 +39,11 @@ const TableList: FC<TableListProps> = ({ onOpenModal, groups }) => {
           </div>
           <div
             className={`cost-marker tab ${
-              selectedTab === "plan" ? "selected" : ""
+              selectedTab === "Expires" ? "selected" : ""
             }`}
-            onClick={() => handleTabClick("plan")}
+            onClick={() => handleTabClick("Expires")}
           >
-            Plan
+            Expires
           </div>
         </div>
         <div className="left-section">
@@ -80,7 +80,7 @@ const TableList: FC<TableListProps> = ({ onOpenModal, groups }) => {
       )}
       <div className="group-list">
         {groups.map((group) => (
-          <TabList key={group.id} group={group} />
+          <TabList key={group.id} group={group} onEdit={onEdit} />
         ))}
       </div>
     </div>
