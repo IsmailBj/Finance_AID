@@ -5,15 +5,29 @@ import CurrencySymbol from "../../../helpers/CurrencySymbol";
 import IconType from "../../common/Icons/Icon";
 import ModalPortal from "../../modals/ModalPortal";
 import ConfirmationModal from "../../modals/ConfirmationModal";
+import { getTodayDate } from "../../../helpers/DateAndTimeHelpers";
 
 const TabList: FC<TabListProps> = ({ group, onEdit }) => {
   const [currencySymbol, setCurrencySymbol] = useState("A/N");
   const [confirmationModal, setConfirmationModal] = useState(false);
+  const [stateColorChange, setStateColorChange] = useState("");
+  const today = getTodayDate();
 
   useEffect(() => {
     const currency: string = CurrencySymbol(group.currency_type);
     setCurrencySymbol(currency);
   }, [group.currency_type]);
+
+  useEffect(() => {
+    console.log(today, group.end_date.split("T")[0], group.end_date);
+    if (today == group.end_date.split("T")[0]) {
+      setStateColorChange("worning");
+    } else if (today <= group.end_date.split("T")[0]) {
+      setStateColorChange("unpaid");
+    } else {
+      setStateColorChange(group.status);
+    }
+  }, [group.end_date, group.status, today]);
 
   const HandleDelete = async () => {
     const groupId = group.id;
@@ -74,6 +88,7 @@ const TabList: FC<TabListProps> = ({ group, onEdit }) => {
             {Number(group.plan_amount - group.pay_amount).toFixed(2)}
           </div>
         </div>
+        <div className={`state-label state-${stateColorChange}`}></div>
       </div>
       {onEdit && (
         <div className="edit-table">

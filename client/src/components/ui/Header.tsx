@@ -1,9 +1,9 @@
 import { FC } from "react";
+import { getTodayDate, getDayOfWeek } from "../../helpers/DateAndTimeHelpers";
 
 const Header: FC<{ title: string }> = ({ title }) => {
-  const today = new Date();
-  const formattedDate = today.toISOString().split("T")[0];
-  const dayOfWeek = today.toLocaleDateString("en-US", { weekday: "long" });
+  const formattedDate = getTodayDate();
+  const dayOfWeek = getDayOfWeek();
 
   return (
     <div className="header">

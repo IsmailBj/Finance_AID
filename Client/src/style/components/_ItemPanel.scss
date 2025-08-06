@@ -5,8 +5,9 @@
   display: flex;
   position: relative;
   margin: 20px 10px;
+  width: calc(100% - 20px);
   .item-panel {
-    width: 100%;
+    width: 75%;
 
     // TableList
     .table-container {
@@ -47,7 +48,7 @@
               }
             }
             .right-section {
-              width: 50%;
+              width: 10%;
             }
             .center-section {
               width: 40%;
@@ -62,8 +63,26 @@
               }
             }
             .left-section {
-              width: 50%;
+              width: 40%;
               display: flex;
+            }
+            .state-label {
+              width: 0.5%;
+              height: 90%;
+              position: relative;
+              border-radius: 4px 0px 0px 4px;
+              &.state-pending {
+                background-color: $neutral-status;
+              }
+              &.state-paid {
+                background-color: $positive-status;
+              }
+              &.state-worning {
+                background-color: $pending-status;
+              }
+              &.state-unpaid {
+                background-color: $negative-status;
+              }
             }
           }
           .sub-groups {
@@ -117,7 +136,7 @@
   }
   // AutoAssignCard
   .cards-holder {
-    width: 25%;
+    width: calc(100% - 60px);
     margin: 30px;
   }
 }
@@ -127,6 +146,7 @@
   display: flex;
   align-items: center;
   font-weight: 500;
+  width: 8%;
 }
 
 .tab {
