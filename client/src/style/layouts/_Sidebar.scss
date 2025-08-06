@@ -44,16 +44,8 @@
 }
 
 .logout {
-  @include longButton($color-primary-hover, $font-color-light);
-  border: none;
-  border-radius: 4px;
-  background-color: #3878b0;
-  color: #f2f2fa;
-  font-size: 1rem;
-  cursor: pointer;
-  transition: background-color 0.3s;
   width: 91%;
   margin-top: auto;
   text-align: center;
-  padding: 12px;
+  @include longButton($color-primary-hover, $font-color-light);
 }

@@ -1,4 +1,5 @@
 @use "@/style/utils/_variables" as *;
+@use "@/style/utils/_mixings" as *;
 
 .modal-overlay {
   position: fixed;
@@ -18,14 +19,33 @@
     min-width: 300px;
   }
   .card-modal,
-  .group-modal {
+  .group-modal,
+  .confirmation-modal {
     display: flex;
     flex-direction: column;
-    .tittle {
+    .title {
       text-align: center;
       background: $bg-primary;
-      padding: 20px;
+      padding: 5px;
       border-radius: 10px;
+      margin: 0 0 1rem 0;
+    }
+  }
+  .confirmation-modal {
+    .message {
+      margin: 2rem 0;
+      text-align: center;
+      font-weight: bold;
+      font-size: $font-size-medium;
+    }
+    .actions {
+      display: flex;
+      justify-content: space-evenly;
+      .confirm-button,
+      .cancel-button {
+        width: 45%;
+        @include simpleButton($color-primary-hover, $bg-secondary);
+      }
     }
   }
 }

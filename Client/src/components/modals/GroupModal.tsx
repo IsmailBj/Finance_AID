@@ -71,7 +71,7 @@ const GroupModal: FC<OnCloseModalProps> = ({ onClose }) => {
 
   return (
     <div className="group-modal">
-      <h1 className="tittle">Create a Group</h1>
+      <h1 className="title">Create a Group</h1>
       <label htmlFor="group_name" className="group_name">
         Group Name
       </label>

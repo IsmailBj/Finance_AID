@@ -11,13 +11,6 @@
   cursor: pointer;
 }
 
-@mixin line($color, $height: 5px) {
-  width: 100%;
-  height: $height;
-  background-color: $color;
-  border-radius: 20px;
-}
-
 @mixin longButton($bg, $color) {
   padding: 0.75rem;
   border: none;
@@ -30,6 +23,23 @@
 
   &:hover {
     background-color: $color-primary-hover;
+  }
+
+  &:active {
+    background-color: $color-primary-selected;
+  }
+}
+
+@mixin simpleButton($bg, $color) {
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+  background-color: $bg;
+  color: $color;
+  border: none;
+  border-radius: 3px;
+  box-shadow: -2px 2px 3px 1px rgba(0, 0, 0, 0.1);
+  &:hover {
+    background-color: $color-primary;
   }
 
   &:active {
