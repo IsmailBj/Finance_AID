@@ -37,7 +37,11 @@ const getGroups = async (req, res) => {
   const userId = req.user.id;
   try {
     const groups = await groupModel.getUserGroups(userId);
-    res.json(groups);
+    const groupCategories = await groupModel.getPlanAmountByCategory(userId);
+    const labels = groupCategories.map((item) => item.group_category);
+    const series = groupCategories.map((item) => item.total);
+
+    res.json({ groups, labels, series });
   } catch (err) {
     res.status(500).json({ error: "Failed to fetch groups" });
   }

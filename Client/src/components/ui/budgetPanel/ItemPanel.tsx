@@ -10,6 +10,8 @@ import ApexChartPie from "../../charts/PieChard";
 const ItemPanel: FC = () => {
   const [openModal, setOpenModal] = useState(false);
   const [groups, setGroups] = useState<Group[]>([]);
+  const [labels, setLabels] = useState<string[]>([]);
+  const [series, setSeries] = useState<number[]>([]);
   const [edit, onEdit] = useState(Boolean);
 
   const fetchGroups = async () => {
@@ -21,7 +23,9 @@ const ItemPanel: FC = () => {
       });
       if (!res.ok) throw new Error("Failed to fetch groups");
       const data = await res.json();
-      setGroups(data);
+      setGroups(data.groups || []);
+      setLabels(data.labels || []);
+      setSeries(data.series || []);
     } catch (err) {
       alert(err instanceof Error ? err.message : "An error occurred");
     }
@@ -45,9 +49,7 @@ const ItemPanel: FC = () => {
         />
       </div>
       <div className="cards-holder">
-        <ApexChartPie
-          labels={["Apple", "Mango", "Orange", "Watermelon", "Banana"]}
-        />
+        <ApexChartPie labels={labels} series={series} />
         <AutoAssignPanel />
       </div>
       {openModal && (

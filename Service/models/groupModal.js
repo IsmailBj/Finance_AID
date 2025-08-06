@@ -69,9 +69,28 @@ const deleteGroup = async (groupId, userId) => {
   ]);
 };
 
+const getPlanAmountByCategory = async (userId) => {
+  const query = `
+		SELECT group_category, SUM(plan_amount) AS total
+		FROM groups
+		WHERE user_id = $1
+		GROUP BY group_category
+		ORDER BY group_category;
+	`;
+
+  const { rows } = await db.query(query, [userId]);
+
+  // Convert string to number
+  return rows.map((row) => ({
+    group_category: row.group_category,
+    total: Number(row.total),
+  }));
+};
+
 module.exports = {
   createGroup,
   getUserGroups,
   updateGroup,
   deleteGroup,
+  getPlanAmountByCategory,
 };

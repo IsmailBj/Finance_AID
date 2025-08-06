@@ -21,7 +21,7 @@ const TabList: FC<TabListProps> = ({ group, onEdit }) => {
         </div>
         <div className="right-section">
           <div className="group-name">{group.group_name}</div>
-          <div className="group-name">{group.group_category}</div>
+          <div className="group-categ">{group.group_category}</div>
         </div>
         <div className="center-section">
           <div className="payment-date-info">
