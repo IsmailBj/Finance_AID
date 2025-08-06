@@ -76,6 +76,16 @@ const deleteGroup = async (req, res) => {
   const userId = req.user.id;
 
   try {
+    const group = await groupModel.findGroupById(id);
+
+    if (!group) {
+      return res.status(404).json({ error: "Group not found" });
+    }
+
+    if (group.user_id !== userId) {
+      return res.status(403).json({ error: "Unauthorized" });
+    }
+
     await groupModel.deleteGroup(id, userId);
     res.status(204).send();
   } catch (err) {

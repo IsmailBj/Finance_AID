@@ -46,16 +46,24 @@ const updateWallet = async (
   return result.rows[0];
 };
 
-const deleteGroup = async (walletId, userId) => {
+const deleteWallet = async (walletId, userId) => {
   await db.query("DELETE FROM wallets WHERE id = $1 AND user_id = $2", [
     walletId,
     userId,
   ]);
 };
 
+const findWalletById = async (walletId) => {
+  const result = await db.query("SELECT * FROM wallets WHERE id = $1", [
+    walletId,
+  ]);
+  return result.rows[0];
+};
+
 module.exports = {
   createWallet,
   getUserWallets,
   updateWallet,
-  deleteGroup,
+  deleteWallet,
+  findWalletById,
 };

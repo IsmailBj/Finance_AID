@@ -87,10 +87,16 @@ const getPlanAmountByCategory = async (userId) => {
   }));
 };
 
+const findGroupById = async (id) => {
+  const result = await db.query("SELECT * FROM groups WHERE id = $1", [id]);
+  return result.rows[0];
+};
+
 module.exports = {
   createGroup,
   getUserGroups,
   updateGroup,
   deleteGroup,
   getPlanAmountByCategory,
+  findGroupById,
 };

@@ -21,11 +21,13 @@ interface Wallet {
   currency_type: string;
   card_type: string;
   expire_date: string;
+  id: number;
 }
 
 export interface TabListProps {
   group: Group;
   onEdit?: boolean;
+  onDelete?: (id: number) => void;
 }
 
 export interface TableListProps {
@@ -54,6 +56,12 @@ export interface RegLogProps {
 
 export interface OnCloseModalProps {
   onClose: () => void;
+}
+
+export interface ConfirmationModalProps {
+  message: string;
+  onClose: () => void;
+  onConfirm?: () => void;
 }
 
 export type PlanType = "one_time" | "weekly" | "monthly" | "yearly";

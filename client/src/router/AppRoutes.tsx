@@ -1,4 +1,3 @@
-// src/routes/AppRoutes.tsx
 import { Route, Routes } from "react-router-dom";
 import { FC } from "react";
 import Layout from "../layouts/Layout";

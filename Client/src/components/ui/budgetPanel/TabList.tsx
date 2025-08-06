@@ -3,14 +3,44 @@ import { CheckButton } from "../../common/buttons/Buttons";
 import { TabListProps } from "../../../types/types";
 import CurrencySymbol from "../../../helpers/CurrencySymbol";
 import IconType from "../../common/Icons/Icon";
+import ModalPortal from "../../modals/ModalPortal";
+import ConfirmationModal from "../../modals/ConfirmationModal";
 
 const TabList: FC<TabListProps> = ({ group, onEdit }) => {
   const [currencySymbol, setCurrencySymbol] = useState("A/N");
+  const [confirmationModal, setConfirmationModal] = useState(false);
 
   useEffect(() => {
     const currency: string = CurrencySymbol(group.currency_type);
     setCurrencySymbol(currency);
   }, [group.currency_type]);
+
+  const HandleDelete = async () => {
+    const groupId = group.id;
+    try {
+      const res = await fetch(
+        `http://localhost:3000/api/group/delete/${groupId}`,
+        {
+          method: "DELETE",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
+          },
+        }
+      );
+      if (res.status === 204) {
+        console.log("Group deleted successfully");
+        alert("Group deleted successfully");
+        window.location.reload();
+      } else {
+        const err = await res.json();
+        alert(err.error || "Failed to delete group");
+      }
+    } catch (error) {
+      console.error("Error deleting group:", error);
+      alert("Failed to delete group. Please try again.");
+    }
+  };
 
   return (
     <div className="list-table">
@@ -51,15 +81,27 @@ const TabList: FC<TabListProps> = ({ group, onEdit }) => {
             <IconType iconType="edit" />
             <span className="text">Edit</span>
           </div>
-          <div className="edit-table-item table-item">
-            <IconType iconType="delete" />
-            <span className="text">Delete</span>
-          </div>
           <div className="view-table-item table-item">
             <IconType iconType="view" />
             <span className="text">View Info</span>
           </div>
+          <div
+            className="delete-table-item table-item"
+            onClick={() => setConfirmationModal(true)}
+          >
+            <IconType iconType="delete" />
+            <span className="text">Delete</span>
+          </div>
         </div>
+      )}
+      {confirmationModal && (
+        <ModalPortal onClose={() => setConfirmationModal(false)}>
+          <ConfirmationModal
+            message="DELETE"
+            onClose={() => setConfirmationModal(false)}
+            onConfirm={HandleDelete}
+          />
+        </ModalPortal>
       )}
     </div>
   );

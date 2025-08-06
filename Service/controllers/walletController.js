@@ -56,7 +56,15 @@ const deleteWallet = async (req, res) => {
   const userId = req.user.id;
 
   try {
-    await walletModal.deleteGroup(id, userId);
+    const wallet = await walletModal.findWalletById(id);
+    if (!wallet) {
+      return res.status(404).json({ error: "Wallet not found" });
+    }
+
+    if (wallet.user_id !== userId) {
+      return res.status(403).json({ error: "Unauthorized" });
+    }
+    await walletModal.deleteWallet(id, userId);
     res.status(204).send();
   } catch (err) {
     res.status(500).json({ error: "Failed to delete wallet" });
