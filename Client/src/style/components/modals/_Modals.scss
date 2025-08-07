@@ -17,9 +17,21 @@
     padding: 2rem;
     border-radius: 10px;
     min-width: 300px;
+    .card-modal,
+    .group-modal {
+      .title {
+        text-align: center;
+        background: $bg-primary;
+        padding: 5px;
+        border-radius: 10px;
+        margin: 0 0 1rem 0;
+      }
+      .form-inputs {
+        display: flex;
+        flex-direction: column;
+      }
+    }
   }
-  .card-modal,
-  .group-modal,
   .confirmation-modal {
     display: flex;
     flex-direction: column;

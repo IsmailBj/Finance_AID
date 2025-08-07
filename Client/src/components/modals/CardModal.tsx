@@ -33,12 +33,7 @@ const CardModal: FC<OnCloseModalProps> = ({ onClose }) => {
 
       if (res.ok) {
         console.log("Card details saved successfully:", data);
-        onClose();
-        setCardName("");
-        setCardType("");
-        setBalance("");
-        setCurrencyType("");
-        setExpiresDate("");
+        window.location.reload();
       } else {
         console.error(
           "Error saving card details:",
@@ -54,7 +49,7 @@ const CardModal: FC<OnCloseModalProps> = ({ onClose }) => {
   return (
     <div className="card-modal">
       <h1 className="title">Create Wallet</h1>
-      <div className="card-details">
+      <div className="form-inputs">
         <label htmlFor="card_name">Card Name</label>
         <input
           type="text"
@@ -111,7 +106,6 @@ const CardModal: FC<OnCloseModalProps> = ({ onClose }) => {
           onChange={(e) => setExpiresDate(e.target.value)}
         />
       </div>
-
       <button className="close-btn" onClick={() => onClose()}>
         Close
       </button>
