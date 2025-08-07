@@ -11,6 +11,7 @@ const TabList: FC<TabListProps> = ({ group, onEdit }) => {
   const [currencySymbol, setCurrencySymbol] = useState("A/N");
   const [confirmationModal, setConfirmationModal] = useState(false);
   const [stateColorChange, setStateColorChange] = useState("");
+  const [checked, setChecked] = useState(false);
   const today = getTodayDate();
 
   useEffect(() => {
@@ -19,7 +20,6 @@ const TabList: FC<TabListProps> = ({ group, onEdit }) => {
   }, [group.currency_type]);
 
   useEffect(() => {
-    console.log(today, group.end_date.split("T")[0], group.end_date);
     if (today == group.end_date.split("T")[0]) {
       setStateColorChange("worning");
     } else if (today <= group.end_date.split("T")[0]) {
@@ -57,10 +57,13 @@ const TabList: FC<TabListProps> = ({ group, onEdit }) => {
   };
 
   return (
-    <div className="list-table">
+    <div className={`list-table ${checked ? "checked" : ""}`}>
       <div key={group.id} className="group-item">
         <div className="selector">
-          <CheckButton isChecked={false} />
+          <CheckButton
+            isChecked={checked}
+            toggleCheck={() => setChecked(!checked)}
+          />
           <IconType iconType={group.group_category} />
         </div>
         <div className="right-section">

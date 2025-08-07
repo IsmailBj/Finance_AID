@@ -8,22 +8,20 @@
   width: calc(100% - 20px);
   .item-panel {
     width: 75%;
-
     // TableList
     .table-container {
       border: 1px solid $shadow-color;
-      height: 100%;
+      max-height: 700px;
+      overflow-y: auto;
+      overflow-x: hidden;
       .list-header {
         display: flex;
-        // gap: 10px;
         align-items: center;
         border: 1px solid $shadow-color;
         justify-content: space-around;
-        .selector {
-          color: $font-color-disable;
-        }
         .tab {
           color: $font-color-disable;
+          cursor: pointer;
         }
         .selected {
           color: #0f0f0f;
@@ -35,13 +33,17 @@
       }
       .group-list {
         .list-table {
+          background-color: $bg-primary;
+          &.checked {
+            background-color: $color-secondary-selected;
+            color: $font-color-light;
+          }
           .group-item {
+            border: 1px solid $shadow-color;
             display: flex;
             align-items: center;
             height: 60px;
             gap: 10px;
-            border: 1px solid $shadow-color;
-            background-color: $bg-primary;
             .selector {
               .group-name {
                 font-weight: bold;
@@ -56,7 +58,6 @@
                 display: flex;
                 justify-content: space-around;
                 align-items: center;
-                color: $font-color;
                 .paymentPlan {
                   font-weight: 500;
                 }

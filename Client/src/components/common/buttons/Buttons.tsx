@@ -1,5 +1,6 @@
 import chardIcon from "../../../assets/icons/chardIcon.svg";
 import budgetIcon from "../../../assets/icons/moneyIcon.svg";
+import { FaCheck } from "react-icons/fa";
 import { CiSettings } from "react-icons/ci";
 import { CheckButtonProps } from "../../../types/types";
 
@@ -35,14 +36,18 @@ export const SettingsBtn = () => {
   );
 };
 
-export const CheckButton: React.FC<CheckButtonProps> = ({ isChecked }) => {
+export const CheckButton: React.FC<CheckButtonProps> = ({
+  isChecked,
+  toggleCheck,
+}) => {
   return (
     <button
       type="button"
       className={`check-button ${isChecked ? "checked" : ""}`}
       aria-pressed={isChecked}
+      onClick={toggleCheck}
     >
-      <span className="checkmark">{isChecked ? "✓" : ""}</span>
+      <span className="checkmark">{isChecked ? <FaCheck /> : ""}</span>
     </button>
   );
 };

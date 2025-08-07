@@ -1,3 +1,5 @@
+@use "@/style/utils/_variables" as *;
+
 .check-button {
   display: inline-flex;
   align-items: center;
@@ -5,27 +7,25 @@
   border: unset;
   margin: 8px 12px;
   border-radius: 4px;
+  padding: 0;
   cursor: pointer;
   user-select: none;
   font-size: 16px;
   color: #333;
-
-  &:hover {
-    background: #ddd;
-  }
+  // &:hover {
+  //   background: #ddd;
+  // }
 
   &.checked {
-    background: #007bff;
-    border-color: #007bff;
-    color: white;
+    color: $color-secondary-selected;
   }
 
   .checkmark {
     width: 18px;
     height: 18px;
-    border: 1px solid #989898;
     border-radius: 5px;
-    background-color: whitesmoke;
+    background-color: #ffffff;
+    box-shadow: inset 0px 0px 2px 2px $shadow-color;
 
     .checked & {
       border-color: white;

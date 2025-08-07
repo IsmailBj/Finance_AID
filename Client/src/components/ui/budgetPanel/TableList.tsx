@@ -1,7 +1,7 @@
 import { useState, FC } from "react";
-import { CheckButton } from "../../common/buttons/Buttons";
 import TabList from "./TabList";
 import { TableListProps } from "../../../types/types";
+import { FaLandmark } from "react-icons/fa";
 
 const TableList: FC<TableListProps> = ({ onOpenModal, groups, onEdit }) => {
   const [selectedTab, setSelectedTab] = useState("available");
@@ -13,9 +13,7 @@ const TableList: FC<TableListProps> = ({ onOpenModal, groups, onEdit }) => {
   return (
     <div className="table-container">
       <span className="list-header">
-        <div className="selector">
-          <CheckButton isChecked={false} />
-        </div>
+        <FaLandmark />
         <div className="right-section">
           <div className="list-title">Name</div>
           <div className="list-title">CATEGORY</div>
@@ -79,9 +77,11 @@ const TableList: FC<TableListProps> = ({ onOpenModal, groups, onEdit }) => {
         </div>
       )}
       <div className="group-list">
-        {groups.map((group) => (
-          <TabList key={group.id} group={group} onEdit={onEdit} />
-        ))}
+        {groups
+          .filter((group) => group.status !== "paid")
+          .map((group) => (
+            <TabList key={group.id} group={group} onEdit={onEdit} />
+          ))}
       </div>
     </div>
   );

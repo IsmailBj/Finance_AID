@@ -3,7 +3,6 @@
 @use "../style/components/_FilterTransaction" as *;
 @use "../style/utils/mixings" as *;
 @use "../style/components/ItemPanel" as *;
-@use "../style/ui/AutoAssignPanel.scss" as *;
 @use "../style/ui/Buttons.scss" as *;
 @use "../style/ui/ExpensesChard" as *;
 @use "../style/layouts/Landing.scss" as *;
@@ -11,6 +10,7 @@
 @use "../style/layouts/Wallets.scss" as *;
 @use "../style/components/modals/Modals" as *;
 @use "../style/components/Chards" as *;
+@use "../style/ui/ListCard" as *;
 
 body {
   margin: 0;

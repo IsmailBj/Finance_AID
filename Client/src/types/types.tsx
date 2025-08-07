@@ -30,6 +30,10 @@ export interface TabListProps {
   onDelete?: (id: number) => void;
 }
 
+export interface ListCardProps {
+  groups: Group[];
+}
+
 export interface TableListProps {
   onOpenModal: () => void;
   groups: Group[];
@@ -48,6 +52,7 @@ export interface FilterBarProps {
 
 export interface CheckButtonProps {
   isChecked: boolean;
+  toggleCheck: () => void;
 }
 
 export interface RegLogProps {

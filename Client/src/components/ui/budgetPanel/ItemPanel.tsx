@@ -1,6 +1,6 @@
 import { FC, useState, useEffect } from "react";
 import FilterBar from "./FilterBar";
-import AutoAssignPanel from "./AutoAssignCard";
+import ListCard from "./ListCard";
 import TableList from "./TableList";
 import ModalPortal from "../../modals/ModalPortal";
 import GroupModal from "../../modals/GroupModal";
@@ -50,7 +50,7 @@ const ItemPanel: FC = () => {
       </div>
       <div className="cards-holder">
         <ApexChartPie labels={labels} series={series} />
-        <AutoAssignPanel />
+        <ListCard groups={groups} />
       </div>
       {openModal && (
         <ModalPortal onClose={() => setOpenModal(false)}>
