@@ -4,13 +4,13 @@
 @use "../style/utils/mixings" as *;
 @use "../style/components/ItemPanel" as *;
 @use "../style/ui/Buttons.scss" as *;
-@use "../style/ui/ExpensesChard" as *;
 @use "../style/layouts/Landing.scss" as *;
 @use "../style/ui/Loader.scss" as *;
 @use "../style/layouts/Wallets.scss" as *;
 @use "../style/components/modals/Modals" as *;
 @use "../style/components/Chards" as *;
 @use "../style/ui/ListCard" as *;
+@use "../style/layouts/Transaction" as *;
 
 body {
   margin: 0;

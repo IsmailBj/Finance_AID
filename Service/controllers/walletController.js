@@ -1,4 +1,4 @@
-const walletModal = require("../models/walletModal");
+const walletModal = require("../models/walletModel");
 
 const createWallet = async (req, res) => {
   const { card_name, card_type, balance, currency_type, expire_date } =

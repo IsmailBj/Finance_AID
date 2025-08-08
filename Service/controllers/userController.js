@@ -1,5 +1,5 @@
 const bcrypt = require("bcryptjs");
-const userModel = require("../models/userModal");
+const userModel = require("../models/userModel");
 const jwt = require("jsonwebtoken");
 
 const register = async (req, res) => {
@@ -25,7 +25,6 @@ const register = async (req, res) => {
 
 const login = async (req, res) => {
   const { username, password } = req.body;
-
   try {
     const user = await userModel.findUserByUsername(username);
     if (!user) {

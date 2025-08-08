@@ -1,6 +1,6 @@
 import { FC, useState, useEffect } from "react";
 import FilterBar from "./FilterBar";
-import ListCard from "./ListCard";
+import ListCard from "./CardList";
 import TableList from "./TableList";
 import ModalPortal from "../../modals/ModalPortal";
 import GroupModal from "../../modals/GroupModal";

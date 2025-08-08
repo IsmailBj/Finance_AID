@@ -1,19 +1,13 @@
-import TransactionFilter from "../components/ui/TransactionFilter";
-import { useState, FC } from "react";
+import { FC } from "react";
+import Header from "../components/ui/Header";
+import TransactionList from "../components/ui/TransactionList";
 
 const Transactions: FC = () => {
-  const [filterBy, setFilterBy] = useState("name");
-
   return (
     <div className="transactions-page">
-      <h1 className="page-title">Transactions</h1>
-      <div className="filter-container">
-        <TransactionFilter setFilterBy={setFilterBy} />
-      </div>
-      <div className="transactions-list">
-        {filterBy === "name" && (
-          <div className="transaction-item">{filterBy}</div>
-        )}
+      <Header title="Transactions" />
+      <div className="transactions-content">
+        <TransactionList />
       </div>
     </div>
   );

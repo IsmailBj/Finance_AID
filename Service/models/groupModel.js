@@ -62,6 +62,16 @@ const updateGroup = async (
   return result.rows[0];
 };
 
+const updateGroupStatus = async (groupId, status, userId) => {
+  const result = await db.query(
+    `UPDATE groups SET status = $1 
+         WHERE id = $2 AND user_id = $3 
+         RETURNING *`,
+    [status, groupId, userId]
+  );
+  return result.rows[0];
+};
+
 const deleteGroup = async (groupId, userId) => {
   await db.query("DELETE FROM groups WHERE id = $1 AND user_id = $2", [
     groupId,
@@ -99,4 +109,5 @@ module.exports = {
   deleteGroup,
   getPlanAmountByCategory,
   findGroupById,
+  updateGroupStatus,
 };

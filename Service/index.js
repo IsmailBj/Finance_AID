@@ -4,6 +4,7 @@ const path = require("path");
 const authRoutes = require("./routes/auth");
 const groupRoutes = require("./routes/group");
 const walletRoutes = require("./routes/wallet");
+const transactionRoutes = require("./routes/transaction");
 const cors = require("cors");
 
 const app = express();
@@ -17,6 +18,7 @@ app.use(cors({ origin: "http://localhost:5173", credentials: true }));
 app.use("/api/auth", authRoutes);
 app.use("/api/group", groupRoutes);
 app.use("/api/wallet", walletRoutes);
+app.use("/api/transaction", transactionRoutes);
 
 // Serve static files from Vite build
 app.use(express.static(path.join(__dirname, "../Client/dist")));

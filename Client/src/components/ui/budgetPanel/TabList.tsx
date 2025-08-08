@@ -29,6 +29,12 @@ const TabList: FC<TabListProps> = ({ group, onEdit }) => {
     }
   }, [group.end_date, group.status, today]);
 
+  useEffect(() => {
+    if (checked) {
+      console.log("handle State here");
+    }
+  }, [checked]);
+
   const HandleDelete = async () => {
     const groupId = group.id;
     try {
