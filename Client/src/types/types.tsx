@@ -15,6 +15,25 @@ export interface Group {
   group_category: string;
 }
 
+export interface TransactionType {
+  id: number;
+  group_id: number;
+  paid_amount: number;
+  date: string;
+  category: string;
+  currency_type: string;
+  method_type: string;
+  user_id: number;
+}
+
+export interface TransactionListProps {
+  list: TransactionType[];
+}
+
+export interface TransTabProps {
+  DataTap: TransactionType;
+}
+
 interface Wallet {
   card_name: string;
   balance: number;

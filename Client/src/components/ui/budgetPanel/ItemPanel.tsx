@@ -1,7 +1,7 @@
 import { FC, useState, useEffect } from "react";
 import FilterBar from "./FilterBar";
 import ListCard from "./CardList";
-import TableList from "./TableList";
+import TableList from "../TableList/TableList";
 import ModalPortal from "../../modals/ModalPortal";
 import GroupModal from "../../modals/GroupModal";
 import { Group } from "../../../types/types";

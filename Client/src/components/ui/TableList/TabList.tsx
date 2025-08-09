@@ -29,12 +29,6 @@ const TabList: FC<TabListProps> = ({ group, onEdit }) => {
     }
   }, [group.end_date, group.status, today]);
 
-  useEffect(() => {
-    if (checked) {
-      console.log("handle State here");
-    }
-  }, [checked]);
-
   const HandleDelete = async () => {
     const groupId = group.id;
     try {
@@ -61,6 +55,47 @@ const TabList: FC<TabListProps> = ({ group, onEdit }) => {
       alert("Failed to delete group. Please try again.");
     }
   };
+
+  const handleCheckGroup = async () => {
+    const groupId = group.id;
+    try {
+      const res = await fetch(
+        `http://localhost:3000/api/transaction/add-transaction/${groupId}`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
+          },
+          body: JSON.stringify({
+            paid_amount: group.pay_amount,
+            category: group.group_category,
+            currency_type: group.currency_type,
+            method_type: "cash",
+            user_id: group.user_id,
+            wallet_id: null, // Assuming a default wallet ID, adjust as necessary
+          }),
+        }
+      );
+
+      const data = await res.json();
+      if (res.status === 201) {
+        alert(data.message);
+        window.location.reload();
+      } else {
+        const err = await res.json();
+        alert(err.error || "Failed to check group");
+      }
+    } catch (error) {
+      console.error("Error checking group:", error);
+      alert("Failed to check group. Please try again.");
+    }
+  };
+  useEffect(() => {
+    if (checked) {
+      handleCheckGroup();
+    }
+  }, [checked]);
 
   return (
     <div className={`list-table ${checked ? "checked" : ""}`}>

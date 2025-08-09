@@ -1,5 +1,6 @@
 import React from "react";
 import { ListCardProps } from "../../../types/types";
+import { PiArrowBendDoubleUpLeftDuotone } from "react-icons/pi";
 
 const ListCard: React.FC<ListCardProps> = ({ groups }) => {
   return (
@@ -12,6 +13,9 @@ const ListCard: React.FC<ListCardProps> = ({ groups }) => {
           .filter((group) => group.status === "paid")
           .map((group, index) => (
             <li key={index} className="panel-row">
+              <span className="icon">
+                <PiArrowBendDoubleUpLeftDuotone />
+              </span>
               <span className="label">{group.group_name}</span>
               <span className="value">{group.group_category}</span>
               <span className="value">{group.pay_amount}</span>
