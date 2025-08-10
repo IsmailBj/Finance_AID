@@ -15,4 +15,10 @@ router.get(
   transactionController.getTransactions
 );
 
+router.delete(
+  "/delete-transaction/:groupId",
+  authMiddleware,
+  transactionController.deleteTransaction
+);
+
 module.exports = router;

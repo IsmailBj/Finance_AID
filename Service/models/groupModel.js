@@ -84,6 +84,7 @@ const getPlanAmountByCategory = async (userId) => {
 		SELECT group_category, SUM(plan_amount) AS total
 		FROM groups
 		WHERE user_id = $1
+		AND status != 'paid'
 		GROUP BY group_category
 		ORDER BY group_category;
 	`;

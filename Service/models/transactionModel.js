@@ -41,11 +41,11 @@ const getTransactionsByGroup = async (userId) => {
   }
 };
 
-const deleteTransaction = async (groupId, userId) => {
+const deleteTransaction = async (groupId, userid) => {
   try {
     await db.query(
       `DELETE FROM transactions WHERE group_id = $1 AND user_id = $2`,
-      [groupId, userId]
+      [groupId, userid]
     );
   } catch (error) {
     console.error("Error deleting transaction:", error);

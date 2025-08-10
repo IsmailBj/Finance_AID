@@ -6,7 +6,7 @@ const addTransaction = async (req, res) => {
   const { paid_amount, category, currency_type, method_type, wallet_id } =
     req.body;
   const userId = req.user.id;
-  console.log(groupId, { paid_amount, category, currency_type, method_type });
+
   try {
     await groupModel.updateGroupStatus(groupId, "paid", userId);
     await transaction.addTransaction({
@@ -36,7 +36,26 @@ const getTransactions = async (req, res) => {
   }
 };
 
+const deleteTransaction = async (req, res) => {
+  const { groupId } = req.params;
+
+  const userId = req.user.id;
+  try {
+    const group = await groupModel.updateGroupStatus(groupId, "unpaid", userId);
+    if (!group) {
+      return res.status(404).json({ error: "Group not found" });
+    }
+
+    await transaction.deleteTransaction(groupId, userId);
+    res.status(200).json({ message: "Transaction undone successfully" });
+  } catch (error) {
+    console.error("Error deleting transaction:", error);
+    return res.status(500).json({ error: "Failed to delete transaction" });
+  }
+};
+
 module.exports = {
   addTransaction,
   getTransactions,
+  deleteTransaction,
 };
