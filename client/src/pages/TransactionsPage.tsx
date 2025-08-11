@@ -18,7 +18,7 @@ const Transactions: FC = () => {
       );
       if (!res.ok) throw new Error("Failed to fetch transactions");
       const data = await res.json();
-      setTransactions(data.transactions || []);
+      setTransactions(data || []);
     } catch (error) {
       console.error("Failed to fetch transactions:", error);
       alert(
