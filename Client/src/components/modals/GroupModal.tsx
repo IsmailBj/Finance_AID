@@ -1,10 +1,10 @@
 import { FC, useState, useEffect } from "react";
 import { OnCloseModalProps } from "../../types/types";
 import IconType from "../common/Icons/Icon";
+import calculateInstallment from "../../helpers/calculateInstallment";
 
 const GroupModal: FC<OnCloseModalProps> = ({ onClose }) => {
   const [groupName, setGroupName] = useState("");
-  const [status, setStatus] = useState("");
   const [startDate, setStartDate] = useState("");
   const [lastDay, setLastDay] = useState("");
   const [payAmount, setPayAmount] = useState("");
@@ -16,7 +16,7 @@ const GroupModal: FC<OnCloseModalProps> = ({ onClose }) => {
   const submitGroupDetails = async () => {
     const GroupData = {
       group_name: groupName,
-      status: status,
+      status: "unpaid",
       start_date: startDate,
       end_date: lastDay,
       pay_amount: payAmount,
@@ -47,26 +47,8 @@ const GroupModal: FC<OnCloseModalProps> = ({ onClose }) => {
     }
   };
 
-  const calculateInstallment = (amount: number, frequency: string): void => {
-    if (amount >= 0) {
-      switch (frequency) {
-        case "monthly":
-          setPayAmount(String(amount / 12));
-          break;
-        case "weekly":
-          setPayAmount(String(amount / 52));
-          break;
-        default:
-          setPayAmount(String(amount));
-          break;
-      }
-    } else {
-      setPayAmount("0");
-    }
-  };
-
   useEffect(() => {
-    calculateInstallment(+planAmount, paymentPlanType);
+    calculateInstallment(+planAmount, paymentPlanType, setPayAmount);
   }, [paymentPlanType, planAmount]);
 
   return (
@@ -83,21 +65,6 @@ const GroupModal: FC<OnCloseModalProps> = ({ onClose }) => {
           value={groupName}
           onChange={(e) => setGroupName(e.target.value)}
         />
-
-        <label htmlFor="group_type">Group Type</label>
-        <select
-          id="group_type"
-          value={status}
-          onChange={(e) => setStatus(e.target.value)}
-        >
-          <option value="" disabled>
-            Select Group type
-          </option>
-          <option value="paid">paid</option>
-          <option value="unpaid">unpaid</option>
-          <option value="pending">pending</option>
-          <option value="unknown">unknown</option>
-        </select>
 
         <label htmlFor="start_date" className="start_date">
           Starting Day

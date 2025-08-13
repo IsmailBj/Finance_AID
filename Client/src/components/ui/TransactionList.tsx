@@ -23,9 +23,7 @@ const TransactionList: FC<TransactionListProps> = ({ list }) => {
       )}
       <div className="list-container">
         {list.map((DataTap) => (
-          <div key={DataTap.id} className="transaction-item">
-            <TransTab DataTap={DataTap} />
-          </div>
+          <TransTab DataTap={DataTap} key={DataTap.id} />
         ))}
       </div>
     </div>

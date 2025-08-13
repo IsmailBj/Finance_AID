@@ -4,24 +4,18 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 10px;
-  background-color: $bg-primary;
-  width: calc(100% - 20px);
-  margin-bottom: 1rem;
+  padding: 10px 20px;
+  background-color: $color-primary;
+  width: calc(100% - 40px);
   border-top-right-radius: 8px;
   border-top-left-radius: 8px;
   .filter-item {
     font-size: $font-size-medium;
-    color: $font-color;
     font-weight: bold;
     cursor: pointer;
-    &:hover {
-      background-color: $color-secondary;
-      border-radius: 5px;
-    }
     .filter-text {
       font-size: $font-size-medium;
-      color: $font-color;
+      color: $font-color-light;
     }
   }
 }
