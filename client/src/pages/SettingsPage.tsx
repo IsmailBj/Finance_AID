@@ -1,5 +1,6 @@
 import { FC } from "react";
 import Header from "../components/ui/Header";
+import Avatar from "../assets/images/default-avatar.png";
 
 const Settings: FC = () => {
   return (
@@ -16,11 +17,7 @@ const Settings: FC = () => {
         </aside>
         <main className="content">
           <div className="avatar-section">
-            <img
-              src="https://via.placeholder.com/120"
-              alt="Avatar"
-              className="avatar"
-            />
+            <img src={Avatar} alt="Avatar" className="avatar" />
             <div className="avatar-buttons">
               <button className="btn-primary">Upload New</button>
               <button className="btn-secondary">Delete avatar</button>

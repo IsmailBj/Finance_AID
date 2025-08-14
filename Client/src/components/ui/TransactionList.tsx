@@ -2,6 +2,7 @@ import { FC, useState, useEffect } from "react";
 import TransactionFilter from "./TransactionFilter";
 import TransTab from "./TableList/TabTrans";
 import { TransactionListProps } from "../../types/types";
+import emptyImg from "../../assets/images/empty.png";
 
 const TransactionList: FC<TransactionListProps> = ({ list }) => {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -12,7 +13,11 @@ const TransactionList: FC<TransactionListProps> = ({ list }) => {
   }, [list]);
 
   if (!list || list.length === 0) {
-    return <div className="no-transactions">No transactions available.</div>;
+    return (
+      <div className="no-transactions">
+        <img src={emptyImg} alt="no image" />
+      </div>
+    );
   }
 
   return (
