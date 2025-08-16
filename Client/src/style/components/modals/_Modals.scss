@@ -14,7 +14,7 @@
   z-index: 1000;
   .modal-container {
     background: $bg-secondary;
-    padding: 2rem;
+    padding: 1.8em;
     border-radius: 10px;
     min-width: 300px;
     .card-modal,
@@ -29,6 +29,44 @@
       .form-inputs {
         display: flex;
         flex-direction: column;
+        .input_field {
+          display: inherit;
+          flex-direction: inherit;
+          input,
+          select {
+            border: 1px solid $font-color-disable;
+            padding: 9px;
+            margin-bottom: 5px;
+            border-radius: 5px;
+            &:focus-visible {
+              outline: none;
+            }
+          }
+          label {
+            color: #2c2c2c;
+            font-weight: 500;
+            margin-bottom: 5px;
+          }
+        }
+        .input_field.amount_calc {
+          margin-bottom: 12px;
+          align-items: center;
+          #group_budget {
+            font-weight: 500;
+          }
+        }
+      }
+      .form_buttons {
+        background-color: $bg-primary;
+        padding: 10px;
+        border-radius: 5px;
+        display: flex;
+        justify-content: space-around;
+        .close-btn,
+        .save-btn {
+          width: 45%;
+          @include simpleButton($color-primary-hover, $bg-secondary);
+        }
       }
     }
   }
