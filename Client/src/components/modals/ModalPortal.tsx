@@ -16,7 +16,6 @@ const ModalPortal: React.FC<ModalPortalProps> = ({ children, onClose }) => {
         modalRef.current &&
         !modalRef.current.contains(event.target as Node)
       ) {
-        console.log("Weee");
         onClose();
       }
     };

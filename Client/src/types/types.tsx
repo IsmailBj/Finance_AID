@@ -34,7 +34,7 @@ export interface TransTabProps {
   DataTap: TransactionType;
 }
 
-interface Wallet {
+export interface Wallet {
   card_name: string;
   balance: number;
   currency_type: string;
@@ -80,6 +80,11 @@ export interface RegLogProps {
 
 export interface OnCloseModalProps {
   onClose: () => void;
+}
+
+export interface GroupModalProps {
+  onClose: () => void;
+  wallets: Wallet[];
 }
 
 export interface ConfirmationModalProps {

@@ -1,4 +1,5 @@
 const groupModel = require("../models/groupModel");
+const walletModal = require("../models/walletModel");
 
 const createGroup = async (req, res) => {
   const {
@@ -11,6 +12,7 @@ const createGroup = async (req, res) => {
     plan_amount,
     currency_type,
     group_category,
+    wallet_id,
   } = req.body;
   const user_id = req.user.id;
   try {
@@ -25,6 +27,7 @@ const createGroup = async (req, res) => {
       plan_amount,
       currency_type,
       group_category,
+      wallet_id,
     });
     res.status(201).json(group);
   } catch (err) {
@@ -38,10 +41,10 @@ const getGroups = async (req, res) => {
   try {
     const groups = await groupModel.getUserGroups(userId);
     const groupCategories = await groupModel.getPlanAmountByCategory(userId);
+    const wallets = await walletModal.getUserWallets(userId);
     const labels = groupCategories.map((item) => item.group_category);
     const series = groupCategories.map((item) => item.total);
-
-    res.json({ groups, labels, series });
+    res.json({ groups, labels, series, wallets });
   } catch (err) {
     res.status(500).json({ error: "Failed to fetch groups" });
   }

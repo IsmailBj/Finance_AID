@@ -97,9 +97,9 @@ const CardModal: FC<OnCloseModalProps> = ({ onClose }) => {
             <option value="" disabled>
               Select currency
             </option>
-            <option value="euro">Euro</option>
-            <option value="mkd">MKD</option>
-            <option value="dollar">Dollar</option>
+            <option value="EURO">Euro</option>
+            <option value="MKD">MKD</option>
+            <option value="USD">Dollar</option>
           </select>
         </div>
         <div className="input_field">

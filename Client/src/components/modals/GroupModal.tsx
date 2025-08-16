@@ -1,9 +1,9 @@
 import { FC, useState, useEffect } from "react";
-import { OnCloseModalProps } from "../../types/types";
+import { GroupModalProps, Wallet } from "../../types/types";
 import IconType from "../common/Icons/Icon";
 import calculateInstallment from "../../helpers/CalculateInstallment";
 
-const GroupModal: FC<OnCloseModalProps> = ({ onClose }) => {
+const GroupModal: FC<GroupModalProps> = ({ onClose, wallets }) => {
   const [groupName, setGroupName] = useState("");
   const [startDate, setStartDate] = useState("");
   const [lastDay, setLastDay] = useState("");
@@ -12,6 +12,8 @@ const GroupModal: FC<OnCloseModalProps> = ({ onClose }) => {
   const [paymentPlanType, setPaymentPlanType] = useState("");
   const [currencyType, setCurrencyType] = useState("");
   const [groupCategory, setGroupCategory] = useState("");
+  const [walletId, setWalletId] = useState("");
+  const [filterWallets, setFilterWallets] = useState<Wallet[]>([]);
 
   const submitGroupDetails = async () => {
     const GroupData = {
@@ -24,6 +26,7 @@ const GroupModal: FC<OnCloseModalProps> = ({ onClose }) => {
       plan_type: paymentPlanType,
       currency_type: currencyType,
       group_category: groupCategory,
+      wallet_id: walletId,
     };
 
     try {
@@ -49,7 +52,24 @@ const GroupModal: FC<OnCloseModalProps> = ({ onClose }) => {
 
   useEffect(() => {
     calculateInstallment(+planAmount, paymentPlanType, setPayAmount);
-  }, [paymentPlanType, planAmount]);
+    const walletFileredTmp = wallets.filter(
+      (wallet) =>
+        wallet.balance > Number(planAmount) &&
+        wallet.currency_type === currencyType &&
+        wallet.expire_date > startDate &&
+        wallet.expire_date > lastDay
+    );
+    console.log(walletId, typeof wallets[0].id);
+    setFilterWallets(walletFileredTmp);
+  }, [
+    currencyType,
+    lastDay,
+    paymentPlanType,
+    planAmount,
+    startDate,
+    walletId,
+    wallets,
+  ]);
 
   return (
     <div className="group-modal">
@@ -101,6 +121,7 @@ const GroupModal: FC<OnCloseModalProps> = ({ onClose }) => {
             onChange={(e) => setPlanAmount(e.target.value)}
           />
         </div>
+
         <div className="input_field">
           <label htmlFor="group_type">Payment Plan</label>
           <select
@@ -130,6 +151,21 @@ const GroupModal: FC<OnCloseModalProps> = ({ onClose }) => {
             <option value="EURO">EURO</option>
             <option value="USD">USD</option>
             <option value="MKD">MKD</option>
+          </select>
+        </div>
+        <div className="input_field">
+          <label htmlFor="wallet_type">Wallet</label>
+          <select
+            id="wallet_type"
+            value={walletId}
+            onChange={(e) => setWalletId(e.target.value)}
+          >
+            <option value="" disabled>
+              Select wallet
+            </option>
+            {filterWallets.map((wallet) => (
+              <option value={wallet.id}>{wallet.card_name}</option>
+            ))}
           </select>
         </div>
         <div className="input_field">

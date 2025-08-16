@@ -60,10 +60,48 @@ const findWalletById = async (walletId) => {
   return result.rows[0];
 };
 
+//  tmp not in use
+const getWalletColumns = async (userId, columns = []) => {
+  try {
+    const allowedColumns = [
+      "card_name",
+      "user_id",
+      "card_type",
+      "created_at",
+      "balance",
+      "currency_type",
+      "expire_date",
+      "id",
+    ];
+
+    const safeColumns = columns.filter((col) => allowedColumns.includes(col));
+
+    if (safeColumns.length === 0) {
+      throw new Error("No valid column names provided");
+    }
+
+    const query = `SELECT ${safeColumns.join(
+      ", "
+    )} FROM wallets WHERE user_id = $1`;
+    const values = [userId];
+    const result = await db.query(query, values);
+
+    if (result.rows.length === 0) {
+      return null;
+    }
+
+    return result.rows[0];
+  } catch (err) {
+    console.error("Error fetching columns:", err);
+    throw err;
+  }
+};
+
 module.exports = {
   createWallet,
   getUserWallets,
   updateWallet,
   deleteWallet,
   findWalletById,
+  getWalletColumns,
 };

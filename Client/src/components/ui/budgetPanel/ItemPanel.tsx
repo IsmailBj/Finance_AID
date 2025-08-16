@@ -4,7 +4,7 @@ import ListCard from "./CardList";
 import TableList from "../TableList/TableList";
 import ModalPortal from "../../modals/ModalPortal";
 import GroupModal from "../../modals/GroupModal";
-import { Group } from "../../../types/types";
+import { Group, Wallet } from "../../../types/types";
 import ApexChartPie from "../../charts/PieChard";
 
 const ItemPanel: FC = () => {
@@ -12,6 +12,7 @@ const ItemPanel: FC = () => {
   const [groups, setGroups] = useState<Group[]>([]);
   const [labels, setLabels] = useState<string[]>([]);
   const [series, setSeries] = useState<number[]>([]);
+  const [wallets, setWallets] = useState<Wallet[]>([]);
   const [edit, onEdit] = useState(Boolean);
 
   const fetchGroups = async () => {
@@ -26,6 +27,7 @@ const ItemPanel: FC = () => {
       setGroups(data.groups || []);
       setLabels(data.labels || []);
       setSeries(data.series || []);
+      setWallets(data.wallets || []);
     } catch (err) {
       alert(err instanceof Error ? err.message : "An error occurred");
     }
@@ -54,7 +56,7 @@ const ItemPanel: FC = () => {
       </div>
       {openModal && (
         <ModalPortal onClose={() => setOpenModal(false)}>
-          <GroupModal onClose={() => setOpenModal(false)} />
+          <GroupModal onClose={() => setOpenModal(false)} wallets={wallets} />
         </ModalPortal>
       )}
     </div>

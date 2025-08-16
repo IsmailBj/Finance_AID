@@ -11,10 +11,11 @@ const createGroup = async ({
   plan_amount,
   currency_type,
   group_category,
+  wallet_id,
 }) => {
   const result = await db.query(
-    `INSERT INTO groups (group_name, pay_amount, status, user_id, plan_type, plan_amount, start_date, end_date, currency_type, group_category)
-  	 VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10)
+    `INSERT INTO groups (group_name, pay_amount, status, user_id, plan_type, plan_amount, start_date, end_date, currency_type, group_category, wallet_id)
+  	 VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11)
   	 RETURNING *`,
     [
       group_name,
@@ -27,6 +28,7 @@ const createGroup = async ({
       end_date,
       currency_type,
       group_category,
+      wallet_id,
     ]
   );
   return result.rows[0];
