@@ -1,12 +1,13 @@
+@use "@/style/utils/_variables" as *;
 .setting-content {
   display: flex;
-  background: #f9f9f9;
+  background: $bg-shadow;
   padding: 20px;
   font-family: Arial, sans-serif;
 
   .sidebar {
     width: 200px;
-    background: #fff;
+    background: $bg-secondary;
     border-radius: 6px;
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
     padding: 10px;
@@ -22,13 +23,13 @@
         border-radius: 4px;
 
         &.active {
-          background: #f0f4ff;
-          color: #3366ff;
+          background: $font-color-light;
+          color: $color-primary-selected;
           font-weight: bold;
         }
 
         &:hover {
-          background: #f5f5f5;
+          background: $font-color-light;
         }
       }
     }
@@ -133,20 +134,20 @@
   }
 
   .btn-primary {
-    background: #2b39ff;
-    color: #fff;
+    background: $color-primary-selected;
+    color: $font-color-light;
     padding: 10px 20px;
     border: none;
     border-radius: 4px;
     cursor: pointer;
 
     &:hover {
-      background: #1f2acc;
+      background: $color-primary-hover;
     }
   }
 
   .btn-secondary {
-    background: #ddd;
+    background: $shadow-color;
     color: #000;
     padding: 10px 20px;
     border: none;
@@ -154,7 +155,7 @@
     cursor: pointer;
 
     &:hover {
-      background: #ccc;
+      background: $font-color-disable;
     }
   }
 }
