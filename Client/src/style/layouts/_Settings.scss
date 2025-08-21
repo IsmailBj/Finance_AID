@@ -1,4 +1,6 @@
 @use "@/style/utils/_variables" as *;
+@use "@/style/utils/_mixings" as *;
+
 .setting-content {
   display: flex;
   background: $bg-shadow;
@@ -8,28 +10,30 @@
   .sidebar {
     width: 200px;
     background: $bg-secondary;
-    border-radius: 6px;
-    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+    @include ShadowBorder(6px);
     padding: 10px;
 
-    ul {
+    .settings-navbar {
       list-style: none;
       padding: 0;
       margin: 0;
+      a {
+        text-decoration: none;
+        color: $font-color;
+        li {
+          padding: 12px;
+          cursor: pointer;
+          border-radius: 4px;
 
-      li {
-        padding: 12px;
-        cursor: pointer;
-        border-radius: 4px;
+          &.active {
+            background: $font-color-light;
+            color: $color-primary-selected;
+            font-weight: bold;
+          }
 
-        &.active {
-          background: $font-color-light;
-          color: $color-primary-selected;
-          font-weight: bold;
-        }
-
-        &:hover {
-          background: $font-color-light;
+          &:hover {
+            background: $font-color-light;
+          }
         }
       }
     }
@@ -37,10 +41,9 @@
 
   .content {
     flex: 1;
-    background: #fff;
+    background: $bg-secondary;
     margin-left: 20px;
-    border-radius: 6px;
-    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+    @include ShadowBorder(6px);
     padding: 20px;
 
     .avatar-section {
@@ -54,7 +57,7 @@
         height: 120px;
         border-radius: 50%;
         object-fit: cover;
-        border: 3px solid #eee;
+        border: 3px solid $shadow-color;
       }
 
       .avatar-buttons {
@@ -63,9 +66,12 @@
       }
     }
 
-    .profile-form {
+    .profile-form,
+    .passwordReset-form,
+    .notification-container {
       .row {
         display: flex;
+        flex-direction: row;
         gap: 20px;
         margin-bottom: 15px;
 
@@ -73,7 +79,12 @@
           flex: 1;
         }
       }
-
+      .column {
+        display: flex;
+        gap: 20px;
+        margin-bottom: 15px;
+        flex-direction: column;
+      }
       .input-group {
         display: flex;
         flex-direction: column;
@@ -82,12 +93,15 @@
           margin-bottom: 5px;
           font-weight: bold;
         }
-
+        .helper-text {
+          margin-bottom: 5px;
+          color: $font-color-disable;
+        }
         input,
         select,
         textarea {
           padding: 10px;
-          border: 1px solid #ccc;
+          border: 1px solid $shadow-color;
           border-radius: 4px;
           font-size: 14px;
         }
@@ -95,6 +109,17 @@
         textarea {
           min-height: 80px;
           resize: vertical;
+        }
+      }
+
+      .input-label {
+        label {
+          margin-bottom: 5px;
+          font-weight: bold;
+        }
+        .helper-text {
+          margin-bottom: 5px;
+          color: $font-color-disable;
         }
       }
 

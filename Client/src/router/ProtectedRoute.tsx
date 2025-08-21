@@ -7,7 +7,7 @@ const ProtectedRoute = ({ children }: { children: JSX.Element }) => {
 
   if (!token || isTokenExpired(token)) {
     localStorage.removeItem("token");
-    return <Navigate to="/Landing" replace />;
+    return <Navigate to="/landing" replace />;
   }
 
   return children;

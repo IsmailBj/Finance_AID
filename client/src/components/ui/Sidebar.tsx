@@ -11,7 +11,7 @@ const Sidebar: FC = () => {
   const handleLogout = () => {
     localStorage.removeItem("token");
     localStorage.removeItem("user");
-    handleNavigation("/Landing");
+    handleNavigation("/landing");
   };
 
   useEffect(() => {
@@ -49,14 +49,14 @@ const Sidebar: FC = () => {
         </div>
         <div
           className="sidebar-item"
-          onClick={() => handleNavigation("/Transactions")}
+          onClick={() => handleNavigation("/transactions")}
         >
           <span className="sidebar-icon">🧾</span>
           <span className="sidebar-text">Transactions</span>
         </div>
         <div
           className="sidebar-item"
-          onClick={() => handleNavigation("/Settings")}
+          onClick={() => handleNavigation("/settings")}
         >
           <span className="sidebar-icon">⚙️</span>
           <span className="sidebar-text">Settings</span>
