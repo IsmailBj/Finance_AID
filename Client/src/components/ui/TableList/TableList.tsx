@@ -2,6 +2,7 @@ import { useState, FC } from "react";
 import TabList from "./TabList";
 import { TableListProps } from "../../../types/types";
 import { FaLandmark } from "react-icons/fa";
+import filterGroups from "../../../helpers/FilterGroups";
 
 const TableList: FC<TableListProps> = ({ onOpenModal, groups, onEdit }) => {
   const [selectedTab, setSelectedTab] = useState("available");
@@ -9,6 +10,9 @@ const TableList: FC<TableListProps> = ({ onOpenModal, groups, onEdit }) => {
   const handleTabClick = (tab: string) => {
     setSelectedTab(tab);
   };
+
+  // ✅ Apply filter here
+  const filteredGroups = filterGroups(groups, selectedTab);
 
   return (
     <div className="table-container">
@@ -21,9 +25,9 @@ const TableList: FC<TableListProps> = ({ onOpenModal, groups, onEdit }) => {
         <div className="center-section">
           <div
             className={`cost-marker tab ${
-              selectedTab === "From" ? "selected" : ""
+              selectedTab === "from" ? "selected" : ""
             }`}
-            onClick={() => handleTabClick("From")}
+            onClick={() => handleTabClick("from")}
           >
             From
           </div>
@@ -71,17 +75,17 @@ const TableList: FC<TableListProps> = ({ onOpenModal, groups, onEdit }) => {
           </div>
         </div>
       </span>
+
       {groups.length === 0 && (
         <div className="no-groups" onClick={onOpenModal}>
           Create a Group Here
         </div>
       )}
+
       <div className="group-list">
-        {groups
-          .filter((group) => group.status !== "paid")
-          .map((group) => (
-            <TabList key={group.id} group={group} onEdit={onEdit} />
-          ))}
+        {filteredGroups.map((group) => (
+          <TabList key={group.id} group={group} onEdit={onEdit} />
+        ))}
       </div>
     </div>
   );

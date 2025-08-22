@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { FilterBarProps } from "../../../types/types";
-import { FaPlus, FaUndo, FaThLarge, FaList, FaSearch } from "react-icons/fa";
+import { FaPlus, FaUndo, FaSearch } from "react-icons/fa";
 
 const FilterBar: React.FC<FilterBarProps> = ({ onOpenModal, onEdit }) => {
   const [searchQuery, setSearchQuery] = useState("");
@@ -37,15 +37,6 @@ const FilterBar: React.FC<FilterBarProps> = ({ onOpenModal, onEdit }) => {
         />
         <button className="toolbar-btn" onClick={handleSearch}>
           <FaSearch /> Search
-        </button>
-      </div>
-
-      <div className="toolbar-right">
-        <button className="view-toggle active">
-          <FaThLarge />
-        </button>
-        <button className="view-toggle">
-          <FaList />
         </button>
       </div>
     </div>

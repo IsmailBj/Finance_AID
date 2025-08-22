@@ -167,8 +167,7 @@
   border: 1px solid $shadow-color;
   background-color: $bg-primary;
 
-  .toolbar-left,
-  .toolbar-right {
+  .toolbar-left {
     display: flex;
     align-items: center;
     gap: 12px;
