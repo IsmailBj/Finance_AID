@@ -1,6 +1,7 @@
 import React, { FC, useState } from "react";
 import Loading from "../common/loader/Loading";
 import { RegLogProps } from "../../types/types";
+import { getTimeZone } from "../../helpers/DateAndTimeHelpers";
 
 const RegisterPage: FC<RegLogProps> = ({ showRegister }) => {
   const [loading, setLoading] = useState(false);
@@ -32,7 +33,7 @@ const RegisterPage: FC<RegLogProps> = ({ showRegister }) => {
       setLoading(false);
       return;
     }
-
+    const userTimezone = getTimeZone();
     try {
       const res = await fetch("http://localhost:3000/api/auth/register", {
         method: "POST",
@@ -41,6 +42,7 @@ const RegisterPage: FC<RegLogProps> = ({ showRegister }) => {
           username: form.username,
           email: form.email,
           password: form.password,
+          timezone: userTimezone,
         }),
       });
 

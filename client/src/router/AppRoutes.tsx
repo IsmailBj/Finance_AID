@@ -10,6 +10,7 @@ import ProtectedRoute from "./ProtectedRoute";
 import UserSettings from "../components/ui/settings/UserSettings";
 import ForgetPassword from "../components/ui/settings/ChangePassword";
 import NotificationCenter from "../components/ui/settings/NotificationCenter";
+import LanguageRegion from "../components/ui/settings/LanguageRegion";
 import NotFoundPage from "../pages/NotFound";
 
 const AppRoutes: FC = () => {
@@ -31,6 +32,7 @@ const AppRoutes: FC = () => {
           <Route index element={<UserSettings />} />
           <Route path="resetpassword" element={<ForgetPassword />} />
           <Route path="notifications" element={<NotificationCenter />} />
+          <Route path="langsetting" element={<LanguageRegion />} />
         </Route>
       </Route>
 

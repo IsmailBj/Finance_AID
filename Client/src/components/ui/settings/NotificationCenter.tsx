@@ -2,7 +2,7 @@ import { FC } from "react";
 
 const NotificationCenter: FC = () => {
   return (
-    <div className="notification-container">
+    <form className="notification-container">
       <div className="column">
         <div className="input-label row">
           <label>Last Day notification</label>
@@ -25,7 +25,7 @@ const NotificationCenter: FC = () => {
           <input type="checkbox" placeholder="New Password" />
         </div>
       </div>
-    </div>
+    </form>
   );
 };
 

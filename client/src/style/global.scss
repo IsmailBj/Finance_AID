@@ -35,4 +35,16 @@ body {
   transform: rotate(180deg);
 }
 
+.disable {
+  pointer-events: none;
+  opacity: 0.5;
+  background-color: $bg-shadow;
+  color: $font-color-disable;
+  cursor: not-allowed;
+}
+
+select {
+  cursor: pointer;
+}
+
 // tmp

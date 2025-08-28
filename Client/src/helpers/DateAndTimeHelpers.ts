@@ -19,3 +19,7 @@ export const getTime = (): string => {
     minute: "2-digit",
   });
 };
+
+export const getTimeZone = (): string => {
+  return Intl.DateTimeFormat().resolvedOptions().timeZone || "UTC";
+};

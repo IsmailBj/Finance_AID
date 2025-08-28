@@ -18,7 +18,7 @@ const Settings: FC = () => {
             <NavLink to="notifications">
               <li>Notifications</li>
             </NavLink>
-            <NavLink to="/settings">
+            <NavLink to="langsetting">
               <li>Language & Region</li>
             </NavLink>
           </ul>
