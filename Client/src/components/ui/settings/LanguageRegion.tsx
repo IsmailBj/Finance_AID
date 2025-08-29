@@ -6,7 +6,7 @@ const LanguageRegion: FC = () => {
   const [autoTimezone, setAutoTimezone] = useState(false);
   const [timezone, setTimezone] = useState("");
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     // If no timezone selected or autoTimezone is true, use system timezone
@@ -18,10 +18,29 @@ const LanguageRegion: FC = () => {
       timezone: finalTimezone,
     };
 
-    console.log("Form data ready for API:", payload);
-
-    // Example API call:
-    // fetch('/api/user/settings', { ... })
+    try {
+      const res = await fetch(
+        "http://localhost:3000/api/auth/settings/timezonelang",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
+          },
+          body: JSON.stringify(payload),
+        }
+      );
+      const data = await res.json();
+      if (res.ok) {
+        console.log("Timezone/Language updated successfully:", data);
+        // window.location.reload();
+        // update also the local/session storage with new data
+      } else {
+        alert(data.error || "Failed update timezone/language details");
+      }
+    } catch (error) {
+      console.error("Error submitting Timezone/Language", error);
+    }
   };
 
   return (

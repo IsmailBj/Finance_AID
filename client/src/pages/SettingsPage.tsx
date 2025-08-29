@@ -9,18 +9,39 @@ const Settings: FC = () => {
       <div className="setting-content">
         <aside className="sidebar">
           <ul className="settings-navbar">
-            <NavLink to="/settings">
-              <li className="active">Profile Settings</li>
-            </NavLink>
-            <NavLink to="resetpassword">
-              <li>Password</li>
-            </NavLink>
-            <NavLink to="notifications">
-              <li>Notifications</li>
-            </NavLink>
-            <NavLink to="langsetting">
-              <li>Language & Region</li>
-            </NavLink>
+            <li>
+              <NavLink
+                to="/settings"
+                end
+                className={({ isActive }) => (isActive ? "active" : "")}
+              >
+                Profile Settings
+              </NavLink>
+            </li>
+            <li>
+              <NavLink
+                to="resetpassword"
+                className={({ isActive }) => (isActive ? "active" : "")}
+              >
+                Password
+              </NavLink>
+            </li>
+            <li>
+              <NavLink
+                to="notifications"
+                className={({ isActive }) => (isActive ? "active" : "")}
+              >
+                Notifications
+              </NavLink>
+            </li>
+            <li>
+              <NavLink
+                to="langsetting"
+                className={({ isActive }) => (isActive ? "active" : "")}
+              >
+                Language & Region
+              </NavLink>
+            </li>
           </ul>
         </aside>
         <main className="content">

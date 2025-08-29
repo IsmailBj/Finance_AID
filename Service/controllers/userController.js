@@ -50,7 +50,13 @@ const login = async (req, res) => {
     res.json({
       message: "Login successful",
       token,
-      user: { id: user.id, username: user.username, email: user.email },
+      user: {
+        id: user.id,
+        username: user.username,
+        email: user.email,
+        language: user.language,
+        timezone: user.timezone,
+      },
     });
   } catch (error) {
     console.error("Login error:", error);
@@ -58,7 +64,31 @@ const login = async (req, res) => {
   }
 };
 
+const updateUserLangTimezone = async (req, res) => {
+  const user_id = req.user.id;
+  const { language, timezone } = req.body;
+  try {
+    const updatedUser = await userModel.updateUserLangTimezone(
+      user_id,
+      language,
+      timezone
+    );
+
+    if (!updatedUser) {
+      return res.status(404).json({ error: "User not found" });
+    }
+
+    res.status(200).json({
+      message: "Timezone/Language updated successfully",
+      user: updatedUser,
+    });
+  } catch (error) {
+    res.status(500).json({ error: "Failed to update TimeZone or Language" });
+  }
+};
+
 module.exports = {
   register,
   login,
+  updateUserLangTimezone,
 };
