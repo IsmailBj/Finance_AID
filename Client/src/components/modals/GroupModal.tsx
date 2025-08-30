@@ -59,7 +59,7 @@ const GroupModal: FC<GroupModalProps> = ({ onClose, wallets }) => {
         wallet.expire_date > startDate &&
         wallet.expire_date > lastDay
     );
-    console.log(walletId, typeof wallets[0].id);
+
     setFilterWallets(walletFileredTmp);
   }, [
     currencyType,

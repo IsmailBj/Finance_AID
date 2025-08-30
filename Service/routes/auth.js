@@ -8,6 +8,8 @@ router.post("/register", userController.register);
 
 router.post("/login", userController.login);
 
+router.patch("/change-password", authMiddleware, userController.changePassword);
+
 router.post(
   "/settings/timezonelang",
   authMiddleware,

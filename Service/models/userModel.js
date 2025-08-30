@@ -45,10 +45,24 @@ const updateUserLangTimezone = async (user_id, lang, timezone) => {
   }
 };
 
+const updateUserPassword = async (user_id, hashedPassword) => {
+  try {
+    const result = await db.query(
+      "UPDATE users SET password = $1 WHERE id = $2 RETURNING id, email, username",
+      [hashedPassword, user_id]
+    );
+    return result.rows[0] || null;
+  } catch (error) {
+    console.error("Error updating password:", error);
+    throw error;
+  }
+};
+
 module.exports = {
   findUserByEmail,
   findUserByUsername,
   createUser,
   findUserById,
   updateUserLangTimezone,
+  updateUserPassword,
 };

@@ -87,8 +87,49 @@ const updateUserLangTimezone = async (req, res) => {
   }
 };
 
+const changePassword = async (req, res) => {
+  const user_id = req.user.id;
+  const { oldPassword, newPassword } = req.body;
+
+  try {
+    const user = await userModel.findUserById(user_id);
+    if (!user) {
+      return res.status(404).json({ error: "User not found" });
+    }
+
+    // check old password
+    const isMatch = await bcrypt.compare(oldPassword, user.password);
+    if (!isMatch) {
+      return res.status(400).json({ error: "Old password is incorrect" });
+    }
+
+    // hash new password
+    const salt = await bcrypt.genSalt(10);
+    const hashedPassword = await bcrypt.hash(newPassword, salt);
+
+    // update in DB
+    const updatedUser = await userModel.updateUserPassword(
+      user_id,
+      hashedPassword
+    );
+
+    res.status(200).json({
+      message: "Password updated successfully",
+      user: {
+        id: updatedUser.id,
+        username: updatedUser.username,
+        email: updatedUser.email,
+      },
+    });
+  } catch (error) {
+    console.error("Error updating password:", error);
+    res.status(500).json({ error: "Failed to update password" });
+  }
+};
+
 module.exports = {
   register,
   login,
   updateUserLangTimezone,
+  changePassword,
 };

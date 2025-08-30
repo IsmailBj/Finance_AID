@@ -32,14 +32,32 @@ const LanguageRegion: FC = () => {
       );
       const data = await res.json();
       if (res.ok) {
-        console.log("Timezone/Language updated successfully:", data);
-        // window.location.reload();
-        // update also the local/session storage with new data
+        updateUserSettings(data.user.language, data.user.timezone);
+        alert("Timezone/Language updated successfully.");
       } else {
         alert(data.error || "Failed update timezone/language details");
       }
     } catch (error) {
       console.error("Error submitting Timezone/Language", error);
+    }
+  };
+
+  const updateUserSettings = (language: string, timezone: string): void => {
+    const storedUser = localStorage.getItem("user");
+
+    if (!storedUser) return;
+
+    try {
+      const user = JSON.parse(storedUser);
+      const updatedUser = {
+        ...user,
+        language,
+        timezone,
+      };
+
+      localStorage.setItem("user", JSON.stringify(updatedUser));
+    } catch (error) {
+      console.error("Failed to update user settings:", error);
     }
   };
 
