@@ -62,11 +62,9 @@ const Sidebar: FC = () => {
           <span className="sidebar-text">Settings</span>
         </div>
       </div>
-      <span className="logout">
+      <span className="logout" onClick={handleLogout}>
         <span className="sidebar-icon">🚪</span>
-        <span className="sidebar-text" onClick={handleLogout}>
-          Logout
-        </span>
+        <span className="sidebar-text">Logout</span>
       </span>
     </div>
   );
