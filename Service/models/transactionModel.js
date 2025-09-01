@@ -2,25 +2,27 @@ const db = require("../db");
 
 const addTransaction = async ({
   group_id,
+  user_id,
   paid_amount,
   category,
   currency_type,
   method_type,
-  user_id,
+  group_name,
   wallet_id,
 }) => {
   const result = await db.query(
     `INSERT INTO transactions 
-		 (group_id, paid_amount, category, currency_type, method_type, user_id, wallet_id) 
-		 VALUES ($1, $2, $3, $4, $5, $6, $7) 
+		 (group_id, user_id, paid_amount, category, currency_type, method_type, group_name, wallet_id) 
+		 VALUES ($1, $2, $3, $4, $5, $6, $7, $8) 
 		 RETURNING *`,
     [
       group_id,
+      user_id,
       paid_amount,
       category,
       currency_type,
       method_type,
-      user_id,
+      group_name,
       wallet_id,
     ]
   );

@@ -2,7 +2,7 @@ import { useState, FC } from "react";
 import TabList from "./TabList";
 import { TableListProps } from "../../../types/types";
 import { FaLandmark } from "react-icons/fa";
-import filterGroups from "../../../helpers/FilterGroups";
+import { filterGroups } from "../../../helpers/Filters";
 
 const TableList: FC<TableListProps> = ({ onOpenModal, groups, onEdit }) => {
   const [selectedTab, setSelectedTab] = useState("available");
@@ -11,13 +11,14 @@ const TableList: FC<TableListProps> = ({ onOpenModal, groups, onEdit }) => {
     setSelectedTab(tab);
   };
 
-  // ✅ Apply filter here
   const filteredGroups = filterGroups(groups, selectedTab);
 
   return (
     <div className="table-container">
       <span className="list-header">
-        <FaLandmark />
+        <div className="icon">
+          <FaLandmark />
+        </div>
         <div className="right-section">
           <div className="list-title">Name</div>
           <div className="list-title">CATEGORY</div>

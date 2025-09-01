@@ -11,7 +11,7 @@ interface ApexChartPieProps {
 
 const ApexChartPie: FC<ApexChartPieProps> = ({ labels, series }) => {
   if (!labels || labels.length === 0 || !series || series.length === 0) {
-    return <div className="no-data-message">No data available</div>;
+    return null;
   }
 
   const options: ApexOptions = {

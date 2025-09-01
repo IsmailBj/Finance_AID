@@ -1,16 +1,12 @@
-import { FC, useState, useEffect } from "react";
+import { FC, useState } from "react";
 import TransactionFilter from "./TransactionFilter";
 import TransTab from "./TableList/TabTrans";
 import { TransactionListProps } from "../../types/types";
 import emptyImg from "../../assets/images/empty.png";
+import { filterTransaction } from "../../helpers/Filters";
 
 const TransactionList: FC<TransactionListProps> = ({ list }) => {
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [filterBy, setFilterBy] = useState("Date");
-
-  useEffect(() => {
-    console.log("Transaction list updated:", list);
-  }, [list]);
 
   if (!list || list.length === 0) {
     return (
@@ -20,6 +16,8 @@ const TransactionList: FC<TransactionListProps> = ({ list }) => {
     );
   }
 
+  const filteredData = filterTransaction(list, filterBy);
+
   return (
     <div className="transaction-list">
       <TransactionFilter setFilterBy={setFilterBy} />
@@ -27,7 +25,7 @@ const TransactionList: FC<TransactionListProps> = ({ list }) => {
         <div className="no-groups">Create a Group Here</div>
       )}
       <div className="list-container">
-        {list.map((DataTap) => (
+        {filteredData.map((DataTap) => (
           <TransTab DataTap={DataTap} key={DataTap.id} />
         ))}
       </div>

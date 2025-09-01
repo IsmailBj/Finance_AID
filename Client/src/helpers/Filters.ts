@@ -1,6 +1,6 @@
-import { Group } from "../types/types";
+import { Group, TransactionType } from "../types/types";
 
-const filterGroups = (groups: Group[], selectedTab: string): Group[] => {
+export const filterGroups = (groups: Group[], selectedTab: string): Group[] => {
   // First remove paid groups
   const activeGroups = groups.filter((group) => group.status !== "paid");
 
@@ -26,4 +26,22 @@ const filterGroups = (groups: Group[], selectedTab: string): Group[] => {
   });
 };
 
-export default filterGroups;
+export const filterTransaction = (
+  transactions: TransactionType[],
+  filterBy: string
+): TransactionType[] => {
+  switch (filterBy) {
+    case "Date":
+      return [...transactions].sort(
+        (a, b) => new Date(b.date).getTime() - new Date(a.date).getTime()
+      );
+    case "Amount":
+      return [...transactions].sort((a, b) => b.paid_amount - a.paid_amount);
+    case "Category":
+      return [...transactions].sort((a, b) =>
+        a.category.localeCompare(b.category)
+      );
+    default:
+      return transactions;
+  }
+};

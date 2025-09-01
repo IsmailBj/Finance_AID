@@ -58,6 +58,7 @@ const TabList: FC<TabListProps> = ({ group, onEdit }) => {
 
   const handleCheckGroup = async () => {
     const groupId = group.id;
+    console.log("Checking group with ID:", group.wallet_id);
     try {
       const res = await fetch(
         `http://localhost:3000/api/transaction/add-transaction/${groupId}`,
@@ -72,8 +73,8 @@ const TabList: FC<TabListProps> = ({ group, onEdit }) => {
             category: group.group_category,
             currency_type: group.currency_type,
             method_type: "cash",
-            user_id: group.user_id,
-            wallet_id: null, // Assuming a default wallet ID, adjust as necessary
+            group_name: group.group_name,
+            wallet_id: group.wallet_id,
           }),
         }
       );
@@ -81,7 +82,7 @@ const TabList: FC<TabListProps> = ({ group, onEdit }) => {
       const data = await res.json();
       if (res.status === 201) {
         alert(data.message);
-        window.location.reload();
+        // window.location.reload();
       } else {
         const err = await res.json();
         alert(err.error || "Failed to check group");

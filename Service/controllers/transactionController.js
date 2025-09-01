@@ -3,19 +3,26 @@ const groupModel = require("../models/groupModel");
 
 const addTransaction = async (req, res) => {
   const { groupId } = req.params;
-  const { paid_amount, category, currency_type, method_type, wallet_id } =
-    req.body;
+  const {
+    paid_amount,
+    category,
+    currency_type,
+    method_type,
+    wallet_id,
+    group_name,
+  } = req.body;
   const userId = req.user.id;
 
   try {
     await groupModel.updateGroupStatus(groupId, "paid", userId);
     await transaction.addTransaction({
       group_id: groupId,
+      user_id: userId,
       paid_amount,
       category,
       currency_type,
       method_type,
-      user_id: userId,
+      group_name,
       wallet_id: wallet_id,
     });
     res.status(201).json({ message: "Transaction added successfully" });

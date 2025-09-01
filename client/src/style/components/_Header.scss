@@ -19,33 +19,6 @@
       text-transform: uppercase;
     }
   }
-  .balance-container {
-    min-width: 250px;
-    background-color: $color-secondary;
-    padding: 5px 10px;
-    margin: 10px;
-    border-radius: 10px;
-    display: flex;
-    justify-content: flex-start;
-    .amount-container {
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: flex-start;
-      width: 100%;
-      .amount {
-        font-size: $font-size-big;
-        font-weight: bold;
-      }
-      .status {
-        font-size: $font-size-small;
-      }
-    }
-    .assign-btn {
-      width: 50%;
-      @include button($color-secondary-selected, $bg-primary);
-    }
-  }
   .days-container {
     display: flex;
     flex-direction: column;

@@ -13,6 +13,7 @@ export interface Group {
   created_at: string;
   currency_type: string;
   group_category: string;
+  wallet_id: number;
 }
 
 export interface TransactionType {
