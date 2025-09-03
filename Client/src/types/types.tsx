@@ -94,4 +94,4 @@ export interface ConfirmationModalProps {
   onConfirm?: () => void;
 }
 
-export type PlanType = "one_time" | "weekly" | "monthly" | "yearly";
+// export type PlanType = "one_time" | "weekly" | "monthly" | "yearly";

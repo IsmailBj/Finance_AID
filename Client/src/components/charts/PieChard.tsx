@@ -2,8 +2,6 @@ import { FC } from "react";
 import ReactApexChart from "react-apexcharts";
 import { ApexOptions } from "apexcharts";
 
-// stateless component due to the chart library behave inconsistently
-
 interface ApexChartPieProps {
   labels: string[];
   series: number[];

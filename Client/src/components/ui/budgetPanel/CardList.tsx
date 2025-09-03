@@ -7,7 +7,6 @@ const ListCard: FC<ListCardProps> = ({ groups }) => {
   const [collaps, setCollaps] = useState<boolean>(true);
 
   const handleUndo = async (groupId: number) => {
-    console.log("Undoing transaction for group ID:", groupId);
     try {
       const res = await fetch(
         `http://localhost:3000/api/transaction/delete-transaction/${groupId}`,
@@ -21,7 +20,6 @@ const ListCard: FC<ListCardProps> = ({ groups }) => {
       );
       const data = await res.json();
       if (res.ok) {
-        console.log("Transaction deleted successfully:", data);
         window.location.reload();
       } else {
         console.error(

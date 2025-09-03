@@ -60,7 +60,6 @@ const findWalletById = async (walletId) => {
   return result.rows[0];
 };
 
-//  tmp not in use
 const getWalletColumns = async (userId, columns = []) => {
   try {
     const allowedColumns = [

@@ -30,8 +30,7 @@ $spacing-sm: 8px;
 $spacing-md: 16px;
 
 // selector status
-// #00a02f  green
-$positive-status: #00a02f; // Green
-$negative-status: #d72215; // Red
-$pending-status: #feb019; // Orange
-$neutral-status: #acacac; // Grey
+$paid-status: #00a02f; // Green
+$unpaid-status: #d72215; // Red
+$worning-status: #feb019; // Orange
+$active-status: #acacac; // Grey

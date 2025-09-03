@@ -5,14 +5,18 @@ import CurrencySymbol from "../../../helpers/CurrencySymbol";
 import IconType from "../../common/Icons/Icon";
 import ModalPortal from "../../modals/ModalPortal";
 import ConfirmationModal from "../../modals/ConfirmationModal";
-import { getTodayDate } from "../../../helpers/DateAndTimeHelpers";
+import {
+  getTodayDate,
+  isSameDate,
+  isAfterDate,
+  isBeforeDate,
+} from "../../../helpers/DateAndTimeHelpers";
 
 const TabList: FC<TabListProps> = ({ group, onEdit }) => {
   const [currencySymbol, setCurrencySymbol] = useState("A/N");
   const [confirmationModal, setConfirmationModal] = useState(false);
   const [stateColorChange, setStateColorChange] = useState("");
   const [checked, setChecked] = useState(false);
-  const today = getTodayDate();
 
   useEffect(() => {
     const currency: string = CurrencySymbol(group.currency_type);
@@ -20,14 +24,17 @@ const TabList: FC<TabListProps> = ({ group, onEdit }) => {
   }, [group.currency_type]);
 
   useEffect(() => {
-    if (today == group.end_date.split("T")[0]) {
+    const today = getTodayDate();
+    const endDate = group.end_date.split("T")[0];
+
+    if (isSameDate(today, endDate)) {
       setStateColorChange("worning");
-    } else if (today <= group.end_date.split("T")[0]) {
+    } else if (isAfterDate(today, endDate)) {
       setStateColorChange("unpaid");
-    } else {
-      setStateColorChange(group.status);
+    } else if (isBeforeDate(today, endDate)) {
+      setStateColorChange("active");
     }
-  }, [group.end_date, group.status, today]);
+  }, [group.end_date, group.status]);
 
   const HandleDelete = async () => {
     const groupId = group.id;
@@ -43,7 +50,6 @@ const TabList: FC<TabListProps> = ({ group, onEdit }) => {
         }
       );
       if (res.status === 204) {
-        console.log("Group deleted successfully");
         alert("Group deleted successfully");
         window.location.reload();
       } else {
@@ -58,7 +64,6 @@ const TabList: FC<TabListProps> = ({ group, onEdit }) => {
 
   const handleCheckGroup = async () => {
     const groupId = group.id;
-    console.log("Checking group with ID:", group.wallet_id);
     try {
       const res = await fetch(
         `http://localhost:3000/api/transaction/add-transaction/${groupId}`,
@@ -82,7 +87,7 @@ const TabList: FC<TabListProps> = ({ group, onEdit }) => {
       const data = await res.json();
       if (res.status === 201) {
         alert(data.message);
-        // window.location.reload();
+        window.location.reload();
       } else {
         const err = await res.json();
         alert(err.error || "Failed to check group");

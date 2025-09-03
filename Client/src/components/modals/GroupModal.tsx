@@ -18,7 +18,7 @@ const GroupModal: FC<GroupModalProps> = ({ onClose, wallets }) => {
   const submitGroupDetails = async () => {
     const GroupData = {
       group_name: groupName,
-      status: "unpaid",
+      status: "active",
       start_date: startDate,
       end_date: lastDay,
       pay_amount: payAmount,

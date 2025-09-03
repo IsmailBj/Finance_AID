@@ -24,6 +24,7 @@ const ItemPanel: FC = () => {
       });
       if (!res.ok) throw new Error("Failed to fetch groups");
       const data = await res.json();
+
       setGroups(data.groups || []);
       setLabels(data.labels || []);
       setSeries(data.series || []);

@@ -78,22 +78,21 @@
               height: 90%;
               position: relative;
               border-radius: 4px 0px 0px 4px;
-              &.state-pending {
-                background-color: $neutral-status;
+              &.state-active {
+                background-color: $active-status;
               }
               &.state-paid {
-                background-color: $positive-status;
+                background-color: $paid-status;
               }
               &.state-worning {
-                background-color: $pending-status;
+                background-color: $worning-status;
               }
               &.state-unpaid {
-                background-color: $negative-status;
+                background-color: $unpaid-status;
               }
             }
           }
           .sub-groups {
-            // transition: all 1s linear 0s;
             &.collapsed {
               height: 0px;
               overflow: hidden;

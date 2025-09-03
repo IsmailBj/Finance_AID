@@ -23,3 +23,20 @@ export const getTime = (): string => {
 export const getTimeZone = (): string => {
   return Intl.DateTimeFormat().resolvedOptions().timeZone || "UTC";
 };
+
+const toDate = (dateStr: string): Date => {
+  const [year, month, day] = dateStr.split("-").map(Number);
+  return new Date(year, month - 1, day);
+};
+
+export const isSameDate = (a: string, b: string): boolean => {
+  return toDate(a).getTime() === toDate(b).getTime();
+};
+
+export const isAfterDate = (a: string, b: string): boolean => {
+  return toDate(a).getTime() > toDate(b).getTime();
+};
+
+export const isBeforeDate = (a: string, b: string): boolean => {
+  return toDate(a).getTime() < toDate(b).getTime();
+};
