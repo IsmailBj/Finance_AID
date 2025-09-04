@@ -35,8 +35,18 @@ const addTransaction = async (req, res) => {
 const getTransactions = async (req, res) => {
   const userId = req.user.id;
   try {
-    const transactions = await transaction.getTransactionsByGroup(userId);
-    res.json(transactions);
+    const transactions = await transaction.getTransactionsByUserId(userId);
+
+    const DataToSend = transactions.map((item) => ({
+      group_name: item.group_name,
+      category: item.category,
+      paid_amount: item.paid_amount,
+      currency_type: item.currency_type,
+      date: item.date,
+      time: item.time,
+    }));
+
+    res.json(DataToSend);
   } catch (error) {
     console.error("Error fetching transactions:", error);
     res.status(500).json({ error: "Failed to fetch transactions" });

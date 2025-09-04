@@ -17,6 +17,7 @@ const Settings: FC = () => {
               >
                 Profile Settings
               </NavLink>
+              <div className="vertical-line"></div>
             </li>
             <li>
               <NavLink
@@ -25,6 +26,7 @@ const Settings: FC = () => {
               >
                 Password
               </NavLink>
+              <div className="vertical-line"></div>
             </li>
             <li>
               <NavLink
@@ -33,6 +35,7 @@ const Settings: FC = () => {
               >
                 Notifications
               </NavLink>
+              <div className="vertical-line"></div>
             </li>
             <li>
               <NavLink
@@ -41,6 +44,7 @@ const Settings: FC = () => {
               >
                 Language & Region
               </NavLink>
+              <div className="vertical-line"></div>
             </li>
           </ul>
         </aside>

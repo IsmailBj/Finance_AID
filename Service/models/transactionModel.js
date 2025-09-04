@@ -29,10 +29,20 @@ const addTransaction = async ({
   return result.rows[0];
 };
 
-const getTransactionsByGroup = async (userId) => {
+const getTransactionsByUserId = async (userId) => {
   try {
     const result = await db.query(
-      `SELECT * FROM transactions WHERE user_id = $1 ORDER BY created_at DESC`,
+      `SELECT 
+         id,
+         group_name,
+         category,
+         paid_amount,
+         currency_type,
+         to_char(date, 'YYYY-MM-DD') AS date,
+         to_char(time, 'HH24:MI') AS time
+       FROM transactions 
+       WHERE user_id = $1 
+       ORDER BY created_at DESC`,
       [userId]
     );
 
@@ -57,6 +67,6 @@ const deleteTransaction = async (groupId, userid) => {
 
 module.exports = {
   addTransaction,
-  getTransactionsByGroup,
+  getTransactionsByUserId,
   deleteTransaction,
 };

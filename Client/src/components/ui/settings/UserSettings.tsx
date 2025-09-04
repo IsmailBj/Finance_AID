@@ -1,13 +1,19 @@
-import { FC } from "react";
+import { FC, useState } from "react";
 import Avatar from "../../../assets/images/default-avatar.png";
+import ModalPortal from "../../modals/ModalPortal";
+import AvatarModal from "../../modals/AvatarsModal";
 
 const UserSettings: FC = () => {
+  const [avatarModal, setAvatarModal] = useState(false);
+
   return (
     <>
       <div className="avatar-section">
         <img src={Avatar} alt="Avatar" className="avatar" />
         <div className="avatar-buttons">
-          <button className="btn-primary">Upload New</button>
+          <button className="btn-primary" onClick={() => setAvatarModal(true)}>
+            Upload New
+          </button>
           <button className="btn-secondary">Delete avatar</button>
         </div>
       </div>
@@ -80,6 +86,11 @@ const UserSettings: FC = () => {
           </button>
         </div>
       </form>
+      {avatarModal && (
+        <ModalPortal onClose={() => setAvatarModal(false)}>
+          <AvatarModal onClose={() => setAvatarModal(false)} />
+        </ModalPortal>
+      )}
     </>
   );
 };

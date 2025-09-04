@@ -13,7 +13,7 @@
   align-items: center;
   justify-content: center;
   font-family: $font-base;
-
+  flex-direction: column;
   .landing-container {
     background-color: $bg-secondary;
     padding: 2rem 3rem;
@@ -22,6 +22,7 @@
     width: 100%;
     max-width: 400px;
     min-height: 350px;
+    z-index: 1;
   }
 }
 // login modal styles

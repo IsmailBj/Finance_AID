@@ -4,9 +4,9 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 10px 20px;
+  padding: 10px 0;
   background-color: $color-primary;
-  width: calc(100% - 40px);
+  width: 100%;
   border-top-right-radius: 8px;
   border-top-left-radius: 8px;
   .filter-item {

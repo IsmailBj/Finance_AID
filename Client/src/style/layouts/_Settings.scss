@@ -21,12 +21,15 @@
       li {
         cursor: pointer;
         border-radius: 4px;
+        display: flex;
+        flex-direction: row;
 
         a {
           text-decoration: none;
           color: $font-color;
           display: block;
           height: 100%;
+          width: 100%;
           padding: 12px;
 
           &.active {
@@ -38,6 +41,14 @@
           &:hover {
             background: $font-color-light;
           }
+        }
+        .vertical-line {
+          width: 4px;
+          background: $color-primary;
+          display: none;
+        }
+        &:has(a.active) .vertical-line {
+          display: block;
         }
       }
     }

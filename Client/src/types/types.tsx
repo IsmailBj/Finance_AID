@@ -18,13 +18,12 @@ export interface Group {
 
 export interface TransactionType {
   id: number;
-  group_id: number;
-  paid_amount: number;
-  date: string;
+  group_name: string;
   category: string;
+  paid_amount: number;
   currency_type: string;
-  method_type: string;
-  user_id: number;
+  date: string;
+  time: string;
 }
 
 export interface TransactionListProps {
