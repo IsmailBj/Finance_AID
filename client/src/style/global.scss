@@ -13,6 +13,7 @@
 @use "../style/layouts/Transaction" as *;
 @use "../style/layouts/Settings" as *;
 @use "../style/ui/animations" as *;
+@use "../style/components/AvatarModal" as *;
 
 body {
   margin: 0;

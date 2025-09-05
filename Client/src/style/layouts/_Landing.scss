@@ -2,18 +2,13 @@
 @use "@/style/utils/_mixings" as *;
 
 .landing-page {
-  background: linear-gradient(
-    135deg,
-    $color-primary 0%,
-    $color-primary-hover 50%,
-    $color-primary-selected 100%
-  );
+  background: url("/images/landing-bg.svg") no-repeat center center;
+  background-size: cover;
   min-height: 100vh;
   display: flex;
   align-items: center;
   justify-content: center;
   font-family: $font-base;
-  flex-direction: column;
   .landing-container {
     background-color: $bg-secondary;
     padding: 2rem 3rem;

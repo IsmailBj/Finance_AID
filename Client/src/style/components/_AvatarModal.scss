@@ -1,0 +1,54 @@
+@use "../utils/mixings" as *;
+@use "../utils/variables" as *;
+
+.avatar-selection-modal {
+  width: 40rem;
+  .list-header {
+    display: flex;
+    margin-bottom: 15px;
+    justify-content: space-between;
+    .go-backTab {
+      cursor: pointer;
+
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+    .profile-title {
+      font-size: 23px;
+      font-weight: 400;
+    }
+    .save-avatar {
+    }
+  }
+  .main-avatar {
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 10px;
+    .img-placeholder {
+    }
+    .review-avatar {
+      padding: 10px;
+    }
+  }
+  .avatar-gallery {
+    background: #e7e7e7;
+    padding: 20px;
+    border-radius: 5px;
+    overflow: auto;
+    border: 1px solid #b6b6b6;
+    .avatar-list {
+      display: inline-flex;
+      flex-direction: row;
+      gap: 20px;
+    }
+  }
+}
+.wave {
+  width: 40rem;
+  position: absolute;
+}

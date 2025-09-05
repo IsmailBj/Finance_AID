@@ -2,18 +2,19 @@ import { FC } from "react";
 
 interface AvatarProps {
   size?: number;
-  src?: string;
+  src?: string | null;
   alt?: string;
   className?: string;
 }
-
+//  add event listener on localstora change
 const Avatar: FC<AvatarProps> = ({
   size = 40,
   src,
   alt = "avatar",
   className,
 }) => {
-  const imageSrc = src ? `/images/${src}` : `/images/default-avatar.png`;
+  const imageSrc =
+    src || null ? `/images/avatar-${src}.png` : `/images/avatar-default.png`;
 
   return (
     <img
