@@ -45,6 +45,16 @@ const updateUserLangTimezone = async (user_id, lang, timezone) => {
   }
 };
 
+const updateAvatar = async (avatar) => {
+  try {
+    const result = await db.query("UPDATE users SET avatar = $1", [avatar]);
+    return { success: true, result };
+  } catch (error) {
+    console.error("Error updating user Avatar Modal:", error);
+    return { success: false, error };
+  }
+};
+
 const updateUserPassword = async (user_id, hashedPassword) => {
   try {
     const result = await db.query(
@@ -65,4 +75,5 @@ module.exports = {
   findUserById,
   updateUserLangTimezone,
   updateUserPassword,
+  updateAvatar,
 };

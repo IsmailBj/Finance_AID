@@ -118,13 +118,9 @@ const TabList: FC<TabListProps> = ({ group, onEdit }) => {
           <div className="group-categ">{group.group_category}</div>
         </div>
         <div className="center-section">
-          <div className="payment-date-info">
-            <div className="start-date tab">
-              {group.start_date.split("T")[0]}
-            </div>
-            <div className="paymentPlan tab">{group.plan_type}</div>
-            <div className="end-date tab">{group.end_date.split("T")[0]}</div>
-          </div>
+          <div className="start-date tab">{group.start_date.split("T")[0]}</div>
+          <div className="paymentPlan tab">{group.plan_type}</div>
+          <div className="end-date tab">{group.end_date.split("T")[0]}</div>
         </div>
         <div className="left-section">
           <div className="budgeted tab">

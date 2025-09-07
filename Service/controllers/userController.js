@@ -51,11 +51,11 @@ const login = async (req, res) => {
       message: "Login successful",
       token,
       user: {
-        id: user.id,
         username: user.username,
         email: user.email,
         language: user.language,
         timezone: user.timezone,
+        avatar: user.avatar,
       },
     });
   } catch (error) {
@@ -84,6 +84,18 @@ const updateUserLangTimezone = async (req, res) => {
     });
   } catch (error) {
     res.status(500).json({ error: "Failed to update TimeZone or Language" });
+  }
+};
+
+const updateAvatarName = async (req, res) => {
+  const { avatar } = req.body;
+  const response = await userModel.updateAvatar(avatar);
+
+  if (response.success) {
+    res.status(200).json({ message: "Avatar updated successfully" });
+  } else {
+    console.error("Error updating password:", response);
+    res.status(500).json({ message: "Failed to update avatar" });
   }
 };
 
@@ -132,4 +144,5 @@ module.exports = {
   login,
   updateUserLangTimezone,
   changePassword,
+  updateAvatarName,
 };

@@ -16,4 +16,10 @@ router.post(
   userController.updateUserLangTimezone
 );
 
+router.post(
+  "/settings/avatar",
+  authMiddleware,
+  userController.updateAvatarName
+);
+
 module.exports = router;

@@ -34,6 +34,7 @@
         .center-section {
           display: flex;
           width: 40%;
+          justify-content: space-evenly;
         }
       }
       .group-list {
@@ -56,22 +57,21 @@
               }
             }
             .right-section {
-              width: 10%;
+              width: 7%;
             }
             .center-section {
               width: 40%;
-              .payment-date-info {
-                display: flex;
-                justify-content: space-around;
-                align-items: center;
-                .paymentPlan {
-                  font-weight: 500;
-                }
+              display: flex;
+              justify-content: space-around;
+              align-items: center;
+              .paymentPlan {
+                font-weight: 500;
               }
             }
             .left-section {
               width: 40%;
               display: flex;
+              justify-content: space-evenly;
             }
             .state-label {
               width: 0.5%;
@@ -142,7 +142,7 @@
   }
   // AutoAssignCard
   .cards-holder {
-    width: calc(100% - 60px);
+    width: calc(25% - 60px);
     margin: 30px;
   }
 }
@@ -156,7 +156,6 @@
 }
 
 .tab {
-  margin: 0 2rem;
   font-weight: 500;
   min-width: 115px;
   display: flex;
