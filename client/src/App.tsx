@@ -4,7 +4,7 @@ import { AvatarProvider } from "./contexts/AvatarContext";
 const App = () => {
   return (
     <AvatarProvider>
-      <AppRoutes />;
+      <AppRoutes />
     </AvatarProvider>
   );
 };

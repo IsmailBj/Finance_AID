@@ -20,21 +20,30 @@
       overflow: auto;
       background-color: $bg-primary;
       .card {
-        width: calc(25% - 80px);
-        height: 12rem;
+        height: 200px;
+        width: 350px;
         color: $font-color-light;
         @include ShadowBorder();
-        display: flex;
-        flex-direction: row;
-        justify-content: space-around;
         margin: 20px;
-        align-items: center;
         background-image: url("./images/credit-card.png");
         background-size: cover;
         background-repeat: no-repeat;
         background-position: center;
-        .back .card_info {
+        .card_info {
+          display: flex;
+          height: 100%;
+          width: 100%;
+          position: relative;
+          bottom: 23px;
+          align-items: flex-end;
+          justify-content: space-evenly;
           .line {
+            &.card_expiry {
+              font-size: 0.9rem;
+              color: $font-color-disable;
+              position: relative;
+              left: 40px;
+            }
             .card_label {
               color: $font-color-disable;
             }

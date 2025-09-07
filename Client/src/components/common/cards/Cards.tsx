@@ -34,26 +34,9 @@ const Card: FC<CardProps> = ({ wallet, ShowEditOptions }) => {
   return (
     <div className="card">
       <div className="card_info">
-        <div className="line name">
-          <span className="card_label">Card Name: </span>
-          {wallet.card_name}
-        </div>
-        <div className="line balance">
-          <span className="card_label">Balance: </span>
-          {wallet.balance}
-        </div>
-        <div className="line card_type">
-          <span className="card_label">Type: </span>
-          {wallet.card_type}
-        </div>
-        <div className="line currency_type">
-          <span className="card_label">Currency: </span>
-          {wallet.currency_type}
-        </div>
-        <div className="line card_expiry">
-          <span className="card_label">Expires In: </span>
-          {wallet.expire_date}
-        </div>
+        <div className="line name">{wallet.card_name}</div>
+
+        <div className="line card_expiry">{wallet.expire_date}</div>
         {ShowEditOptions && (
           <div className="tools">
             <div className="card_actions">
@@ -83,3 +66,18 @@ const Card: FC<CardProps> = ({ wallet, ShowEditOptions }) => {
 };
 
 export default Card;
+
+{
+  /* <div className="line balance">
+          <span className="card_label">Balance: </span>
+          {wallet.balance}
+        </div>
+        <div className="line card_type">
+          <span className="card_label">Type: </span>
+          {wallet.card_type}
+        </div>
+        <div className="line currency_type">
+          <span className="card_label">Currency: </span>
+          {wallet.currency_type}
+        </div> */
+}
