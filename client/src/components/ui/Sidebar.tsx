@@ -1,11 +1,13 @@
 import { useNavigate } from "react-router-dom";
 import { FC, useState, useEffect } from "react";
 import Avatar from "../common/Avatar";
+import { useAvatar } from "../../hooks/useAvatar";
 
 const Sidebar: FC = () => {
   const navigate = useNavigate();
   const [username, setUsername] = useState<string>("");
   const [email, setEmail] = useState<string>("");
+  const { avatar } = useAvatar();
   const handleNavigation = (path: string) => {
     navigate(path);
   };
@@ -29,7 +31,7 @@ const Sidebar: FC = () => {
   return (
     <div className="side-bar">
       <div className="user-info-header">
-        <Avatar size={40} />
+        <Avatar size={40} src={avatar} />
         <div className="info-wrapper">
           <span className="info-section">{username}</span>
           <span className="email">{email}</span>

@@ -1,5 +1,4 @@
 import { FC, useState } from "react";
-import CardImg from "../../../assets/images/credit-card.png";
 import { CardProps } from "../../../types/types";
 import ModalPortal from "../../modals/ModalPortal";
 import ConfirmationModal from "../../modals/ConfirmationModal";
@@ -34,7 +33,6 @@ const Card: FC<CardProps> = ({ wallet, ShowEditOptions }) => {
   };
   return (
     <div className="card">
-      <img src={CardImg} alt="err" />
       <div className="card_info">
         <div className="line name">
           <span className="card_label">Card Name: </span>

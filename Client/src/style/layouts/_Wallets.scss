@@ -13,33 +13,32 @@
     .cards-swapper {
       display: flex;
       flex-direction: row;
-      justify-content: flex-start;
+      justify-content: center;
       align-items: flex-start;
       margin-bottom: 20px;
       flex-wrap: wrap;
       overflow: auto;
       background-color: $bg-primary;
       .card {
-        width: calc(33% - 80px);
-        background-color: $color-primary;
+        width: calc(25% - 80px);
+        height: 12rem;
         color: $font-color-light;
-        border-radius: 5px;
-        box-shadow: #ddd 0px 0px 9px 4px;
-        padding: 20px;
+        @include ShadowBorder();
         display: flex;
         flex-direction: row;
         justify-content: space-around;
         margin: 20px;
         align-items: center;
-        .card_info {
+        background-image: url("./images/credit-card.png");
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: center;
+        .back .card_info {
           .line {
             .card_label {
               color: $font-color-disable;
             }
           }
-        }
-        img {
-          width: 120px;
         }
       }
     }

@@ -2,14 +2,16 @@ import { FC, useState } from "react";
 import ModalPortal from "../../modals/ModalPortal";
 import AvatarModal from "../../modals/AvatarsModal";
 import Avatar from "../../common/Avatar";
+import { useAvatar } from "../../../hooks/useAvatar";
 
 const UserSettings: FC = () => {
   const [avatarModal, setAvatarModal] = useState(false);
+  const { avatar } = useAvatar();
 
   return (
     <>
       <div className="avatar-section">
-        <Avatar size={80} />
+        <Avatar size={80} src={avatar} />
         <div className="avatar-buttons">
           <button className="btn-primary" onClick={() => setAvatarModal(true)}>
             Upload New

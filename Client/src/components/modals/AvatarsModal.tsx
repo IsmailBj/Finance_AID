@@ -1,5 +1,6 @@
 import { FC, useState } from "react";
 import Avatar from "../common/Avatar";
+import { useAvatar } from "../../hooks/useAvatar";
 
 interface AvatarModalProps {
   onClose: () => void;
@@ -7,12 +8,33 @@ interface AvatarModalProps {
 
 const AvatarModal: FC<AvatarModalProps> = ({ onClose }) => {
   const [selectedAvatar, setSelectedAvatar] = useState<string | null>(null);
+  const { setAvatar } = useAvatar();
 
-  const onSave = () => {
-    // Logic to save the selected avatar goes here
+  const onSave = async () => {
     if (selectedAvatar) {
-      console.log(`Avatar saved: ${selectedAvatar}`);
-      onClose();
+      try {
+        const res = await fetch(
+          "http://localhost:3000/api/auth/settings/avatar",
+          {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: `Bearer ${localStorage.getItem("token")}`,
+            },
+            body: JSON.stringify({ avatar: selectedAvatar }),
+          }
+        );
+        const data = await res.json();
+        if (res.ok) {
+          setAvatar(selectedAvatar);
+          onClose();
+        } else {
+          alert(data.error || "Failed to update avatar");
+        }
+      } catch (error) {
+        alert("Error Avatar Could not be saved: " + error);
+        console.error("Error saving avatar: ", error);
+      }
     }
   };
 

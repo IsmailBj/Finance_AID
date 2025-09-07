@@ -2,12 +2,12 @@ import { FC, useState } from "react";
 import Loading from "../common/loader/Loading";
 import { useNavigate } from "react-router-dom";
 import { RegLogProps } from "../../types/types";
-
+import { useAvatar } from "../../hooks/useAvatar";
 const LoginModal: FC<RegLogProps> = ({ showRegister }) => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
-
+  const { setAvatar } = useAvatar();
   const navigate = useNavigate();
 
   const handleLogin = async (e: React.FormEvent) => {
@@ -22,8 +22,8 @@ const LoginModal: FC<RegLogProps> = ({ showRegister }) => {
       });
 
       const data = await res.json();
-
       if (res.ok) {
+        setAvatar(data.user.avatar);
         localStorage.setItem("token", data.token);
         localStorage.setItem("user", JSON.stringify(data.user));
         navigate("/");
