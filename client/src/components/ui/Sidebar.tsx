@@ -7,6 +7,7 @@ const Sidebar: FC = () => {
   const navigate = useNavigate();
   const [username, setUsername] = useState<string>("");
   const [email, setEmail] = useState<string>("");
+  const [minimized, setMinimized] = useState<boolean>(false);
   const { avatar } = useAvatar();
   const handleNavigation = (path: string) => {
     navigate(path);
@@ -29,14 +30,19 @@ const Sidebar: FC = () => {
   }, [navigate]);
 
   return (
-    <div className="side-bar">
+    <div className={`side-bar ${minimized ? "minimized" : ""}`}>
       <div className="user-info-header">
         <Avatar size={40} src={avatar} />
         <div className="info-wrapper">
           <span className="info-section">{username}</span>
           <span className="email">{email}</span>
         </div>
-        <div className="expend-icon">⬆️</div>
+        <div
+          className="expend-icon"
+          onClick={() => setMinimized((prev) => !prev)}
+        >
+          ⬆️
+        </div>
       </div>
       <div className="sidebar-list">
         <div className="sidebar-item" onClick={() => handleNavigation("/")}>

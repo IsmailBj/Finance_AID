@@ -1,10 +1,11 @@
 @use "@/style/utils/_variables" as *;
 @use "@/style/utils/mixings" as *;
 .side-bar {
-  width: 15%;
+  max-width: 15%;
   background-color: $color-primary;
   display: flex;
   flex-direction: column;
+  transition: all 0.3s ease;
   .user-info-header {
     color: white;
     display: flex;
@@ -43,8 +44,27 @@
   }
 }
 
+.side-bar.minimized {
+  max-width: 4%;
+  .user-info-header {
+    flex-direction: column;
+    .info-wrapper {
+      display: none;
+    }
+  }
+  .sidebar-list {
+    margin: 0px 15px;
+    .sidebar-item {
+      justify-content: center;
+
+      .sidebar-text {
+        display: none;
+      }
+    }
+  }
+}
+
 .logout {
-  width: 91%;
   margin-top: auto;
   text-align: center;
   @include longButton($color-primary-hover, $font-color-light);
