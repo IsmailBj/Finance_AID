@@ -2,6 +2,7 @@ import { FC, useState } from "react";
 import { CardProps } from "../../../types/types";
 import ModalPortal from "../../modals/ModalPortal";
 import ConfirmationModal from "../../modals/ConfirmationModal";
+import { FaX } from "react-icons/fa6";
 
 const Card: FC<CardProps> = ({ wallet, ShowEditOptions }) => {
   const [confirmationModal, setConfirmationModal] = useState(false);
@@ -33,24 +34,22 @@ const Card: FC<CardProps> = ({ wallet, ShowEditOptions }) => {
   };
   return (
     <div className="card">
+      {ShowEditOptions && (
+        <div className="tools">
+          <button className="btn view">View Details</button>
+          <button className="btn edit">Edit</button>
+          <button
+            className="btn delete"
+            onClick={() => setConfirmationModal(true)}
+          >
+            <FaX />
+          </button>
+        </div>
+      )}
       <div className="card_info">
         <div className="line name">{wallet.card_name}</div>
 
         <div className="line card_expiry">{wallet.expire_date}</div>
-        {ShowEditOptions && (
-          <div className="tools">
-            <div className="card_actions">
-              <button className="btn view">View Details</button>
-              <button className="btn edit">Edit</button>
-              <button
-                className="btn delete"
-                onClick={() => setConfirmationModal(true)}
-              >
-                Delete
-              </button>
-            </div>
-          </div>
-        )}
       </div>
       {confirmationModal && (
         <ModalPortal onClose={() => setConfirmationModal(false)}>

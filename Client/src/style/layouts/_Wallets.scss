@@ -29,6 +29,7 @@
         background-size: cover;
         background-repeat: no-repeat;
         background-position: center;
+        position: relative;
         .card_info {
           display: flex;
           height: 100%;
@@ -48,6 +49,12 @@
               color: $font-color-disable;
             }
           }
+        }
+        .tools {
+          position: absolute;
+          width: 100%;
+          display: flex;
+          justify-content: space-between;
         }
       }
     }
