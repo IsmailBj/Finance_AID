@@ -31,22 +31,30 @@
         background-position: center;
         position: relative;
         .card_info {
-          display: flex;
+          display: grid;
+          grid-template-columns: 1fr 1fr;
+          grid-template-rows: auto auto;
+          text-align: center;
+          gap: 0.5rem;
           height: 100%;
-          width: 100%;
-          position: relative;
-          line-height: 64px;
-          align-items: flex-end;
-          justify-content: space-evenly;
+          align-items: center;
           .line {
-            &.card_expiry {
-              font-size: 0.9rem;
-              color: $font-color-disable;
-              position: relative;
-              left: 40px;
+            width: 100%;
+            color: $font-color-disable;
+            &.balance {
+              font-size: 1.8em;
+              grid-column: 1 / -1;
+              margin-top: 15%;
+              background-color: #00000047;
+              color: white;
             }
-            .card_label {
-              color: $font-color-disable;
+            &.name {
+              grid-column: 1;
+              margin-left: 18px;
+            }
+            &.card_expiry {
+              grid-column: 2;
+              margin-left: 20px;
             }
           }
         }
@@ -55,6 +63,23 @@
           width: 100%;
           display: flex;
           justify-content: space-between;
+          background-color: $shadow-transparent;
+          z-index: 1;
+          button.btn {
+            border-radius: 6px;
+            padding: 5px;
+            color: $font-color-light;
+            cursor: pointer;
+            &.delete {
+              background-color: $unpaid-status;
+            }
+            &.edit {
+              background-color: $worning-status;
+            }
+            &.view {
+              background-color: $paid-status;
+            }
+          }
         }
       }
     }

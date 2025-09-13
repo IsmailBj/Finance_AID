@@ -2,7 +2,7 @@ import { FC, useState } from "react";
 import { CardProps } from "../../../types/types";
 import ModalPortal from "../../modals/ModalPortal";
 import ConfirmationModal from "../../modals/ConfirmationModal";
-import { FaX } from "react-icons/fa6";
+import { FaTrash, FaVaadin, FaPen } from "react-icons/fa6";
 
 const Card: FC<CardProps> = ({ wallet, ShowEditOptions }) => {
   const [confirmationModal, setConfirmationModal] = useState(false);
@@ -32,23 +32,30 @@ const Card: FC<CardProps> = ({ wallet, ShowEditOptions }) => {
       alert("Failed to delete group. Please try again.");
     }
   };
+
   return (
     <div className="card">
       {ShowEditOptions && (
         <div className="tools">
-          <button className="btn view">View Details</button>
-          <button className="btn edit">Edit</button>
+          <button className="btn view">
+            <FaVaadin />
+          </button>
+          <button className="btn edit">
+            <FaPen />
+          </button>
           <button
             className="btn delete"
             onClick={() => setConfirmationModal(true)}
           >
-            <FaX />
+            <FaTrash />
           </button>
         </div>
       )}
       <div className="card_info">
+        <div className="line balance">
+          {wallet.balance} {wallet.currency_type}
+        </div>
         <div className="line name">{wallet.card_name}</div>
-
         <div className="line card_expiry">{wallet.expire_date}</div>
       </div>
       {confirmationModal && (
@@ -65,18 +72,3 @@ const Card: FC<CardProps> = ({ wallet, ShowEditOptions }) => {
 };
 
 export default Card;
-
-{
-  /* <div className="line balance">
-          <span className="card_label">Balance: </span>
-          {wallet.balance}
-        </div>
-        <div className="line card_type">
-          <span className="card_label">Type: </span>
-          {wallet.card_type}
-        </div>
-        <div className="line currency_type">
-          <span className="card_label">Currency: </span>
-          {wallet.currency_type}
-        </div> */
-}
