@@ -91,6 +91,13 @@
                 background-color: $unpaid-status;
               }
             }
+            &:hover {
+              .group-name,
+              .budgeted {
+                color: $color-primary-hover;
+                font-weight: bold;
+              }
+            }
           }
           .sub-groups {
             &.collapsed {
