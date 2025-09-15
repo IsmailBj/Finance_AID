@@ -16,6 +16,17 @@ const createGroup = async (req, res) => {
   } = req.body;
   const user_id = req.user.id;
   try {
+    const walletUpdate = await walletModal.updateWalletAllocatedAmount(
+      user_id,
+      pay_amount
+    );
+
+    if (!walletUpdate) {
+      return res
+        .status(400)
+        .json({ error: "Insufficient allocated amount in wallet" });
+    }
+
     const group = await groupModel.createGroup({
       user_id,
       group_name,
@@ -87,6 +98,17 @@ const deleteGroup = async (req, res) => {
 
     if (group.user_id !== userId) {
       return res.status(403).json({ error: "Unauthorized" });
+    }
+
+    const walletUpdate = await walletModal.updateWalletAllocatedAmount(
+      userId,
+      -group.pay_amount
+    );
+
+    if (!walletUpdate) {
+      return res
+        .status(400)
+        .json({ error: "Insufficient allocated amount in wallet" });
     }
 
     await groupModel.deleteGroup(id, userId);

@@ -41,6 +41,7 @@ export interface Wallet {
   card_type: string;
   expire_date: string;
   id: number;
+  allocated_amount: number;
 }
 
 export interface TabListProps {

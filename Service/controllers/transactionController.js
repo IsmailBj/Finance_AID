@@ -1,5 +1,6 @@
 const transaction = require("../models/transactionModel");
 const groupModel = require("../models/groupModel");
+const walletModal = require("../models/walletModel");
 
 const addTransaction = async (req, res) => {
   const { groupId } = req.params;
@@ -15,6 +16,27 @@ const addTransaction = async (req, res) => {
 
   try {
     await groupModel.updateGroupStatus(groupId, "paid", userId);
+
+    const walletBalance = await walletModal.updateWalletBalance(
+      userId,
+      -paid_amount
+    );
+
+    if (!walletBalance) {
+      return res.status(400).json({ error: "Insufficient balance in wallet" });
+    }
+
+    const walletAllocatedAmount = await walletModal.updateWalletAllocatedAmount(
+      userId,
+      -paid_amount
+    );
+
+    if (!walletAllocatedAmount) {
+      return res
+        .status(400)
+        .json({ error: "Insufficient allocated amount in wallet allocated" });
+    }
+
     await transaction.addTransaction({
       group_id: groupId,
       user_id: userId,
@@ -61,6 +83,24 @@ const deleteTransaction = async (req, res) => {
     const group = await groupModel.updateGroupStatus(groupId, "unpaid", userId);
     if (!group) {
       return res.status(404).json({ error: "Group not found" });
+    }
+
+    const walletBalance = await walletModal.updateWalletBalance(
+      userId,
+      group.plan_amount
+    );
+    if (!walletBalance) {
+      return res.status(400).json({ error: "Insufficient balance in wallet" });
+    }
+    const walletAllocatedAmount = await walletModal.updateWalletAllocatedAmount(
+      userId,
+      group.plan_amount
+    );
+
+    if (!walletAllocatedAmount) {
+      return res
+        .status(400)
+        .json({ error: "Insufficient allocated amount in wallet allocated" });
     }
 
     await transaction.deleteTransaction(groupId, userId);

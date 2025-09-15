@@ -87,7 +87,7 @@ const TabList: FC<TabListProps> = ({ group, onEdit }) => {
       const data = await res.json();
       if (res.status === 201) {
         alert(data.message);
-        window.location.reload();
+        // window.location.reload();
       } else {
         const err = await res.json();
         alert(err.error || "Failed to check group");

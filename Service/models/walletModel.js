@@ -1,5 +1,6 @@
 const db = require("../db");
 
+// create new wallet
 const createWallet = async (
   card_name,
   user_id,
@@ -16,7 +17,7 @@ const createWallet = async (
   );
   return resault.rows[0];
 };
-
+// get all wallets by user id
 const getUserWallets = async (userId) => {
   try {
     const result = await db.query(
@@ -29,37 +30,53 @@ const getUserWallets = async (userId) => {
     throw error;
   }
 };
-
+// update wallet
 const updateWallet = async (
   card_name,
   user_id,
   card_type,
   balance,
   currency_type,
-  expire_date
+  expire_date,
+  allocated_amount = 0
 ) => {
   const result = await db.query(
-    `UPDATE wallets SET card_name = $1, card_type = $2, balance = $3, currency_type = $4, expire_date = $5
-         WHERE user_id = $6 RETURNING *`,
-    [card_name, card_type, balance, currency_type, expire_date, user_id]
+    `UPDATE wallets SET 
+    card_name = $1, 
+    card_type = $2, 
+    balance = $3, 
+    currency_type = $4, 
+    expire_date = $5, 
+    allocated_amount = $7
+    WHERE user_id = $6 RETURNING *`,
+    [
+      card_name,
+      card_type,
+      balance,
+      currency_type,
+      expire_date,
+      user_id,
+      allocated_amount,
+    ]
   );
   return result.rows[0];
 };
 
+// delete single wallet
 const deleteWallet = async (walletId, userId) => {
   await db.query("DELETE FROM wallets WHERE id = $1 AND user_id = $2", [
     walletId,
     userId,
   ]);
 };
-
+// get siongle wallet by id
 const findWalletById = async (walletId) => {
   const result = await db.query("SELECT * FROM wallets WHERE id = $1", [
     walletId,
   ]);
   return result.rows[0];
 };
-
+//  get a column or columns from wallet table
 const getWalletColumns = async (userId, columns = []) => {
   try {
     const allowedColumns = [
@@ -71,6 +88,7 @@ const getWalletColumns = async (userId, columns = []) => {
       "currency_type",
       "expire_date",
       "id",
+      "allocated_amount",
     ];
 
     const safeColumns = columns.filter((col) => allowedColumns.includes(col));
@@ -96,6 +114,37 @@ const getWalletColumns = async (userId, columns = []) => {
   }
 };
 
+// update allocated_amount safely
+const updateWalletAllocatedAmount = async (user_id, amount) => {
+  const result = await db.query(
+    `UPDATE wallets 
+     SET allocated_amount = allocated_amount + $2
+     WHERE user_id = $1 
+     RETURNING *`,
+    [user_id, amount]
+  );
+
+  return result.rows[0];
+};
+
+const updateWalletBalance = async (user_id, amount) => {
+  console.log(
+    "Updating wallet balance for user:",
+    user_id,
+    "by amount:",
+    amount
+  );
+  const result = await db.query(
+    `UPDATE wallets
+      SET balance = balance + $2
+      WHERE user_id = $1
+      RETURNING *`,
+    [user_id, amount]
+  );
+
+  return result.rows[0];
+};
+
 module.exports = {
   createWallet,
   getUserWallets,
@@ -103,4 +152,6 @@ module.exports = {
   deleteWallet,
   findWalletById,
   getWalletColumns,
+  updateWalletAllocatedAmount,
+  updateWalletBalance,
 };

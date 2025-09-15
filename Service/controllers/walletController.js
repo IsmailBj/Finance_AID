@@ -65,7 +65,9 @@ const deleteWallet = async (req, res) => {
       return res.status(403).json({ error: "Unauthorized" });
     }
     await walletModal.deleteWallet(id, userId);
-    res.status(204).send();
+    res
+      .status(204)
+      .json({ success: true, message: "Wallet deleted successfully" });
   } catch (err) {
     res.status(500).json({ error: "Failed to delete wallet" });
   }
