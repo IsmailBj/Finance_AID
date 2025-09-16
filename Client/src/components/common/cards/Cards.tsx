@@ -3,9 +3,11 @@ import { CardProps } from "../../../types/types";
 import ModalPortal from "../../modals/ModalPortal";
 import ConfirmationModal from "../../modals/ConfirmationModal";
 import { FaTrash, FaVaadin, FaPen } from "react-icons/fa6";
+import CardMoreViewModal from "../../modals/CardViewModal";
 
 const Card: FC<CardProps> = ({ wallet, ShowEditOptions }) => {
   const [confirmationModal, setConfirmationModal] = useState(false);
+  const [viewCardInfoModal, setSiewCardInfoModal] = useState(false);
   const HandleDelete = async () => {
     const groupId = wallet.id;
     try {
@@ -37,7 +39,10 @@ const Card: FC<CardProps> = ({ wallet, ShowEditOptions }) => {
     <div className="card">
       {ShowEditOptions && (
         <div className="tools">
-          <button className="btn view">
+          <button
+            className="btn view"
+            onClick={() => setSiewCardInfoModal(true)}
+          >
             <FaVaadin />
           </button>
           <button className="btn edit">
@@ -68,6 +73,12 @@ const Card: FC<CardProps> = ({ wallet, ShowEditOptions }) => {
             onConfirm={HandleDelete}
           />
         </ModalPortal>
+      )}
+      {viewCardInfoModal && (
+        <CardMoreViewModal
+          onClose={() => setSiewCardInfoModal(false)}
+          ExtraInfo={wallet}
+        />
       )}
     </div>
   );
