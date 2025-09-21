@@ -1,8 +1,8 @@
 import { FC, useState } from "react";
 import { getTimeZone } from "../../../helpers/DateAndTimeHelpers";
+import LanguageSelector from "../../common/bars/LanguageSelector";
 
 const LanguageRegion: FC = () => {
-  const [language, setLanguage] = useState("en");
   const [autoTimezone, setAutoTimezone] = useState(false);
   const [timezone, setTimezone] = useState("");
 
@@ -12,9 +12,9 @@ const LanguageRegion: FC = () => {
     // If no timezone selected or autoTimezone is true, use system timezone
     const finalTimezone =
       autoTimezone || timezone === "" ? getTimeZone() : timezone;
-
+    // update seperately
     const payload = {
-      language,
+      language: "en", // default for now
       timezone: finalTimezone,
     };
 
@@ -67,28 +67,12 @@ const LanguageRegion: FC = () => {
       <div className="language">
         <div className="input-group">
           <label htmlFor="language">Language</label>
-          <select
-            id="language"
-            value={language}
-            onChange={(e) => setLanguage(e.target.value)}
-          >
-            <option value="en">English</option>
-            <option value="de">German</option>
-            <option value="fr">French</option>
-            <option value="es">Spanish</option>
-            <option value="it">Italian</option>
-            <option value="ru">Russian</option>
-            <option value="zh">Chinese (Simplified)</option>
-            <option value="ja">Japanese</option>
-            <option value="ar">Arabic</option>
-            <option value="pt">Portuguese</option>
-          </select>
+          <LanguageSelector />
           <span className="form-helper">
             Choose the language you'd like to use
           </span>
         </div>
       </div>
-
       {/* Timezone selection */}
       <div className="Timezone">
         <div className="input-group">
@@ -136,5 +120,17 @@ const LanguageRegion: FC = () => {
     </form>
   );
 };
+
+{
+  /* <div className="language">
+        <div className="input-group">
+          <label htmlFor="language">Language</label>
+
+          <span className="form-helper">
+            Choose the language you'd like to use
+          </span>
+        </div>
+      </div> */
+}
 
 export default LanguageRegion;

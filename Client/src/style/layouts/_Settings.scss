@@ -181,7 +181,23 @@
 
   .langRegion-container {
     .language {
-      margin-bottom: 20px;
+      padding-bottom: 20px;
+      .language-card {
+        background: #fff;
+        cursor: pointer;
+        position: relative;
+        user-select: none;
+        padding: 10px;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        font-size: 14px;
+        font-weight: 500;
+        width: unset;
+        box-shadow: unset;
+        &:hover {
+          box-shadow: unset;
+        }
+      }
     }
     .Timezone {
       .input-group {

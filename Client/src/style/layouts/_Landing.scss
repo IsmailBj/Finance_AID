@@ -9,13 +9,18 @@
   align-items: center;
   justify-content: center;
   font-family: $font-base;
+  .top-bar {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+  }
   .landing-container {
     background-color: $bg-secondary;
     padding: 2rem 3rem;
     border-radius: 8px;
     box-shadow: 0 0 15px $shadow-color;
     width: 100%;
-    max-width: 400px;
+    max-width: 300px;
     min-height: 350px;
     z-index: 1;
   }

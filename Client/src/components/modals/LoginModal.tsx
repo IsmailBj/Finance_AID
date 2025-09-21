@@ -3,7 +3,10 @@ import Loading from "../common/loader/Loading";
 import { useNavigate } from "react-router-dom";
 import { RegLogProps } from "../../types/types";
 import { useAvatar } from "../../hooks/useAvatar";
+import { useTranslation } from "react-i18next";
+
 const LoginModal: FC<RegLogProps> = ({ showRegister }) => {
+  const { t } = useTranslation();
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
@@ -48,7 +51,7 @@ const LoginModal: FC<RegLogProps> = ({ showRegister }) => {
     <Loading />
   ) : (
     <>
-      <h1 className="login-title">Welcome Back</h1>
+      <h1 className="login-title">{t("welcome_back")}</h1>
       <form className="login-form" onSubmit={(e) => handleLogin(e)}>
         <label htmlFor="username">Username</label>
         <input
