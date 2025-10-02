@@ -6,6 +6,7 @@
   position: relative;
   margin: 20px 10px;
   width: calc(100% - 20px);
+
   .item-panel {
     width: 75%;
     // TableList
@@ -151,6 +152,19 @@
   .cards-holder {
     width: calc(25% - 60px);
     margin: 30px;
+  }
+  @media (max-width: 1600px) {
+    flex-direction: column-reverse;
+    .item-panel {
+      width: 100%;
+    }
+    .cards-holder {
+      width: fit-content;
+      margin: 30px;
+      gap: 30px;
+      display: flex;
+      align-items: flex-start;
+    }
   }
 }
 

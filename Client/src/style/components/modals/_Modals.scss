@@ -14,11 +14,12 @@
   z-index: 1000;
   .modal-container {
     background: $bg-secondary;
-    padding: 1.8em;
+    padding: 1.6em;
     border-radius: 10px;
     min-width: 300px;
     .card-modal,
-    .group-modal {
+    .group-modal,
+    .more-info-modal {
       .title {
         text-align: center;
         background: $bg-primary;
@@ -68,6 +69,18 @@
           @include simpleButton($color-primary-hover, $bg-secondary);
         }
       }
+    }
+  }
+
+  .info-row {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+    .info-label {
+      font-weight: 600;
+    }
+    .info-value {
+      font-weight: 400;
     }
   }
   .confirmation-modal {

@@ -26,7 +26,7 @@ const AvatarModal: FC<AvatarModalProps> = ({ onClose }) => {
         );
         const data = await res.json();
         if (res.ok) {
-          setAvatar(selectedAvatar);
+          setAvatar(data.avatar || selectedAvatar);
           onClose();
         } else {
           alert(data.error || "Failed to update avatar");

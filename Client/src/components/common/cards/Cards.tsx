@@ -57,9 +57,9 @@ const Card: FC<CardProps> = ({ wallet, ShowEditOptions }) => {
         </div>
       )}
       <div className="card_info">
-        <div className="line allocated">{wallet.allocated_amount}</div>
+        {/* <div className="line allocated">{wallet.allocated_amount}</div> */}
         <div className="line balance">
-          {wallet.balance} {wallet.currency_type}
+          {wallet.allocated_amount} {wallet.currency_type}
         </div>
 
         <div className="line name">{wallet.card_name}</div>

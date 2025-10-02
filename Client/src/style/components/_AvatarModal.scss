@@ -7,6 +7,10 @@
     display: flex;
     margin-bottom: 15px;
     justify-content: space-between;
+    background-color: $color-primary;
+    color: $font-color-light;
+    border-radius: 12px 12px 1px 1px;
+    padding: 1rem;
     .go-backTab {
       cursor: pointer;
 
@@ -30,6 +34,9 @@
     align-items: center;
     gap: 10px;
     .img-placeholder {
+      background: $bg-shadow;
+      border-radius: 61px;
+      padding: 5px 8px;
     }
     .review-avatar {
       padding: 10px;
