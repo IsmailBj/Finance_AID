@@ -16,7 +16,9 @@
 @use "../style/components/AvatarModal" as *;
 @use "../style/ui/Bars.scss" as *;
 
+html,
 body {
+  height: 100%;
   margin: 0;
   font-family: $font-base;
 }
@@ -27,6 +29,9 @@ body {
   border-radius: 5px;
   height: calc(100vh - 20px);
   box-shadow: $shadow-color 0px 0px 9px 4px;
+}
+
+.app.mobile {
 }
 
 .app .main {

@@ -1,11 +1,11 @@
 @use "@/style/utils/_variables" as *;
 @use "@/style/utils/mixings" as *;
 .side-bar {
-  max-width: 15%;
   background-color: $color-primary;
   display: flex;
   flex-direction: column;
   transition: all 0.3s ease;
+  position: relative;
   .user-info-header {
     color: white;
     display: flex;
@@ -44,8 +44,14 @@
   }
 }
 
+.mobile .side-bar {
+  // width: 250px;
+  // height: 100vh;
+}
+
 .side-bar.minimized {
-  max-width: 70px;
+  width: 50px;
+  position: relative;
   .user-info-header {
     flex-direction: column;
     .info-wrapper {
